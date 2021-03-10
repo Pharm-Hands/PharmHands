@@ -9,6 +9,7 @@ class Home {
     @GetMapping("/")
     @ResponseBody
     public String hello() {
+        System.out.println("hi");
         return "Hello from Spring!";
     }
 }
