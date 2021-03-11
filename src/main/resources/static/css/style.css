@@ -1,0 +1,17 @@
+
+@media screen and (max-width: 670px){
+    header{
+        min-height: 150px;
+    }
+}
+.section{
+    padding-top: 4vw;
+    padding-bottom: 4vw;
+}
+
+.icon-black{
+    color: black;
+}
+body{
+    background-color: #004181 ;
+}
