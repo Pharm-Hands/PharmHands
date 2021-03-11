@@ -8,11 +8,34 @@ public class PrescriberInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long prescriber_id;
+    private long id;
 
     @Column(nullable = false)
     private long npi;
 
     @OneToOne
-    private User users_id;
+    private User user;
+
+    public PrescriberInfo(){}
+
+    public PrescriberInfo(long id, long npi) {
+        this.id = id;
+        this.npi = npi;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getNpi() {
+        return npi;
+    }
+
+    public void setNpi(long npi) {
+        this.npi = npi;
+    }
 }

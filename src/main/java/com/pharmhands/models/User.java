@@ -26,25 +26,21 @@ import java.util.List;
         private int is_deleted;
 
         @Column(nullable = false)
-        private String role_id;
-
-        @Column(nullable = false)
         private String phone_number;
 
         @OneToOne
-        private UserRoles userRole_id;
+        private UserRoles role;
 
         public User() {
         }
 
-        public User(long id, String username, String full_name, String email, String password, int is_deleted, String role_id, String phone_number) {
+        public User(long id, String username, String full_name, String email, String password, int is_deleted, String phone_number) {
             this.id = id;
             this.username = username;
             this.full_name = full_name;
             this.email = email;
             this.password = password;
             this.is_deleted = is_deleted;
-            this.role_id = role_id;
             this.phone_number = phone_number;
         }
 
@@ -96,13 +92,6 @@ import java.util.List;
             this.is_deleted = is_deleted;
         }
 
-        public String getRole_id() {
-            return role_id;
-        }
-
-        public void setRole_id(String role_id) {
-            this.role_id = role_id;
-        }
 
         public String getPhone_number() {
             return phone_number;
