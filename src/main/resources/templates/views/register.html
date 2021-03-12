@@ -10,34 +10,15 @@
             <div class="card-content #757575">
                 <span class="card-title">Sign Up</span>
                 <div class="row">
-                    <div class="input-field col s12">
-                        <label for="email">Email address</label>
-                        <input type="email" class="text" name="email" id="email" />
-                    </div>
-                    <div class="input-field col s12">
-                        <label for="name">Full Name</label>
-                        <input type="text" class="text" name="email" id="name" />
-                    </div>
-                    <div class="input-field col s12">
-                        <label for="phoneNumber">Contact Number</label>
-                        <input type="text" class="text" name="phoneNumber" id="phoneNumber" />
-                    </div>
-                    <div class="input-field col s12">
-                        <label for="userName">User Name</label>
-                        <input type="text" class="text" name="userName" id="userName" />
-                    </div>
+
                     <div class="input-field col s12">
                         <select>
-                            <option value="" disabled selected>Choose your option</option>
+                            <option value="" disabled selected>Please choose user type</option>
                             <option value="1">Patient</option>
                             <option value="2">Pharmacist</option>
                             <option value="3">Doctor</option>
                         </select>
                         <label>User Type</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <label for="password">Password </label>
-                        <input type="password" class="text" name="password" id="password" />
                     </div>
                 </div>
             </div>
@@ -49,7 +30,6 @@
         <p>If you already have an account please <a href="/login">Sign In</a></p>
     </div>
 </div>
-
 
 
 <div th:replace="partials/scripts :: scripts"></div>
