@@ -16,9 +16,17 @@ public class PrescriberInfo {
     @OneToOne
     private User user;
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public PrescriberInfo(){}
 
-    public PrescriberInfo(long id, long npi) {
+    public PrescriberInfo(long id, User user, long npi) {
         this.id = id;
         this.npi = npi;
     }
