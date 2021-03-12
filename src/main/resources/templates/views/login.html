@@ -6,13 +6,13 @@
 
 <div class="valign-wrapper row login-box ">
     <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
-        <form>
+        <form th:action="@{/login}" method="post">
             <div class="card-content #757575">
                 <span class="card-title">Sign In</span>
                 <div class="row">
                     <div class="input-field col s12">
-                        <label for="email">Email address</label>
-                        <input type="email" class="validate" name="email" id="email" />
+                        <label for="username">Username</label>
+                        <input type="text" class="validate" name="username" id="username" />
                     </div>
                     <div class="input-field col s12">
                         <label for="password">Password </label>
@@ -28,6 +28,22 @@
 
         <small ><a href="/forgotPassword">Forgot password ? </a></small>
         <p>If you do not  already have an account please <a href="/register">Sign Up</a></p>
+
+        <h1>Log In</h1>
+        <div th:if="${param.error}">
+            Invalid Username and Password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+
+<!--        <form th:action="@{/login}" method="post">-->
+<!--            <label for="username">Username</label>-->
+<!--            <input id="username" name="username" type="text" />-->
+<!--            <label for="password">Password</label>-->
+<!--            <input id="password" name="password" type="password" />-->
+<!--            <input type="submit" value="Log In" />-->
+<!--        </form>-->
     </div>
 </div>
 
