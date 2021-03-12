@@ -1,5 +1,6 @@
 package com.pharmhands.services;
 
+import com.pharmhands.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
@@ -17,11 +18,10 @@ public class EmailService {
     @Value("${spring.mail.from}")
     private String from;
 
-    public void prepareAndSend(String subject, String body) {
+    public void prepareAndSend(User user, String subject, String body) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
-        msg.setTo("josiah.thomas.cuthbert@gmail.com");
-        msg.setTo("seyyadrijaya@gmail.com");
+        msg.setTo(user.getEmail());
         msg.setSubject(subject);
         msg.setText(body);
 

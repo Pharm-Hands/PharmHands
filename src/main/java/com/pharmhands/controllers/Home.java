@@ -1,5 +1,6 @@
 package com.pharmhands.controllers;
 
+import com.pharmhands.repositories.UserRepository;
 import com.pharmhands.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,9 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 class Home {
 
     private final EmailService emailService;
+    private final UserRepository userDao;
 
-    public Home(EmailService emailService){
+    public Home(EmailService emailService, UserRepository userDao){
         this.emailService = emailService;
+        this.userDao = userDao;
     }
 
     @GetMapping("/")
@@ -23,7 +26,8 @@ class Home {
     @GetMapping("/email")
     @ResponseBody
     public String emailSend(){
-        emailService.prepareAndSend("test", "hello from pharmhands");
+
+        emailService.prepareAndSend(userDao.getOne((long) 2), "test", "hello from pharmhands");
         return "email page";
     }
 }
