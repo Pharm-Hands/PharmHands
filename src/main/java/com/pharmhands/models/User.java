@@ -40,7 +40,7 @@ public class User {
     public User() {
     }
 
-    public User(long id, String username, String full_name, String email, String password, int is_deleted, String phone_number) {
+    public User(long id, String username, String full_name, String email, String password, int is_deleted, String phone_number, UserRoles role) {
         this.id = id;
         this.username = username;
         this.full_name = full_name;
@@ -48,6 +48,15 @@ public class User {
         this.password = password;
         this.is_deleted = is_deleted;
         this.phone_number = phone_number;
+        this.role = role;
+    }
+
+    public UserRoles getRole() {
+        return role;
+    }
+
+    public void setRole(UserRoles role) {
+        this.role = role;
     }
 
     public User(User copy){
@@ -58,6 +67,7 @@ public class User {
         password = copy.password;
         is_deleted = copy.is_deleted;
         phone_number = copy.phone_number;
+        role = copy.role;
     }
 
     public long getId() {
