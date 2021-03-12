@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head-section "></head>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<body>
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s3"><a href="#tab1">Doctor Info</a> </li>
+            <li class="tab col s3>"><a href="#tab2">Messages</a> </li>
+            <li class="tab col s3>"><a href="#tab3">Your Prescriptions</a> </li>
+        </ul>
+    </div>
+    <div id="tab1" class="col s12" th:>
+        <h1 th:text="${doctor.full_name}"></h1>
+        <h3 th:text="${doctor.username}"></h3>
+        <br>
+        <p th:text="${doctor.email}" ></p>
+        <p th:text="${doctorInfo.npi}" ></p>
+        <p th:text="${doctor.email}" ></p>
+
+    </div>
+    <div id="tab2" class="col s12">
+        New messages will go here
+    </div>
+    <div id="tab3" class="col s12">
+        List of current prescriptions
+    </div>
+
+</div>
+
+
+
+
+
+<div th:replace="partials/scripts :: scripts"></div>
+</body>
+</html>
