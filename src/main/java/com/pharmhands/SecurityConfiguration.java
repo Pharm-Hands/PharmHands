@@ -1,9 +1,9 @@
-//package com.pharmhands;
+package com.pharmhands;
 //
-//import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Configuration;
 //
-//@Configuration
-//public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+@Configuration
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //
 //    private UserDetailsLoader usersLoader;
 //
@@ -50,5 +50,5 @@
 //                )
 //                .authenticated()
 //        ;
-//    }
+    }
 //}
