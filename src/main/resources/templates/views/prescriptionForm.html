@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head-section"></head>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<body>
+
+    <div class="valign-wrapper row login-box ">
+        <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
+
+            <form>
+
+                <div class="card-content #757575">
+                    <span class="card-title">Patient Information</span>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="name">Name</label>
+                            <input type="text" class="validate" name="name" id="name" />
+                        </div>
+                        <div class="input-field col s12">
+
+                            <label for="dob">Date of Birth (yyyy/mm/dd)</label>
+                            <input type="text" class="validate" name="dob" id="dob" />
+                        </div>
+                        <div class="input-field col s12">
+
+                            <label for="sex">Sex</label>
+                            <input type="text" class="validate" name="sex" id="sex" />
+                        </div>
+                        <div class="input-field col s12">
+
+                            <label for="phone">Phone Number</label>
+                            <input type="text" class="validate" name="phone" id="phone" />
+                        </div>
+                        <div class="input-field col s12">
+
+                            <label for="address">Address</label>
+                            <input type="text" class="validate" name="address" id="address" />
+                        </div>
+                        <div class="input-field col s12">
+
+                            <label for="city">City</label>
+                            <input type="text" class="validate" name="city" id="city" />
+                        </div>
+                        <div class="input-field col s12">
+
+                            <label for="state">State</label>
+                            <input type="text" class="validate" name="state" id="state" />
+                        </div>
+
+                        <div class="input-field col s12">
+
+                            <label for="zip">Zip</label>
+                            <input type="text" class="validate" name="zip" id="zip" />
+                        </div>
+                    </div>
+                    <div class="row">
+
+                <div class="card-content #757575">
+                    <span class="card-title">Prescription Information</span>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="drugName">Drug Name</label>
+                            <input type="text" class="validate" name="drugName" id="drugName" />
+                        </div>
+                        <div class="input-field col s12">
+                            <label for="drugForm">Form</label>
+                            <input type="text" class="validate" name="drugForm" id="drugForm" />
+                        </div>
+                        <div class="input-field col s12">
+                            <label for="drugStrength">Strength (mg)</label>
+                            <input type="text" class="validate" name="drugStrength" id="drugStrength" />
+                        </div>
+                        <div class="input-field col s12">
+                            <label for="drugSig">Directions</label>
+                            <input type="text" class="validate" name="drugSig" id="drugSig" />
+                        </div>
+                        <div class="input-field col s12">
+                            <label for="drugDose">Dose</label>
+                            <input type="text" class="validate" name="drugDose" id="drugDose" />
+                        </div>
+                        <div class="input-field col s12">
+                            <label for="drugQuantity">Quantity</label>
+                            <input type="text" class="validate" name="drugQuantity" id="drugQuantity" />
+                        </div>
+                        <div class="input-field col s12">
+                            <label for="daysSupply">Days Supply</label>
+                            <input type="text" class="validate" name="daysSupply" id="daysSupply" />
+                        </div>
+                        <div class="input-field col s12">
+                            <label for="drugRefills">Refills</label>
+                            <input type="text" class="validate" name="drugRefills" id="drugRefills" />
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="row">
+
+                    <div class="card-content #757575">
+                    <span class="card-title">Prescriber Information</span>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="prescriberName">Prescriber Name</label>
+                            <input type="text" class="validate" name="prescriberName" id="prescriberName" />
+                        </div>
+                        <div class="input-field col s12">
+                            <label for="npi">NPI</label>
+                            <input type="text" class="validate" name="npi" id="npi" />
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                <div class="card-action right-align">
+                    <input type="button" id="backToProfile" class="btn-flat grey-text waves-effect"><a href="/profile">Go Back</a></input>
+                    <input type="submit" class="btn orange  waves-effect waves-light" value="Submit Prescription">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div th:replace="partials/scripts :: scripts"></div>
+    <script type="text/javascript" src="/js/rxFormValidation.js"></script>
+</body>
+</html>
