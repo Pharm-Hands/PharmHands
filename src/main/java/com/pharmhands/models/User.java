@@ -50,6 +50,16 @@ public class User {
         this.phone_number = phone_number;
     }
 
+    public User(User copy){
+        id = copy.id;
+        username = copy.username;
+        full_name = copy.full_name;
+        email = copy.email;
+        password = copy.password;
+        is_deleted = copy.is_deleted;
+        phone_number = copy.phone_number;
+    }
+
     public long getId() {
         return id;
     }
