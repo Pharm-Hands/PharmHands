@@ -29,7 +29,7 @@
         <small ><a href="/forgotPassword">Forgot password ? </a></small>
         <p>If you do not  already have an account please <a href="/register">Sign Up</a></p>
 
-        <h1>Log In</h1>
+<!--        <h1>Log In</h1>-->
         <div th:if="${param.error}">
             Invalid Username and Password.
         </div>
@@ -46,8 +46,6 @@
 <!--        </form>-->
     </div>
 </div>
-
-
 
 <div th:replace="partials/scripts :: scripts"></div>
 </body>
