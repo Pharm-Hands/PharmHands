@@ -2,31 +2,91 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/head :: head-section "></head>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<body>
+<body class="container">
     <div class="row">
         <div class="col s12">
             <ul class="tabs">
-                <li class="tab col s3"><a href="#info">Patient Information</a> </li>
+                <li class="tab col s3" th:object="${patient_info}"><a href="#info">Patient Information</a> </li>
                 <li class="tab col s3>"><a href="#message">Messages</a> </li>
-                <li class="tab col s3>"><a href="#prescrip">Your Prescriptions</a> </li>
+                <li class="tab col s3>"><a href="#prescriptions">Your Prescriptions</a> </li>
             </ul>
         </div>
-        <div id="info" class="col s12">Patient info will display here
+        <div id="info" class="col s12">
+           <h3> Your profile information below :</h3>
+            <table class = "striped bordered">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+                </thead>
 
+                <tbody>
+                <tr>
+                    <td><span th:text="${users.username}"></span></td>
+                </tr>
+                </tbody>
+            </table>
 
+            <table class = "striped bordered">
+                <thead>
+                <tr>
+                    <th>Address</th>
+                </tr>
+                </thead>
 
+                <tbody>
+                <tr>
+                    <td><span th:text="${patient_info.address}"></span></td>
+                </tr>
+                </tbody>
+            </table>
+            <table class = "striped bordered">
+                <thead>
+                <tr>
+                    <th>Date of Birth</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td><span th:text="${patient_info.dob}"</td>
+                </tr>
+                </tbody>
+            </table>
 
         </div>
-        <div id="message" class="col s12">New messages will go here
 
+       <div id="message" class="col s12"> Message your Pharmacist !
+          <hr>
+            <div class = "row">
+                <form class = "col s12">
+                    <div class = "row">
+                        <div class = "input-field col s12">
+                            <span class="material-icons">app_registration</span>
+                            <input placeholder = "Subject" value = "" id = "subject"
+                                   type = "text" class =  "required" />
+                            <label for = "subject">Subject</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="msg" class="materialize-textarea"></textarea>
+                                        <label for="msg" class='active'></label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
 
-
-
-
-
-
+                        <div class="card-action right-align">
+                            <input type="reset" id="reset" class="btn-flat grey-text waves-effect">
+                            <input type="submit" class="btn orange  waves-effect waves-light" value="Submit">
+                        </div>
         </div>
-        <div id="prescriptions" class="col s12">List of current prescriptions</div>
+        <div id="prescriptions" class="col s12"> Current prescriptions</div>
 
     </div>
 
