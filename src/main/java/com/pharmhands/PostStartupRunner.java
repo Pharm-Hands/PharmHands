@@ -2,6 +2,13 @@ package com.pharmhands;
 
 import com.pharmhands.models.*;
 import com.pharmhands.repositories.*;
+import com.pharmhands.models.PrescriberInfo;
+import com.pharmhands.models.User;
+import com.pharmhands.models.UserRoles;
+import com.pharmhands.repositories.PrescriberInfoRepository;
+import com.pharmhands.repositories.UserRepository;
+import com.pharmhands.repositories.UserRolesRepository;
+import com.pharmhands.services.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -20,6 +27,7 @@ public class PostStartupRunner implements CommandLineRunner {
     private final PasswordEncoder encoder;
 
     public PostStartupRunner(UserRepository userDao, UserRolesRepository userRolesDao, PrescriberInfoRepository prescriberInfoDao, PrescriptionsRepository prescriptionsDao, FillsRepository fillsDao, DrugsRepository drugsDao, PasswordEncoder encoder) {
+
         this.userDao = userDao;
         this.userRolesDao = userRolesDao;
         this.prescriberInfoDao = prescriberInfoDao;
