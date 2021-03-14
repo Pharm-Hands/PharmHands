@@ -20,13 +20,13 @@ public class PostStartupRunner implements CommandLineRunner {
     private final PasswordEncoder encoder;
     private final UserService userService;
 
-    public PostStartupRunner(UserRepository userDao, UserRolesRepository userRolesDao, PrescriberInfoRepository prescriberInfoDao, PasswordEncoder encoder) {
+    public PostStartupRunner(UserRepository userDao, UserRolesRepository userRolesDao, UserService userService, PrescriberInfoRepository prescriberInfoDao, PasswordEncoder encoder) {
 
         this.userDao = userDao;
         this.userRolesDao = userRolesDao;
         this.prescriberInfoDao = prescriberInfoDao;
         this.encoder = encoder;
-        this.userService =userService;
+        this.userService = userService;
     }
 
     @Override
