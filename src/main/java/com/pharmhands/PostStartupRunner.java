@@ -1,7 +1,9 @@
 package com.pharmhands;
 
+import com.pharmhands.models.PrescriberInfo;
 import com.pharmhands.models.User;
 import com.pharmhands.models.UserRoles;
+import com.pharmhands.repositories.PrescriberInfoRepository;
 import com.pharmhands.repositories.UserRepository;
 import com.pharmhands.repositories.UserRolesRepository;
 import com.pharmhands.services.UserService;
@@ -14,12 +16,15 @@ public class PostStartupRunner implements CommandLineRunner {
 
     private final UserRepository userDao;
     private final UserRolesRepository userRolesDao;
+    private final PrescriberInfoRepository prescriberInfoDao;
     private final PasswordEncoder encoder;
     private final UserService userService;
 
-    public PostStartupRunner(UserRepository userDao, UserRolesRepository userRolesDao, PasswordEncoder encoder,UserService userService) {
+    public PostStartupRunner(UserRepository userDao, UserRolesRepository userRolesDao, PrescriberInfoRepository prescriberInfoDao, PasswordEncoder encoder) {
+
         this.userDao = userDao;
         this.userRolesDao = userRolesDao;
+        this.prescriberInfoDao = prescriberInfoDao;
         this.encoder = encoder;
         this.userService =userService;
     }
@@ -31,8 +36,9 @@ public class PostStartupRunner implements CommandLineRunner {
             return;
         }
         UserRoles role = new UserRoles();
-        role.setRole_name("patient");
+        role.setRole_name("doctor");
         UserRoles savedRole = userRolesDao.save(role);
+
 
         User user = new User();
 
@@ -46,5 +52,9 @@ public class PostStartupRunner implements CommandLineRunner {
         user.setRole(savedRole);
         User savedUser = userDao.save(user);
 
+        PrescriberInfo info = new PrescriberInfo();
+        info.setNpi(6567777);
+        info.setUser(savedUser);
+        PrescriberInfo savedInfo = prescriberInfoDao.save(info);
     }
 }
