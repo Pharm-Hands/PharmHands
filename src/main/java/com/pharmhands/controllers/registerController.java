@@ -17,6 +17,24 @@ public class registerController {
         return "views/register";
     }
 
+
+//    Takes you to the patient registration form
+    @GetMapping("/patientRegister")
+     public String patientRegister(Model model){
+        return "views/patientRegister";
+    }
+
+//    Takes you to the doctor registration form
+    @GetMapping("/doctorRegister")
+    public String doctorRegister(Model model){
+        return "views/doctorRegister";
+    }
+//    Takes you to the pharmacist registration form
+    @GetMapping("/pharmRegister")
+    public String pharmRegister(Model model){
+        return "views/pharmRegister";
+    }
+
 //    @GetMapping("/sign-up")
 //    public String showSignupForm(Model model){
 //        model.addAttribute("user", new User());
