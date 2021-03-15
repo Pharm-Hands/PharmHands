@@ -1,7 +1,6 @@
 package com.pharmhands.controllers;
 
 import com.pharmhands.repositories.UserRepository;
-import com.pharmhands.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,13 +12,11 @@ public class PharmacistViewController {
 
     private final UserRepository userDao;
 
-    private final UserService userService;
 
 //    private final PharmacistRepository pharmacistDao;
 
-    public PharmacistViewController(UserRepository userDao, UserService userService) {
+    public PharmacistViewController(UserRepository userDao) {
         this.userDao = userDao;
-        this.userService = userService;
 //        this.pharmacistDao = pharmacistDao;
     }
 

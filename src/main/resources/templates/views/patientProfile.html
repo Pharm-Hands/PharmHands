@@ -58,8 +58,9 @@
 
     <div id="message" class="col s12"> Message your Pharmacist !
         <hr>
+        <form th:action="@{|/patientProfile/${patient.id}|}" th:method="POST">
         <div class="row">
-            <form class="col s12">
+<!--            <form class="col s12 ">-->
                 <div class="row">
                     <div class="input-field col s12">
                         <span class="material-icons">app_registration</span>
@@ -68,23 +69,22 @@
                         <label for="subject">Subject</label>
                     </div>
                 </div>
-            </form>
         </div>
         <div class="row">
-            <form class="col s12">
+<!--            <form class="col s12">-->
                 <div class="row">
                     <div class="input-field col s12">
                         <textarea id="msg" class="materialize-textarea"></textarea>
                         <label for="msg" class='active'></label>
                     </div>
                 </div>
-            </form>
         </div>
 
         <div class="card-action right-align">
             <input type="reset" id="reset" class="btn-flat grey-text waves-effect">
             <input type="submit" class="btn orange  waves-effect waves-light" value="Submit">
         </div>
+        </form>
     </div>
     <div id="prescriptions" class="col s12"> Current prescriptions</div>
 
