@@ -51,15 +51,7 @@ public class User {
         this.role = role;
     }
 
-    public UserRoles getRole() {
-        return role;
-    }
-
-    public void setRole(UserRoles role) {
-        this.role = role;
-    }
-
-    public User(User copy){
+    public User(User copy) {
         id = copy.id;
         username = copy.username;
         full_name = copy.full_name;
@@ -68,6 +60,14 @@ public class User {
         is_deleted = copy.is_deleted;
         phone_number = copy.phone_number;
         role = copy.role;
+    }
+
+    public UserRoles getRole() {
+        return role;
+    }
+
+    public void setRole(UserRoles role) {
+        this.role = role;
     }
 
     public long getId() {

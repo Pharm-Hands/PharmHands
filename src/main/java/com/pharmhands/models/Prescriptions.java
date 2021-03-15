@@ -58,7 +58,8 @@ public class Prescriptions {
     @Column(nullable = false)
     private Date created_at;
 
-    public Prescriptions(){}
+    public Prescriptions() {
+    }
 
     public Prescriptions(long id, User user, Drugs drug, List<Fills> fills, List<PrescriptionNotes> prescription_notes, int prescriber_id, String drug_form, int drug_Strength, String sig, int dose, int quantity, int is_deleted, int is_verified, int days_supply, Date created_at) {
         this.id = id;

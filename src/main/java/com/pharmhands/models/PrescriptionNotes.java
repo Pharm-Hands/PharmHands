@@ -15,18 +15,19 @@ public class PrescriptionNotes {
     private Prescriptions prescription;
 
 
-    @Column(nullable= false, length =1000000)
+    @Column(nullable = false, length = 1000000)
     private String note;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(nullable= false)
+    @Column(nullable = false)
     private Date created_at;
 
 
-    public  PrescriptionNotes(){}
+    public PrescriptionNotes() {
+    }
 
     public PrescriptionNotes(long id, Prescriptions prescription, String note, User user, Date created_at) {
         this.id = id;
