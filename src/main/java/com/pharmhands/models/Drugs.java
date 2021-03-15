@@ -15,7 +15,8 @@ public class Drugs {
     private String drug_name;
 
 
-    public Drugs(){}
+    public Drugs() {
+    }
 
     public Drugs(long id, String drug_name) {
         this.id = id;

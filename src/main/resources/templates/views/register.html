@@ -6,25 +6,22 @@
 
 <div class="valign-wrapper row login-box ">
     <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
-        <form id="user-type">
+        <form>
             <div class="card-content #757575">
-                <span class="card-title">Sign Up</span>
+                <span class="card-title">Register</span>
+                <p>Before continuing please select who to register from the menu below. After you have selected you will be taken to the appropriate registration form.</p>
                 <div class="row">
 
                     <div class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Please choose user type</option>
-                            <option value="patient">Patient</option>
-                            <option value="pharmacist">Pharmacist</option>
-                            <option value="doctor">Doctor</option>
+                        <select id="user-picked">
+                            <option value="" disabled selected>Please select who to register</option>
+                            <option value="1">Patient</option>
+                            <option value="2">Pharmacist</option>
+                            <option value="3">Doctor</option>
                         </select>
-                        <label>User Type</label>
+                        <label></label>
                     </div>
                 </div>
-            </div>
-            <div class="card-action right-align">
-                <input type="reset" id="reset" class="btn-flat grey-text waves-effect">
-                <input type="submit" class="btn orange  waves-effect waves-light" value="Submit">
             </div>
         </form>
         <p>If you already have an account please <a href="/login">Sign In</a></p>
@@ -33,5 +30,6 @@
 
 
 <div th:replace="partials/scripts :: scripts"></div>
+
 </body>
 </html>
