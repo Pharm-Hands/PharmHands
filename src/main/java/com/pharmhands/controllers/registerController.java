@@ -32,7 +32,7 @@ public class registerController {
 //    Takes you to the pharmacist registration form
     @GetMapping("/pharmRegister")
     public String pharmRegister(Model model){
-        return "views/pharmRegister";
+        return "pharmacistRegister";
     }
 
 //    @GetMapping("/sign-up")
