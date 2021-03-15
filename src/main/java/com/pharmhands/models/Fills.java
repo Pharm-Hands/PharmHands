@@ -21,12 +21,12 @@ public class Fills {
     @JoinColumn(name = "prescriptions")
     private Prescriptions prescription;
 
-    //many users ->1 fill
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Fills(){}
+    public Fills() {
+    }
 
     public Fills(long id, long fill_number, Date fill_date, Prescriptions prescription, User user) {
         this.id = id;
