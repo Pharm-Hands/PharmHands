@@ -11,16 +11,18 @@
             <a href="#" class="brand- logo left-align"></a> <img src="img/Pharm-Hands-clear.png" width="150" height="60">
             <ul  id="slide-out" class="sidenav">
 
-                <ul sec:authorize="isAuthenticated()">
+<!--                <ul sec:authorize="!isAuthenticated()">-->
+                <ul>
                     <li><a href="/login">Login</a></li>
                 </ul>
 
-                <ul sec:authorize="isAuthenticated()">
+<!--                <ul sec:authorize="!isAuthenticated()">-->
+                <ul>
                     <li><a href="/register">Register</a></li>
                 </ul>
 
 
-<!--                <ul sec:authorize="!isAuthenticated()">-->
+<!--                <ul sec:authorize="isAuthenticated()">-->
                 <ul>
                     <li>
                         <form th:action="@{/logout}" th:method="post" th:hidden="true" name="logoutForm">
