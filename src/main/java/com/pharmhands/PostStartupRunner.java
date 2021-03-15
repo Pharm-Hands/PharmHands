@@ -8,7 +8,6 @@ import com.pharmhands.models.UserRoles;
 import com.pharmhands.repositories.PrescriberInfoRepository;
 import com.pharmhands.repositories.UserRepository;
 import com.pharmhands.repositories.UserRolesRepository;
-import com.pharmhands.services.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -22,16 +21,18 @@ public class PostStartupRunner implements CommandLineRunner {
     private final UserRolesRepository userRolesDao;
     private final PrescriberInfoRepository prescriberInfoDao;
     private final PrescriptionsRepository prescriptionsDao;
+    private final PatientInfoRepository patientInfoDao;
     private final FillsRepository fillsDao;
     private final DrugsRepository drugsDao;
     private final PasswordEncoder encoder;
 
-    public PostStartupRunner(UserRepository userDao, UserRolesRepository userRolesDao, PrescriberInfoRepository prescriberInfoDao, PrescriptionsRepository prescriptionsDao, FillsRepository fillsDao, DrugsRepository drugsDao, PasswordEncoder encoder) {
+    public PostStartupRunner(UserRepository userDao, UserRolesRepository userRolesDao, PrescriberInfoRepository prescriberInfoDao, PrescriptionsRepository prescriptionsDao, PatientInfoRepository patientInfoDao, FillsRepository fillsDao, DrugsRepository drugsDao, PasswordEncoder encoder) {
 
         this.userDao = userDao;
         this.userRolesDao = userRolesDao;
         this.prescriberInfoDao = prescriberInfoDao;
         this.prescriptionsDao = prescriptionsDao;
+        this.patientInfoDao = patientInfoDao;
         this.fillsDao = fillsDao;
         this.drugsDao = drugsDao;
         this.encoder = encoder;
@@ -69,10 +70,10 @@ public class PostStartupRunner implements CommandLineRunner {
         doctor.setRole(docRole);
         User joe = userDao.save(doctor);
 
-        PrescriberInfo info = new PrescriberInfo();
-        info.setNpi(6567777);
-        info.setUser(joe);
-        PrescriberInfo savedInfo = prescriberInfoDao.save(info);
+        PrescriberInfo prescriberInfo = new PrescriberInfo();
+        prescriberInfo.setNpi(6567777);
+        prescriberInfo.setUser(joe);
+        PrescriberInfo savedInfo = prescriberInfoDao.save(prescriberInfo);
 
 //      patient roles
         User patient1 = new User();
@@ -86,6 +87,17 @@ public class PostStartupRunner implements CommandLineRunner {
         patient1.setRole(patRole);
         User jaya = userDao.save(patient1);
 
+        PatientInfo patientInfo1 = new PatientInfo();
+        patientInfo1.setAddress("123 mulberry ln");
+        patientInfo1.setCity("San Antonio");
+        Date dob1 = new Date(2001,1,1 );
+        patientInfo1.setDob(dob1);
+        patientInfo1.setSex("F");
+        patientInfo1.setState("TX");
+        patientInfo1.setZip(77777);
+        patientInfo1.setUser(jaya);
+        patientInfoDao.save(patientInfo1);
+
         User patient2 = new User();
         String hashPat2 = encoder.encode("james");
         patient2.setPassword(hashPat2);
@@ -96,6 +108,17 @@ public class PostStartupRunner implements CommandLineRunner {
         patient2.setEmail("james@james.com");
         patient2.setRole(patRole);
         User james = userDao.save(patient2);
+
+        PatientInfo patientInfo2 = new PatientInfo();
+        patientInfo2.setAddress("123 privet dr");
+        patientInfo2.setCity("San Antonio");
+        Date dob2 = new Date(1999,1,1 );
+        patientInfo2.setDob(dob2);
+        patientInfo2.setSex("M");
+        patientInfo2.setState("TX");
+        patientInfo2.setZip(77777);
+        patientInfo2.setUser(james);
+        patientInfoDao.save(patientInfo2);
 
 //      Pharmacist role
         User pharmacist = new User();
