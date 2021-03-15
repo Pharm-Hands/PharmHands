@@ -9,19 +9,39 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
+
         $(document).ready(function (){
             $('.sidenav').sidenav();
             $('select').formSelect();
+            //Tabs for the various user profiles
             $('.tabs').tabs();
+            //DOB for registration forms
             $('.datepicker').datepicker();
             Materialize.updateTextFields();
         });
 
         type="text/javascript">
             $(".button-collapse").sideNav();
-
+        //resets form fields
         $("#reset").on("click", function() {
             $('label').removeClass('active');
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        //This is for /register form. Once user type is picked it will redirect
+        //to the correct form.
+        $("select#user-picked").change(function(){
+            if ($(this).val() == 1) {
+                window.location.href =("/patientRegister")
+            }
+            if($(this).val() == 2) {
+                window.location.href =("/pharmRegister")
+            }
+            if ($(this).val() == 3) {
+                window.location.href =("/doctorRegister")
+            }
         });
     </script>
 
