@@ -49,7 +49,7 @@ public class registerController {
      public String patientRegister(Model model){
         model.addAttribute("patient", new User());
         model.addAttribute("info", new PatientInfo());
-        return "views/patientRegister";
+        return "views/patient/patientRegister";
     }
 
 //    Takes you to the doctor registration form
@@ -57,14 +57,14 @@ public class registerController {
     public String doctorRegister(Model model){
         model.addAttribute("doctor", new User());
         model.addAttribute("info", new PrescriberInfo());
-        return "views/doctorRegister";
+        return "views/doctor/doctorRegister";
     }
 
 //    Takes you to the pharmacist registration form
     @GetMapping("/pharmRegister")
     public String pharmRegister(Model model){
         model.addAttribute("pharmacist", new User());
-        return "pharmacistRegister";
+        return "views/pharmacist/pharmacistRegister";
     }
 
     @PostMapping("/pharmRegister")
