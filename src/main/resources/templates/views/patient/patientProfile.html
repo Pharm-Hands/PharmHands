@@ -80,7 +80,28 @@
             </div>
         </form>
     </div>
-    <div id="prescriptions" class="col s12"> Current prescriptions</div>
+    <div id="tab2" class="col s12">
+        New messages will go here
+    </div>
+    <div id="tab3" class="col s12">
+        <div th:each="prescription : ${patient.prescriptions}">
+            <table class="striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Created at</th>
+                    <th>Verified</th>
+                    <th>Doctor</th>
+                </tr>
+                <tr>
+                    <td th:text="${prescription.drug.drug_name}">"</td>
+                    <td th:text="${prescription.created_at}">"</td>
+                    <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
+                    <td th:text="${prescription.prescriber_id}"></td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
 </div>
 
 
