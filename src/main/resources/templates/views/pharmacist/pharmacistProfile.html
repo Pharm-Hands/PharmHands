@@ -17,31 +17,26 @@
     </div>
 
 <!--    <h4 th:text  th:value="" th:object="${users}">Welcome ,<p th:field="*{getEmail}"></p> </h4>-->
-    <div id="tab1" class="col s12">Pharmacist info will display here
+    <div id="tab1" class="col s12">Your profile information below:
 
         <ul class="collection">
             <li class="collection-item avatar">
-                <span class="title">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                <span class="title">Name</span>
+                <p th:text="${user.full_name}"></p>
+                <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
             </li>
             <li class="collection-item avatar">
                 <i class="material-icons circle">folder</i>
                 <span class="title">Title</span>
-                <p>First Line <br>
-                    Second Line
+                <p>First Line
                 </p>
-                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
             </li>
             <li class="collection-item avatar">
                 <i class="material-icons circle green">insert_chart</i>
-                <span class="title">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                <span class="title">Email Address</span>
+                <p th:text="${user.email}"></p>
+                <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
             </li>
             <li class="collection-item avatar">
                 <i class="material-icons circle red">play_arrow</i>
@@ -49,13 +44,15 @@
                 <p>First Line <br>
                     Second Line
                 </p>
-                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                <a href="!" class="secondary-content"><i class="material-icons">grade</i></a>
             </li>
         </ul>
 
-
+        </form>
     </div>
     <div id="tab2" class="col s12">New messages will go here</div>
+
+
     <div id="tab3" class="col s12">List of current prescriptions</div>
 
 </div>

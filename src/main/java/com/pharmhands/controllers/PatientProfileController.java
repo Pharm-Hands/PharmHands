@@ -26,7 +26,7 @@ public class PatientProfileController {
     }
 
     @GetMapping("/patientProfile/{id}")
-    public String patientProfileLoad(@PathVariable long id, Model model){
+    public String patientProfileView(@PathVariable long id, Model model){
         model.addAttribute("patient",userDao.getOne(id));
         model.addAttribute("patientInfo", patientDao.findByUser(userDao.getOne(id)));
         return "views/patient/patientProfile";

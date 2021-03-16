@@ -15,9 +15,10 @@ public class PharmacistViewController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/{id}/pharmacistViewProfile")
-    public String pharmacistView( @PathVariable long id, Model model) {
-        return "views/pharmacist/viewProfile";
+    @GetMapping("/pharmacistProfile/{id}")
+    public String pharmacistProfileView( Model model,@PathVariable long id) {
+        model.addAttribute("user", userDao.getOne(id));
+        return "views/pharmacist/pharmacistProfile";
     }
 
 }
