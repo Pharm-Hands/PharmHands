@@ -34,9 +34,9 @@
                 </tr>
                 <tr>
                     <td th:text="${prescription.drug.drug_name}">"</td>
-                    <td th:text="${prescription.drug.id}">"</td>
-<!--                    <td>$100</td>-->
-<!--                    <td>$100</td>-->
+                    <td th:text="${prescription.created_at}">"</td>
+                    <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
+                    <td th:text="${prescription.user.full_name}"></td>
                 </tr>
             </table>
 
