@@ -64,7 +64,7 @@ public class registerController {
     @GetMapping("/pharmRegister")
     public String pharmRegister(Model model){
         model.addAttribute("pharmacist", new User());
-        return "pharmacistRegister";
+        return "views/pharmacistRegister";
     }
 
     @PostMapping("/pharmRegister")

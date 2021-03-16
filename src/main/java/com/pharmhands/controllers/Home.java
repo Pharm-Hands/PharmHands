@@ -27,7 +27,6 @@ class Home {
     @GetMapping("/email")
     @ResponseBody
     public String emailSend() {
-
         emailService.prepareAndSend(userDao.getOne((long) 2), "test", "hello from pharmhands");
         return "email page";
     }

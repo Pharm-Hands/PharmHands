@@ -16,15 +16,31 @@
         <h3 th:text="${doctor.username}"></h3>
         <br>
         <p th:text="${doctor.email}" ></p>
-        <p th:text="${doctorInfo.npi}" ></p>
-        <p th:text="${doctor.email}" ></p>
+<!--        <p th:text="${doctor.prescriberInfo}" ></p>-->
+<!--        <p th:text="${doctor.}" ></p>-->
 
     </div>
     <div id="tab2" class="col s12">
         New messages will go here
     </div>
     <div id="tab3" class="col s12">
-        List of current prescriptions
+        <div th:each="prescription : ${prescriptions}">
+            <table class="striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Created at</th>
+                    <th>Verified</th>
+                    <th>Patient</th>
+                </tr>
+                <tr>
+                    <td th:text="${prescription.drug.drug_name}">"</td>
+                    <td th:text="${prescription.drug.id}">"</td>
+<!--                    <td>$100</td>-->
+<!--                    <td>$100</td>-->
+                </tr>
+            </table>
+
+        </div>
     </div>
 
 </div>

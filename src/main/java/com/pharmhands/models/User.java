@@ -126,4 +126,20 @@ public class User {
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
+
+    public List<Prescriptions> getPrescriptions() {
+        return prescriptions;
+    }
+
+    public void setPrescriptions(List<Prescriptions> prescriptions) {
+        this.prescriptions = prescriptions;
+    }
+
+    public List<Fills> getFills() {
+        return fills;
+    }
+
+    public void setFills(List<Fills> fills) {
+        this.fills = fills;
+    }
 }
