@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head-section"></head>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<body>
+
+
+
+<form th:action="@{/pharmacistProfile/{id}/edit(id=${users.id})}" th:method="post" th:object="${users}">
+    Name
+    <input th:field="*{full_name}" />
+    <br />
+    Email
+    <input th:field="*{email}" />
+    <br />
+    <input type="submit" />
+</form>
+
+
+
+
+
+
+
+
+
+
+<div th:replace="partials/scripts :: scripts"></div>
+<script type="text/javascript" src="/js/rxFormValidation.js"></script>
+</body>
+</html>
+</body>
