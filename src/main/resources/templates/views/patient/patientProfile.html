@@ -12,45 +12,26 @@
         </ul>
     </div>
     <div id="info" class="col s12">
-        <h3> Your profile information below :</h3>
-            <table class="striped bordered">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span th:text="${patient.username}"></span></td>
-                    </tr>
-                </tbody>
-            </table>
-
-        <table class="striped bordered">
-            <thead>
-                <tr>
-                    <th>Address</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><span th:text="${patientInfo.address}"></span></td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="striped bordered">
-            <thead>
-                <tr>
-                    <th>Date of Birth</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><span th:text="${patientInfo.dob}"></span></td>
-                </tr>
-            </tbody>
-        </table>
-
+        <ul class="collection">
+            <li class="collection-item avatar">
+                <span class="title">Name</span>
+                <i class="material-icons circle">folder</i>
+                <p th:text="${patient.username}"></p>
+                <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+            </li>
+            <li class="collection-item avatar">
+                <i class="material-icons circle">folder</i>
+                <span class="title">Address</span>
+                <p th:text="${patientInfo.address}">
+                <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+            </li>
+            <li class="collection-item avatar">
+                <i class="material-icons circle green">insert_chart</i>
+                <span class="title">Date of Birth</span>
+                <p th:text="${patientInfo.dob}"></p>
+                <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+            </li>
+        </ul>
     </div>
 
     <div id="message" class="col s12"> Message your Pharmacist !
@@ -81,9 +62,36 @@
         </form>
     </div>
     <div id="prescriptions" class="col s12"> Current prescriptions</div>
+
+    <ul class="collection">
+        <li class="collection-item avatar">
+            <span class="title">Name</span>
+            <i class="material-icons circle">folder</i>
+            <p th:text="${prescriber.prescriber_id}"></p>
+            <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+        <li class="collection-item avatar">
+            <i class="material-icons circle">folder</i>
+            <span class="title">Dose</span>
+            <p th:text="${prescriber.dose}">
+                <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+        <li class="collection-item avatar">
+            <i class="material-icons circle green">insert_chart</i>
+            <span class="title">Date of Birth</span>
+            <p th:text="${patientInfo.dob}"></p>
+            <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+    </ul>
+
 </div>
 
+<div th:replace="partials/scripts :: scripts">
 
-<div th:replace="partials/scripts :: scripts"></div>
+
+
+
+</div>
+
 </body>
 </html>
