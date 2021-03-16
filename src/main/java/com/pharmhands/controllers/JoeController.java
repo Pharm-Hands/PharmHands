@@ -36,4 +36,10 @@ public class JoeController {
 
     }
 
+    @GetMapping("/prescription/{id}")
+    public String viewPrescription(Model model, @PathVariable long id){
+        model.addAttribute("prescription", prescriptionsDao.getOne(id));
+        return "views/prescription";
+    }
+
 }

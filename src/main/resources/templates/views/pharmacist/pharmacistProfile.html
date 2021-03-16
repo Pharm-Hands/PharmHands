@@ -48,17 +48,38 @@
             </li>
         </ul>
 
-        </form>
     </div>
     <div id="tab2" class="col s12">New messages will go here</div>
 
 
-    <div id="tab3" class="col s12">List of current prescriptions</div>
+    <div id="tab3" class="col s12">
+        <div th:each="prescription : ${prescriptions}">
+            <table class="striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Created at</th>
+                    <th>Verified</th>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                </tr>
+                <tr th:href="/prescription/${prescription.id}">
+                    <td th:text="${prescription.drug.drug_name}">"</td>
+                    <td th:text="${prescription.created_at}">"</td>
+                    <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
+                    <td th:text="${prescription.user.full_name}"></td>
+                    <td th:text="${prescription.prescriber_id}"></td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
 
 </div>
 
 
 <div th:replace="partials/scripts :: scripts"></div>
+<script>
+</script>
 
 </body>
 </html>
