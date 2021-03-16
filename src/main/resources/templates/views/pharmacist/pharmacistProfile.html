@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="partials/head :: head-section "></head>
+    <nav th:replace="partials/navbar :: navbar"></nav>
+</head>
+<body>
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s3"><a href="#tab1">View Profile</a> </li>
+            <li class="tab col s3>"><a href="#tab2"></a> </li>
+            <li class="tab col s3>"><a href="#tab3">Dispatch Prescriptions</a> </li>
+            <li class="tab col s3>"><a href="#tab3">View Fill Requests</a> </li>
+
+        </ul>
+    </div>
+
+<!--    <h4 th:text  th:value="" th:object="${users}">Welcome ,<p th:field="*{getEmail}"></p> </h4>-->
+    <div id="tab1" class="col s12">Your profile information below:
+
+        <ul class="collection">
+            <li class="collection-item avatar">
+                <span class="title">Name</span>
+                <p th:text="${user.full_name}"></p>
+                <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+            </li>
+            <li class="collection-item avatar">
+                <i class="material-icons circle">folder</i>
+                <span class="title">Title</span>
+                <p>First Line
+                </p>
+                <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+            </li>
+            <li class="collection-item avatar">
+                <i class="material-icons circle green">insert_chart</i>
+                <span class="title">Email Address</span>
+                <p th:text="${user.email}"></p>
+                <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+            </li>
+            <li class="collection-item avatar">
+                <i class="material-icons circle red">play_arrow</i>
+                <span class="title">Title</span>
+                <p>First Line <br>
+                    Second Line
+                </p>
+                <a href="!" class="secondary-content"><i class="material-icons">grade</i></a>
+            </li>
+        </ul>
+
+    </div>
+    <div id="tab2" class="col s12">New messages will go here</div>
+
+
+    <div id="tab3" class="col s12">
+        <div th:each="prescription : ${prescriptions}">
+            <table class="striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Created at</th>
+                    <th>Verified</th>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                </tr>
+<!--                <tr th:href="/prescription/${prescription.id}">-->
+                <tr>
+                    <td th:text="${prescription.drug.drug_name}">"</td>
+                    <td th:text="${prescription.created_at}">"</td>
+                    <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
+                    <td th:text="${prescription.user.full_name}"></td>
+                    <td th:text="${prescription.prescriber_id}"></td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div th:replace="partials/scripts :: scripts"></div>
+<script>
+</script>
+
+</body>
+</html>

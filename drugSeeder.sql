@@ -1,5 +1,5 @@
 
-Insert Into drugs (drug_name) VALUES
+Insert Into pharmhands_db.drugs (drug_name) VALUES
 
    ('Abacavir Sulfate'),
    ('Abilify'),

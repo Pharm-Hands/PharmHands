@@ -1,5 +1,6 @@
 package com.pharmhands.controllers;
 
+import com.pharmhands.repositories.PrescriptionsRepository;
 import com.pharmhands.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,13 +12,18 @@ public class PharmacistViewController {
 
     private final UserRepository userDao;
 
-    public PharmacistViewController(UserRepository userDao) {
+    private final PrescriptionsRepository prescriptionsDao;
+
+    public PharmacistViewController(UserRepository userDao, PrescriptionsRepository prescriptionsDao) {
         this.userDao = userDao;
+        this.prescriptionsDao = prescriptionsDao;
     }
 
-    @GetMapping("/{id}/pharmacistViewProfile")
-    public String pharmacistView( @PathVariable long id, Model model) {
-        return "views/pharmacist/viewProfile";
+    @GetMapping("/pharmacistProfile/{id}")
+    public String pharmacistProfileView( Model model,@PathVariable long id) {
+        model.addAttribute("user", userDao.getOne(id));
+        model.addAttribute("prescriptions", prescriptionsDao.findAllUnverified());
+        return "views/pharmacist/pharmacistProfile";
     }
 
 }

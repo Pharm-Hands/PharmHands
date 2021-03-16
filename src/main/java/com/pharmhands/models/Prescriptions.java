@@ -25,7 +25,7 @@ public class Prescriptions {
     private List<PrescriptionNotes> prescription_notes;
 
     @Column(nullable = false)
-    private int prescriber_id;
+    private long prescriber_id;
 
     @Column(nullable = false)
     private String drug_form;
@@ -57,7 +57,7 @@ public class Prescriptions {
     public Prescriptions() {
     }
 
-    public Prescriptions(long id, User user, Drugs drug, List<Fills> fills, List<PrescriptionNotes> prescription_notes, int prescriber_id, String drug_form, int drug_Strength, String sig, int dose, int quantity, int is_deleted, int is_verified, int days_supply, Date created_at) {
+    public Prescriptions(long id, User user, Drugs drug, List<Fills> fills, List<PrescriptionNotes> prescription_notes, long prescriber_id, String drug_form, int drug_Strength, String sig, int dose, int quantity, int is_deleted, int is_verified, int days_supply, Date created_at) {
         this.id = id;
         this.user = user;
         this.drug = drug;
@@ -115,11 +115,11 @@ public class Prescriptions {
         this.prescription_notes = prescription_notes;
     }
 
-    public int getPrescriber_id() {
+    public long getPrescriber_id() {
         return prescriber_id;
     }
 
-    public void setPrescriber_id(int prescriber_id) {
+    public void setPrescriber_id(long prescriber_id) {
         this.prescriber_id = prescriber_id;
     }
 
