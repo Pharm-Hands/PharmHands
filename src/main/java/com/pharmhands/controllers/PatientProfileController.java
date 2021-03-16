@@ -1,6 +1,7 @@
 package com.pharmhands.controllers;
 
 import com.pharmhands.repositories.PatientInfoRepository;
+import com.pharmhands.repositories.PrescriptionsRepository;
 import com.pharmhands.repositories.UserRepository;
 import com.pharmhands.services.EmailService;
 import org.springframework.stereotype.Controller;
@@ -16,12 +17,14 @@ public class PatientProfileController {
 
     private final PatientInfoRepository patientDao;
 
+    private final PrescriptionsRepository prescriptionsDao;
 
     private final EmailService emailService;
 
-    public PatientProfileController(UserRepository userDao, PatientInfoRepository patientDao, EmailService emailService){
+    public PatientProfileController(UserRepository userDao, PatientInfoRepository patientDao, PrescriptionsRepository prescriptionsDao, EmailService emailService){
         this.userDao = userDao;
         this.patientDao = patientDao;
+        this.prescriptionsDao = prescriptionsDao;
         this.emailService = emailService;
     }
 
@@ -29,6 +32,7 @@ public class PatientProfileController {
     public String patientProfileView(@PathVariable long id, Model model){
         model.addAttribute("patient",userDao.getOne(id));
         model.addAttribute("patientInfo", patientDao.findByUser(userDao.getOne(id)));
+        model.addAttribute("prescriber",prescriptionsDao.getOne(id));
         return "views/patient/patientProfile";
     }
 

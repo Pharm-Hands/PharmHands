@@ -8,69 +8,46 @@
         <ul class="tabs">
             <li class="tab col s3"><a href="#info">Patient Information</a></li>
             <li class="tab col s3>"><a href="#message">Messages</a></li>
-            <li class="tab col s3>"><a href="#prescriptions">Your Prescriptions</a></li>
+            <li class="tab col s3>"><a href="#prescrip">Your Prescriptions</a></li>
         </ul>
     </div>
     <div id="info" class="col s12">
-        <h3> Your profile information below :</h3>
-            <table class="striped bordered">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span th:text="${patient.username}"></span></td>
-                    </tr>
-                </tbody>
-            </table>
-
-        <table class="striped bordered">
-            <thead>
-                <tr>
-                    <th>Address</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><span th:text="${patientInfo.address}"></span></td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="striped bordered">
-            <thead>
-                <tr>
-                    <th>Date of Birth</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><span th:text="${patientInfo.dob}"></span></td>
-                </tr>
-            </tbody>
-        </table>
-
+        <ul class="collection">
+            <li class="collection-item avatar">
+                <span class="title">Name</span>
+                <i class="material-icons circle green">badge</i>
+                <p th:text="${patient.username}"></p>
+            </li>
+            <li class="collection-item avatar">
+                <i class="material-icons circle green">home</i>
+                <span class="title">Address</span>
+                <p th:text="${patientInfo.address}">
+            </li>
+            <li class="collection-item avatar">
+                <i class="material-icons circle green">cake</i>
+                <span class="title">Date of Birth</span>
+                <p th:text="${patientInfo.dob}"></p>
+            </li>
+        </ul>
     </div>
 
-    <div id="message" class="col s12"> Message your Pharmacist !
+    <div id="message" class="col s12 white-text"> Message your Pharmacist !
         <hr>
         <form th:action="@{|/patientProfile/${patient.id}|}" th:method="POST">
-            <div class="row">
+            <div class="container">
                 <div class="row">
                     <div class="input-field col s12">
-                        <span class="material-icons">app_registration</span>
-                        <input placeholder="Subject" value="" id="subject"
-                               type="text" class="required"/>
-                        <label for="subject">Subject</label>
+                        <span class="material-icons circle green ">app_registration</span>
+                      <label>
+                          <input placeholder="Subject" id="subject" type="text" class="required white-text"/>
+                      </label>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="container">
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="msg" class="materialize-textarea"></textarea>
-                        <label for="msg" class='active'></label>
+                        <label><textarea id="msg" class="materialize-textarea white-text" placeholder="Your message here"></textarea></label>
                     </div>
                 </div>
             </div>
@@ -80,10 +57,38 @@
             </div>
         </form>
     </div>
-    <div id="prescriptions" class="col s12"> Current prescriptions</div>
+
+
+    <div id="tab2" class="col s12">
+    </div>
+    <div id="prescrip" class="col s12 ">
+        <div th:each="prescription : ${patient.prescriptions}">
+            <div class="container white-text">
+            <table class="striped">
+                <tr class="black-text">
+                    <th>Name</th>
+                    <th>Created at</th>
+                    <th>Verified</th>
+                    <th>Doctor</th>
+                </tr>
+                <tr>
+                    <td th:text="${prescription.drug.drug_name}">"</td>
+                    <td th:text="${prescription.created_at}">"</td>
+                    <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
+                    <td th:text="${prescription.prescriber_id}"></td>
+                </tr>
+            </table>
+            </div>
+        </div>
+    </div>
 </div>
 
+<div th:replace="partials/scripts :: scripts">
 
-<div th:replace="partials/scripts :: scripts"></div>
+
+
+
+</div>
+
 </body>
 </html>
