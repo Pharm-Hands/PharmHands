@@ -8,7 +8,7 @@
         <ul class="tabs">
             <li class="tab col s3"><a href="#info">Patient Information</a></li>
             <li class="tab col s3>"><a href="#message">Messages</a></li>
-            <li class="tab col s3>"><a href="#prescriptions">Your Prescriptions</a></li>
+            <li class="tab col s3>"><a href="#prescrip">Your Prescriptions</a></li>
         </ul>
     </div>
     <div id="info" class="col s12">
@@ -17,19 +17,16 @@
                 <span class="title">Name</span>
                 <i class="material-icons circle">folder</i>
                 <p th:text="${patient.username}"></p>
-                <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
             </li>
             <li class="collection-item avatar">
                 <i class="material-icons circle">folder</i>
                 <span class="title">Address</span>
                 <p th:text="${patientInfo.address}">
-                <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
             </li>
             <li class="collection-item avatar">
                 <i class="material-icons circle green">insert_chart</i>
                 <span class="title">Date of Birth</span>
                 <p th:text="${patientInfo.dob}"></p>
-                <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
             </li>
         </ul>
     </div>
@@ -66,10 +63,11 @@
     <div id="tab2" class="col s12">
         New messages will go here
     </div>
-    <div id="tab3" class="col s12">
+    <div id="prescrip" class="col s12 ">
         <div th:each="prescription : ${patient.prescriptions}">
+            <div class="container white-text">
             <table class="striped">
-                <tr>
+                <tr class="black-text">
                     <th>Name</th>
                     <th>Created at</th>
                     <th>Verified</th>
@@ -82,7 +80,7 @@
                     <td th:text="${prescription.prescriber_id}"></td>
                 </tr>
             </table>
-
+            </div>
         </div>
     </div>
 </div>
