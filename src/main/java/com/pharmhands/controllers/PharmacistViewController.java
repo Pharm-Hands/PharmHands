@@ -1,6 +1,6 @@
 package com.pharmhands.controllers;
 
-
+import com.pharmhands.models.User;
 import com.pharmhands.repositories.PrescriptionsRepository;
 import com.pharmhands.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
