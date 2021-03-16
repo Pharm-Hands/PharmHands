@@ -58,7 +58,7 @@ public class PrescriberController{
             prescription.setSig(prescription.getSig());
             prescription.setIs_deleted(0);
             prescriptionDao.save(prescription);
-            return "redirect:/{id}/doctorProfile";
+            return "redirect:/{id}/doctorProfile#tab3";
         }
 //        @GetMapping("/profile/prescription-create/1")
 //    public String registerForm1(Model model, @PathVariable long id) {
