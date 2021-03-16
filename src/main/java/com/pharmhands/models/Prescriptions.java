@@ -15,20 +15,17 @@ public class Prescriptions {
     @JoinColumn(name = "user_id")
     private User user;
 
-
     @OneToOne
     private Drugs drug;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "prescription")
     private List<Fills> fills;
 
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "prescription")
     private List<PrescriptionNotes> prescription_notes;
 
     @Column(nullable = false)
     private int prescriber_id;
-
 
     @Column(nullable = false)
     private String drug_form;
@@ -50,7 +47,6 @@ public class Prescriptions {
 
     @Column(nullable = false, length = 2)
     private int is_verified;
-
 
     @Column(nullable = false)
     private int days_supply;
