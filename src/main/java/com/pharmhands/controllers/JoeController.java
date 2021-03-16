@@ -27,7 +27,7 @@ public class JoeController {
     public String doctorProfile(Model model, @PathVariable long id) {
         model.addAttribute("doctor", userDao.getOne(id));
         model.addAttribute("doctorInfo", prescriberDao.findByUser(userDao.getOne(id)));
-        return "views/doctorProfile";
+        return "views/doctor/doctorProfile";
     }
 
 }
