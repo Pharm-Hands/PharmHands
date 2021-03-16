@@ -62,7 +62,8 @@
                     <th>Patient</th>
                     <th>Doctor</th>
                 </tr>
-                <tr th:href="/prescription/${prescription.id}">
+<!--                <tr th:href="/prescription/${prescription.id}">-->
+                <tr>
                     <td th:text="${prescription.drug.drug_name}">"</td>
                     <td th:text="${prescription.created_at}">"</td>
                     <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
