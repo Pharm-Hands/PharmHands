@@ -14,7 +14,7 @@
             <label for="created">Created At</label>
             <p id="created" th:text="${prescription.created_at}"></p>
             <br>
-            <label for="days_supply">Dyas Supply</label>
+            <label for="days_supply">Days Supply</label>
             <p id="days_supply" th:text="${prescription.days_supply}"></p>
             <br>
             <label for="dose">Dose</label>
@@ -35,7 +35,29 @@
         </div>
         <div>
             <h1>Fills table</h1>
+
+            <table class="striped">
+                <tr>
+                    <th>Prescription Id</th>
+                    <th>Prescription name</th>
+                    <th>Patient</th>
+                    <th>Current fill number</th>
+                    <th>Doctor</th>
+                </tr>
+                <tr class="prescription" th:href="@{/prescription/{id}(id=${prescription.id})}">
+                    <td th:text="${prescription.drug.drug_name}"></td>
+                    <td th:text="${prescription.created_at}">"</td>
+                    <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
+                    <td th:text="${prescription.user.full_name}"></td>
+                    <td th:text="${prescription.prescriber_id}"></td>
+<!--                    <td th:block th:text="${}"></td>-->
+                </tr>
+            </table>
         </div>
+
+        <form th:action="@{/prescription/{id}/fill(id=${prescription.id})}" method="post">">
+            <button type="submit">Fill Prescription</button>
+        </form>
     </div>
 
 
