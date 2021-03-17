@@ -31,8 +31,11 @@ public class User {
     @OneToOne
     private UserRoles role;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
     private List<Prescriptions> prescriptions;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
+    private List<Prescriptions> prescribed;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Fills> fills;

@@ -146,6 +146,7 @@ public class PostStartupRunner implements CommandLineRunner {
         Drugs savedDrug3 = drugsDao.save(drug3);
 
 //      setting up a prescription
+
 //        Prescriptions prescription = new Prescriptions();
 //        long d = System.currentTimeMillis();
 //        Date date = new Date(d);

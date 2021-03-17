@@ -75,7 +75,7 @@
                     <td th:text="${prescription.drug.drug_name}">"</td>
                     <td th:text="${prescription.created_at}">"</td>
                     <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
-                    <td th:text="${prescription.prescriber_id}"></td>
+                    <td th:text="${prescription.doctor.full_name}"></td>
                 </tr>
             </table>
             </div>

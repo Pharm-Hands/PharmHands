@@ -46,8 +46,8 @@ public class PrescriberController{
             //why is findById Optional Type?
             User doctorUser = userDao.getOne(id);
 
-            prescription.setUser(patientUser);
-            prescription.setPrescriber_id(doctorUser.getId());
+            prescription.setPatient(patientUser);
+            prescription.setDoctor(doctorUser);
 //            prescription.setDrug_form(prescription.getDrug_form());
             Drugs drug = drugsDao.findDrugsByDrug_name(drugName);
             prescription.setDrug(drug);
