@@ -3,6 +3,7 @@ package com.pharmhands.controllers;
 import com.pharmhands.models.User;
 import com.pharmhands.repositories.PrescriptionsRepository;
 import com.pharmhands.repositories.UserRepository;
+import com.pharmhands.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +18,12 @@ public class PharmacistViewController {
 
     private final PrescriptionsRepository prescriptionsDao;
 
-    public PharmacistViewController(UserRepository userDao, PrescriptionsRepository prescriptionsDao) {
+    private final UserService userService;
+
+    public PharmacistViewController(UserRepository userDao, PrescriptionsRepository prescriptionsDao, UserService userService) {
         this.userDao = userDao;
         this.prescriptionsDao = prescriptionsDao;
+        this.userService = userService;
     }
 
     @GetMapping("/pharmacistProfile/{id}")
@@ -29,15 +33,18 @@ public class PharmacistViewController {
         return "views/pharmacist/pharmacistProfile";
     }
 
-    @GetMapping("pharmacistProfile/{id}edit")
+    @GetMapping("pharmacistProfile/{id}/edit")
     public String editPharmacistInfoForm(Model model, @PathVariable long id){
         User user = userDao.getOne(id);
         model.addAttribute("user", user);
         return "/views/pharmacist/pharmacistInfoEdit";
     }
 
-    @PostMapping(path = "pharmacistProfile/{id}edit")
+    @PostMapping(path = "pharmacistProfile/{id}/edit")
     public String editPharmacistInfo(@ModelAttribute User user){
+        User loggedIn = userDao.getOne(3L);
+        user.setFull_name(user.getFull_name());
+        user.setEmail(user.getEmail());
         userDao.save(user);
         return "redirect:/pharmacistProfile/{id}/";
     }
