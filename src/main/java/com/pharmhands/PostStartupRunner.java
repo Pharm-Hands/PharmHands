@@ -159,10 +159,8 @@ public class PostStartupRunner implements CommandLineRunner {
         prescription.setQuantity(4);
         prescription.setSig("idk what this is");
         prescription.setIs_deleted(0);
-        prescription.setUser(jaya);
-
-//      I think we will need to refactor this in the model to accept a long instead of int
-        prescription.setPrescriber_id(joe.getId());
+        prescription.setPatient(jaya);
+        prescription.setDoctor(joe);
 
         Prescriptions savedPrescription = prescriptionsDao.save(prescription);
 
