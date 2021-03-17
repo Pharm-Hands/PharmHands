@@ -49,20 +49,20 @@ public class PatientProfileController {
     }
     @GetMapping("/patientProfile/{id}/edit")
     public String editProfileForm(@PathVariable long id, Model model) {
-        model.addAttribute("patients", userDao.getOne(id));
+        model.addAttribute("patient", userDao.getOne(id));
         User temp = userService.loggedInUser();
         if (temp == null) {
-            return "redirect:patient/patientProfile";
+            return "redirect:/";
         }
-        return "patiee/edit";
+        return "views/patient/patientProfile";
     }
 
-    @PostMapping("/posts/{id}/edit")
-    public String updatePost(@ModelAttribute Post post) {
-        User user = usersDao.findAll().get(0);
-        post.setUser(user);
-        postsDao.save(post);
-        return "redirect:/posts";
+    @PostMapping("/patientProfile/{id}/edit")
+    public String updatePost(@ModelAttribute User user) {
+        User currentUser = userDao.findAll().get(0);
+        user.setUsername(currentUser.getUsername());
+        userDao.save(user);
+        return "redirect:patient/patientProfile/{id}";
     }
 
 }
