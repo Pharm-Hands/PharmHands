@@ -80,7 +80,6 @@ public class JoeController {
         }
 
         Fills fill = new Fills();
-//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         fill.setUser(userService.loggedInUser());
         fill.setFill_date(now.getTime());
         fill.setFill_number(1);

@@ -6,7 +6,7 @@
 
 <div class="valign-wrapper row login-box ">
     <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
-        <form th:action="@{/login}" method="post">
+        <form id="login" th:action="@{/login}" method="post">
             <div class="card-content #757575">
                 <span class="card-title">Sign In</span>
                 <div class="row">
@@ -29,7 +29,7 @@
         <small ><a href="/forgotPassword">Forgot password ? </a></small>
         <p>If you do not  already have an account please <a href="/register">Sign Up</a></p>
 
-<!--        <h1>Log In</h1>-->
+
         <div th:if="${param.error}">
             Invalid Username and Password.
         </div>
