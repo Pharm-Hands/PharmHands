@@ -15,20 +15,17 @@ public class Prescriptions {
     @JoinColumn(name = "user_id")
     private User user;
 
-
     @OneToOne
     private Drugs drug;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "prescription")
     private List<Fills> fills;
 
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "prescription")
     private List<PrescriptionNotes> prescription_notes;
 
     @Column(nullable = false)
     private long prescriber_id;
-
 
     @Column(nullable = false)
     private String drug_form;
@@ -45,12 +42,14 @@ public class Prescriptions {
     @Column(nullable = false)
     private int quantity;
 
+    @Column(nullable = false)
+    private int refill_count;
+
     @Column(nullable = false, length = 2)
     private int is_deleted;
 
     @Column(nullable = false, length = 2)
     private int is_verified;
-
 
     @Column(nullable = false)
     private int days_supply;
@@ -61,7 +60,7 @@ public class Prescriptions {
     public Prescriptions() {
     }
 
-    public Prescriptions(long id, User user, Drugs drug, List<Fills> fills, List<PrescriptionNotes> prescription_notes, long prescriber_id, String drug_form, int drug_Strength, String sig, int dose, int quantity, int is_deleted, int is_verified, int days_supply, Date created_at) {
+    public Prescriptions(long id, User user, Drugs drug, List<Fills> fills, List<PrescriptionNotes> prescription_notes, long prescriber_id, String drug_form, int drug_Strength, String sig, int dose, int quantity, int refill_count, int is_deleted, int is_verified, int days_supply, Date created_at) {
         this.id = id;
         this.user = user;
         this.drug = drug;
@@ -73,6 +72,7 @@ public class Prescriptions {
         this.sig = sig;
         this.dose = dose;
         this.quantity = quantity;
+        this.refill_count = refill_count;
         this.is_deleted = is_deleted;
         this.is_verified = is_verified;
         this.days_supply = days_supply;
@@ -165,6 +165,14 @@ public class Prescriptions {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getRefill_count() {
+        return refill_count;
+    }
+
+    public void setRefill_count(int refill_count) {
+        this.refill_count = refill_count;
     }
 
     public int getIs_deleted() {

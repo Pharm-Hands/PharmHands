@@ -53,8 +53,10 @@
 
 
     <div id="tab3" class="col s12">
+<!--        <label for="verfifiedOnly"></label>-->
+<!--        <input type="checkbox" name="verfifiedOnly" id="verfifiedOnly" value="">-->
         <div th:each="prescription : ${prescriptions}">
-            <table class="striped">
+            <table class="highlight">
                 <tr>
                     <th>Name</th>
                     <th>Created at</th>
@@ -62,9 +64,8 @@
                     <th>Patient</th>
                     <th>Doctor</th>
                 </tr>
-<!--                <tr th:href="/prescription/${prescription.id}">-->
-                <tr>
-                    <td th:text="${prescription.drug.drug_name}">"</td>
+                <tr class="prescription" th:href="@{/prescription/{id}(id=${prescription.id})}">
+                    <td th:text="${prescription.drug.drug_name}"></td>
                     <td th:text="${prescription.created_at}">"</td>
                     <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
                     <td th:text="${prescription.user.full_name}"></td>
@@ -73,6 +74,9 @@
             </table>
 
         </div>
+
+
+
     </div>
 
 </div>
@@ -80,6 +84,12 @@
 
 <div th:replace="partials/scripts :: scripts"></div>
 <script>
+    $(document).ready(function(){
+        $('.prescription').click(function(){
+            window.location = $(this).attr('href');
+            return false;
+        });
+    });
 </script>
 
 </body>

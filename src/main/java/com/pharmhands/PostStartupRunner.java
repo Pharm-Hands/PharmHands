@@ -112,7 +112,7 @@ public class PostStartupRunner implements CommandLineRunner {
         PatientInfo patientInfo2 = new PatientInfo();
         patientInfo2.setAddress("123 privet dr");
         patientInfo2.setCity("San Antonio");
-        Date dob2 = new Date(1999,1,1 );
+        Date dob2 = new Date(199987687);
         patientInfo2.setDob(dob2);
         patientInfo2.setSex("M");
         patientInfo2.setState("TX");
