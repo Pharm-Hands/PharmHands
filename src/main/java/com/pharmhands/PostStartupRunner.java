@@ -112,7 +112,7 @@ public class PostStartupRunner implements CommandLineRunner {
         PatientInfo patientInfo2 = new PatientInfo();
         patientInfo2.setAddress("123 privet dr");
         patientInfo2.setCity("San Antonio");
-        Date dob2 = new Date(1999,1,1 );
+        Date dob2 = new Date(199987687);
         patientInfo2.setDob(dob2);
         patientInfo2.setSex("M");
         patientInfo2.setState("TX");
@@ -146,32 +146,33 @@ public class PostStartupRunner implements CommandLineRunner {
         Drugs savedDrug3 = drugsDao.save(drug3);
 
 //      setting up a prescription
-        Prescriptions prescription = new Prescriptions();
-        long d = System.currentTimeMillis();
-        Date date = new Date(d);
-        prescription.setCreated_at(date);
-        prescription.setDays_supply(40);
-        prescription.setDose(2);
-        prescription.setDrug(savedDrug1);
-        prescription.setDrug_form("pill");
-        prescription.setDrug_Strength(2);
-        prescription.setIs_verified(0);
-        prescription.setQuantity(4);
-        prescription.setSig("idk what this is");
-        prescription.setIs_deleted(0);
-        prescription.setUser(jaya);
 
-//      I think we will need to refactor this in the model to accept a long instead of int
-        prescription.setPrescriber_id(joe.getId());
-
-        Prescriptions savedPrescription = prescriptionsDao.save(prescription);
-
-        Fills fill = new Fills();
-        fill.setUser(rod);
-        fill.setFill_date(date);
-        fill.setFill_number(1);
-        fill.setPrescription(savedPrescription);
-        Fills savedFill = fillsDao.save(fill);
+//        Prescriptions prescription = new Prescriptions();
+//        long d = System.currentTimeMillis();
+//        Date date = new Date(d);
+//        prescription.setCreated_at(date);
+//        prescription.setDays_supply(40);
+//        prescription.setDose(2);
+//        prescription.setDrug(savedDrug1);
+//        prescription.setDrug_form("pill");
+//        prescription.setDrug_Strength(2);
+//        prescription.setIs_verified(0);
+//        prescription.setQuantity(4);
+//        prescription.setSig("idk what this is");
+//        prescription.setIs_deleted(0);
+//        prescription.setUser(jaya);
+//
+////      I think we will need to refactor this in the model to accept a long instead of int
+//        prescription.setPrescriber_id(joe.getId());
+//
+//        Prescriptions savedPrescription = prescriptionsDao.save(prescription);
+//
+//        Fills fill = new Fills();
+//        fill.setUser(rod);
+//        fill.setFill_date(date);
+//        fill.setFill_number(1);
+//        fill.setPrescription(savedPrescription);
+//        Fills savedFill = fillsDao.save(fill);
 
     }
 }

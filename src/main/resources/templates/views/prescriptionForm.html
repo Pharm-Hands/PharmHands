@@ -6,20 +6,20 @@
 
 <div class="valign-wrapper row login-box ">
     <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
-        <form th:action="@{/{userId}/doctorProfile/prescription-create(userId=${user.getId()})}" method="POST">
+        <form th:action="@{/{userId}/doctorProfile/prescription-create(userId=${doctor_user.getId()})}" method="POST">
             <div class="card-content #757575">
                 <span class="card-title">Patient Information</span>
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="name">Name</label>
-                        <input type="text" class="validate" name="name" id="name"/>
+                        <input type="text" class="validate"name="name" id="name"/>
                     </div>
                     <div class="input-field col s12">
                         <label for="phone_number">Phone Number</label>
                         <input type="text" class="validate" name="phone_number" id="phone_number"/>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" th:object="${prescription}">
 
                     <div class="card-content #757575">
                         <span class="card-title">Prescription Information</span>
@@ -30,31 +30,31 @@
                             </div>
                             <div class="input-field col s12">
                                 <label for="drug_form">Form</label>
-                                <input type="text" class="validate" name="drug_form" id="drug_form"/>
+                                <input type="text" class="validate" th:field="*{drug_form}"  name="drug_form" id="drug_form"/>
                             </div>
                             <div class="input-field col s12">
                                 <label for="drug_strength">Strength (mg)</label>
-                                <input type="text" class="validate" name="drug_strength" id="drug_strength"/>
+                                <input type="text" class="validate" th:field="*{drug_Strength}"name="drug_strength" id="drug_strength"/>
                             </div>
                             <div class="input-field col s12">
                                 <label for="sig">Directions</label>
-                                <input type="text" class="validate" name="sig" id="sig"/>
+                                <input type="text" class="validate" th:field="*{sig}"name="sig" id="sig"/>
                             </div>
                             <div class="input-field col s12">
                                 <label for="dose">Dose</label>
-                                <input type="text" class="validate" name="dose" id="dose"/>
+                                <input type="text" class="validate" th:field="*{dose}" name="dose" id="dose"/>
                             </div>
                             <div class="input-field col s12">
                                 <label for="quantity">Quantity</label>
-                                <input type="text" class="validate" name="quantity" id="quantity"/>
+                                <input type="text" class="validate" th:field="*{quantity}" name="quantity" id="quantity"/>
                             </div>
                             <div class="input-field col s12">
                                 <label for="days_supply">Days Supply</label>
-                                <input type="text" class="validate" name="days_supply" id="days_supply"/>
+                                <input type="text" class="validate" th:field="*{days_supply}" name="days_supply" id="days_supply"/>
                             </div>
                             <div class="input-field col s12">
                                 <label for="drugRefills">Refills</label>
-                                <input type="text" class="validate" name="drugRefills" id="drugRefills"/>
+                                <input type="text" class="validate" th:field="*{refill_count}" name="drugRefills" id="drugRefills"/>
                             </div>
                         </div>
                     </div>

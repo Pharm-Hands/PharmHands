@@ -1,6 +1,5 @@
 package com.pharmhands.repositories;
 
-import com.pharmhands.models.PatientInfo;
 import com.pharmhands.models.User;
 import com.pharmhands.models.UserRoles;
 import org.springframework.data.jpa.repository.JpaRepository;

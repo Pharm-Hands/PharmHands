@@ -16,7 +16,11 @@ public class UserService {
     }
 
     public User loggedInUser(){
+<<<<<<< HEAD
         User user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+=======
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+>>>>>>> main
         if(user.getUsername()==null){
             return null;
         }

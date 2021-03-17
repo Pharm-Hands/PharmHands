@@ -33,30 +33,39 @@ public class PrescriberController{
         @GetMapping("/{id}/doctorProfile/prescription-create")
         public String registerForm(Model model, @PathVariable long id){
             model.addAttribute("prescription", new Prescriptions());
-            model.addAttribute("user", userDao.getOne(id));
+            model.addAttribute("doctor_user", userDao.getOne(id));
+            model.addAttribute("patient_user", new User());
+            model.addAttribute("drugs", new Drugs());
             return "views/prescriptionForm";
         }
 
         @PostMapping("/{id}/doctorProfile/prescription-create")
-        public String submitForm(Model model, @PathVariable long id, @ModelAttribute Prescriptions prescription, @RequestParam(name = "name") String name, @RequestParam(name= "phone_number") String phone, @RequestParam(name= "drugName") String drugName){
-            User patientUserId = userDao.findByUserFullNameAndPhone(name, phone);
-            int doctorId = (int) prescriberDao.findByUser(userDao.getOne(id)).getId();
-            prescription.setUser(patientUserId);
-            prescription.setPrescriber_id(doctorId);
-            prescription.setDrug_form(prescription.getDrug_form());
-            Drugs drugs = drugsDao.findDrugsByDrug_name(drugName);
-            prescription.setDrug(drugs);
+        public String submitForm(@PathVariable long id, @ModelAttribute User patient_user, @ModelAttribute Prescriptions prescription, @RequestParam(name = "name") String name, @RequestParam(name= "phone_number") String phone, @RequestParam(name= "drugName") String drugName){
+            User patientUser = userDao.findByUserFullNameAndPhone(name, phone);
+//            int doctorId = (int) prescriberDao.findByUser(userDao.getOne(id)).getId();
+            //why is findById Optional Type?
+            User doctorUser = userDao.getOne(id);
+
+            prescription.setPatient(patientUser);
+            prescription.setDoctor(doctorUser);
+//            prescription.setDrug_form(prescription.getDrug_form());
+            Drugs drug = drugsDao.findDrugsByDrug_name(drugName);
+            prescription.setDrug(drug);
+
             long d = System.currentTimeMillis();
             Date date = new Date(d);
             prescription.setCreated_at(date);
-            prescription.setDays_supply(prescription.getDays_supply());
-            prescription.setDose(prescription.getDose());
-            prescription.setDrug(prescription.getDrug());
-            prescription.setDrug_Strength(prescription.getDrug_Strength());
+
+//            prescription.setDays_supply(prescription.getDays_supply());
+//            prescription.setDose(prescription.getDose());
+//            prescription.setDrug(prescription.getDrug());
+//            prescription.setDrug_Strength(prescription.getDrug_Strength());
+//            prescription.setQuantity(prescription.getQuantity());
+//            prescription.setSig(prescription.getSig());
+
             prescription.setIs_verified(0);
-            prescription.setQuantity(prescription.getQuantity());
-            prescription.setSig(prescription.getSig());
             prescription.setIs_deleted(0);
+
             prescriptionDao.save(prescription);
             return "redirect:/{id}/doctorProfile#tab3";
         }

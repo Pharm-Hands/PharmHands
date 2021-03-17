@@ -3,7 +3,62 @@
 <head th:replace="partials/head :: head-section "></head>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <body>
+    <div>
+        <div>
+            <h1 th:text="${prescription.drug.drug_name}"></h1>
+            <p th:text="${prescription.patient.full_name}"></p>
+            <br>
+            <label for="verified">Verified</label>
+            <p id="verified" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></p>
+            <br>
+            <label for="created">Created At</label>
+            <p id="created" th:text="${prescription.created_at}"></p>
+            <br>
+            <label for="days_supply">Days Supply</label>
+            <p id="days_supply" th:text="${prescription.days_supply}"></p>
+            <br>
+            <label for="dose">Dose</label>
+            <p id="dose" th:text="${prescription.dose}"></p>
+            <br>
+            <label for="quantity">Quantity</label>
+            <p id="quantity" th:text="${prescription.quantity}"></p>
+            <br>
+            <label for="drug_form">Form</label>
+            <p id="drug_form" th:text="${prescription.drug_form}"></p>
+            <br>
+            <label for="sig">Sig</label>
+            <p id="sig" th:text="${prescription.sig}"></p>
+            <br>
+            <label for="strength">Strength</label>
+            <p id="strength" th:text="${prescription.drug_Strength}"></p>
 
+        </div>
+        <div>
+            <h1>Fills table</h1>
+
+            <table class="striped">
+                <tr>
+                    <th>Prescription Id</th>
+                    <th>Prescription name</th>
+                    <th>Patient</th>
+                    <th>Current fill number</th>
+                    <th>Doctor</th>
+                </tr>
+                <tr class="prescription" th:href="@{/prescription/{id}(id=${prescription.id})}">
+                    <td th:text="${prescription.drug.drug_name}"></td>
+                    <td th:text="${prescription.created_at}">"</td>
+                    <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
+                    <td th:text="${prescription.patient.full_name}"></td>
+                    <td th:text="${prescription.doctor.id}"></td>
+<!--                    <td th:block th:text="${}"></td>-->
+                </tr>
+            </table>
+        </div>
+
+        <form th:action="@{/prescription/{id}/fill(id=${prescription.id})}" method="post">">
+            <button type="submit">Fill Prescription</button>
+        </form>
+    </div>
 
 
 
