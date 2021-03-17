@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FillsRepository extends JpaRepository<Fills, Long> {
 
-    @Query("SELECT COUNT(ALL Fills) FROM Fills WHERE prescription.id = ?1")
+//    @Query("SELECT COUNT(ALL Fills) FROM Fills WHERE prescription.id = ?1")
+    @Query(value="SELECT COUNT(*) FROM Fills WHERE prescription.id = ?1", nativeQuery = true)
     int fillCount(long id);
 
     @Query(value = "FROM Fills WHERE prescription.id = ?1 ORDER BY fill_date LIMIT 1", nativeQuery = true)

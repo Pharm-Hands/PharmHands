@@ -64,10 +64,15 @@ public class JoeController {
         Calendar fillCheck = Calendar.getInstance();
         Calendar now = Calendar.getInstance();
         now.setTime(new Date());
+        System.out.println(fillsDao.fillCount(id));
         if(fillsDao.fillCount(id) != 0) {
             fillCheck.setTime(fillsDao.mostRecent(id).getFill_date());
             fillCheck.add(Calendar.DATE, prescription.getDays_supply());
 
+            System.out.println("now");
+            System.out.println(now.getTime());
+            System.out.println("fill");
+            System.out.println(fillCheck.getTime());
 //        check the current date against the most recent fill date plus days supply and redirect if it is within the range
             if(fillCheck.getTime().after(now.getTime())){
                 return "redirect:/";
