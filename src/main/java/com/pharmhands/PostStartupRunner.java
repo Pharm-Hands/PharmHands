@@ -146,30 +146,30 @@ public class PostStartupRunner implements CommandLineRunner {
         Drugs savedDrug3 = drugsDao.save(drug3);
 
 //      setting up a prescription
-        Prescriptions prescription = new Prescriptions();
-        long d = System.currentTimeMillis();
-        Date date = new Date(d);
-        prescription.setCreated_at(date);
-        prescription.setDays_supply(40);
-        prescription.setDose(2);
-        prescription.setDrug(savedDrug1);
-        prescription.setDrug_form("pill");
-        prescription.setDrug_Strength(2);
-        prescription.setIs_verified(0);
-        prescription.setQuantity(4);
-        prescription.setSig("idk what this is");
-        prescription.setIs_deleted(0);
-        prescription.setPatient(jaya);
-        prescription.setDoctor(joe);
+//        Prescriptions prescription = new Prescriptions();
+//        long d = System.currentTimeMillis();
+//        Date date = new Date(d);
+//        prescription.setCreated_at(date);
+//        prescription.setDays_supply(40);
+//        prescription.setDose(2);
+//        prescription.setDrug(savedDrug1);
+//        prescription.setDrug_form("pill");
+//        prescription.setDrug_Strength(2);
+//        prescription.setIs_verified(0);
+//        prescription.setQuantity(4);
+//        prescription.setSig("idk what this is");
+//        prescription.setIs_deleted(0);
+//        prescription.setPatient(jaya);
+//        prescription.setDoctor(joe);
+//
+//        Prescriptions savedPrescription = prescriptionsDao.save(prescription);
 
-        Prescriptions savedPrescription = prescriptionsDao.save(prescription);
-
-        Fills fill = new Fills();
-        fill.setUser(rod);
-        fill.setFill_date(date);
-        fill.setFill_number(1);
-        fill.setPrescription(savedPrescription);
-        Fills savedFill = fillsDao.save(fill);
+//        Fills fill = new Fills();
+//        fill.setUser(rod);
+//        fill.setFill_date(date);
+//        fill.setFill_number(1);
+//        fill.setPrescription(savedPrescription);
+//        Fills savedFill = fillsDao.save(fill);
 
     }
 }
