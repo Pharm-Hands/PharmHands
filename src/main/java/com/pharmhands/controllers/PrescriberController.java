@@ -5,6 +5,7 @@ import com.pharmhands.models.Prescriptions;
 import com.pharmhands.models.User;
 import com.pharmhands.repositories.*;
 import com.pharmhands.services.EmailService;
+import com.pharmhands.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.sql.Date;
 @Controller
 public class PrescriberController{
 
+    private final UserService userService;
     private final EmailService emailService;
     private final UserRepository userDao;
     private final PrescriberInfoRepository prescriberDao;
@@ -21,7 +23,8 @@ public class PrescriberController{
     private final PatientInfoRepository patientDao;
     private final DrugsRepository drugsDao;
 
-    public PrescriberController(EmailService emailService, UserRepository userDao, PrescriberInfoRepository prescriberDao, PrescriptionsRepository prescriptionDao, PatientInfoRepository patientDao, DrugsRepository drugsDao) {
+    public PrescriberController(UserService userService, EmailService emailService, UserRepository userDao, PrescriberInfoRepository prescriberDao, PrescriptionsRepository prescriptionDao, PatientInfoRepository patientDao, DrugsRepository drugsDao) {
+        this.userService = userService;
         this.emailService = emailService;
         this.userDao = userDao;
         this.prescriberDao = prescriberDao;
@@ -30,21 +33,21 @@ public class PrescriberController{
         this.drugsDao = drugsDao;
     }
 
-        @GetMapping("/{id}/doctorProfile/prescription-create")
-        public String registerForm(Model model, @PathVariable long id){
+        @GetMapping("/doctorProfile/prescription-create")
+        public String registerForm(Model model){
             model.addAttribute("prescription", new Prescriptions());
-            model.addAttribute("doctor_user", userDao.getOne(id));
+            model.addAttribute("doctor_user", userDao.getOne(userService.loggedInUser().getId()));
             model.addAttribute("patient_user", new User());
             model.addAttribute("drugs", new Drugs());
             return "views/prescriptionForm";
         }
 
-        @PostMapping("/{id}/doctorProfile/prescription-create")
-        public String submitForm(@PathVariable long id, @ModelAttribute User patient_user, @ModelAttribute Prescriptions prescription, @RequestParam(name = "name") String name, @RequestParam(name= "phone_number") String phone, @RequestParam(name= "drugName") String drugName){
+        @PostMapping("/doctorProfile/prescription-create")
+        public String submitForm(@ModelAttribute User patient_user, @ModelAttribute Prescriptions prescription, @RequestParam(name = "name") String name, @RequestParam(name= "phone_number") String phone, @RequestParam(name= "drugName") String drugName){
             User patientUser = userDao.findByUserFullNameAndPhone(name, phone);
 //            int doctorId = (int) prescriberDao.findByUser(userDao.getOne(id)).getId();
             //why is findById Optional Type?
-            User doctorUser = userDao.getOne(id);
+            User doctorUser = userDao.getOne(userService.loggedInUser().getId());
 
             prescription.setPatient(patientUser);
             prescription.setDoctor(doctorUser);
@@ -67,7 +70,7 @@ public class PrescriberController{
             prescription.setIs_deleted(0);
 
             prescriptionDao.save(prescription);
-            return "redirect:/{id}/doctorProfile#tab3";
+            return "redirect:/doctorProfile#tab3";
         }
 //        @GetMapping("/profile/prescription-create/1")
 //    public String registerForm1(Model model, @PathVariable long id) {
