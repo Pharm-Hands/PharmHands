@@ -1,5 +1,10 @@
+USE pharmhands_db;
 
-Insert Into pharmhands_db.drugs (drug_name) VALUES
+DELETE FROM drugs;
+
+ALTER TABLE drugs AUTO_INCREMENT = 1;
+
+Insert Into drugs (drug_name) VALUES
 
    ('Abacavir Sulfate'),
    ('Abilify'),
