@@ -59,7 +59,7 @@ public class PatientProfileController {
 
     @PostMapping("/patientProfile/{id}/edit")
     public String updatePost(@ModelAttribute User user) {
-        User currentUser = userDao.findAll().get(0);
+        User currentUser = userDao.findAll().get((int) user.getId());
         user.setUsername(currentUser.getUsername());
         userDao.save(user);
         return "redirect:patient/patientProfile/{id}";

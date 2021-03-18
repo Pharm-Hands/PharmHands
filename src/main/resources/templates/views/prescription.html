@@ -55,9 +55,23 @@
             </table>
         </div>
 
-        <form th:action="@{/prescription/{id}/fill(id=${prescription.id})}" method="post">">
-            <button type="submit">Fill Prescription</button>
-        </form>
+        <div th:if="${prescription.is_verified} == 0">
+            <form th:action="@{/prescription/{id}/verify(id=${prescription.id})}" method="post">
+                <button type="submit">Verify Prescription</button>
+            </form>
+
+            <form th:action="@{/prescription/{id}/verifyAndFill(id=${prescription.id})}" method="post">
+                <button type="submit">Verify and Fill Prescription</button>
+            </form>
+        </div>
+        <div th:unless="${prescription.is_verified} == 0" >
+            <form th:action="@{/prescription/{id}/fill(id=${prescription.id})}" method="post">
+                <button type="submit">Fill Prescription</button>
+            </form>
+        </div>
+
+
+
     </div>
 
 
