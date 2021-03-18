@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <head th:replace="partials/head :: head">
+    </head>
 </head>
 <body>
         <div class="container-full">
@@ -20,18 +22,17 @@
             </nav>
         </div>
 
-<script type="text/javascript">
-    $(function() {
-        // $('.modal').modal();
-        $("#search").autocomplete({
-            source:"DrugAutocomplete",
-            minLength:3
 
-        });
-    });
-
-    function getId() {
-        alert($('#aComplete').data('id'))}
-</script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                // $('.modal').modal();
+                $("#search").autocomplete({
+                    source:"/list-drugs",
+                    minLength:3
+                });
+            });
+        </script>
 </body>
 </html>
