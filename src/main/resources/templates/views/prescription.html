@@ -6,7 +6,7 @@
     <div>
         <div>
             <h1 th:text="${prescription.drug.drug_name}"></h1>
-            <p th:text="${prescription.user.full_name}"></p>
+            <p th:text="${prescription.patient.full_name}"></p>
             <br>
             <label for="verified">Verified</label>
             <p id="verified" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></p>
@@ -48,8 +48,8 @@
                     <td th:text="${prescription.drug.drug_name}"></td>
                     <td th:text="${prescription.created_at}">"</td>
                     <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
-                    <td th:text="${prescription.user.full_name}"></td>
-                    <td th:text="${prescription.prescriber_id}"></td>
+                    <td th:text="${prescription.patient.full_name}"></td>
+                    <td th:text="${prescription.doctor.id}"></td>
 <!--                    <td th:block th:text="${}"></td>-->
                 </tr>
             </table>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+</head>
+<body>
+<div>
+    patientProfile/{id}/edit
+    <form th:action="@{/patientProfile/{id}/edit(id=${patient.id})}" th:method="post" th:object="${patient}">
+        <div>
+            <label for="editUsername">Edit Username
+                <input type="text"  id="editUsername" class="validate" th:field="*{username}"/>
+            </label>
+        </div>
+        <div>
+            <label for="editAddress">Edit Address
+                <input type="text" id="editAddress"  th:field="*{address}"/>
+            </label>
+        </div>
+        <div>
+            <label for="editDob"> Edit Date of Birth
+                <input type="text" id="editDob"  th:field="*{dob}"/>
+            </label>
+        </div>
+        <input type="hidden" th:field="*{id}"/>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <!--    <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="POST" th:object="{post}">-->
+    <!--    </form>-->
+</div>
+
+</body>
+</html>
