@@ -16,7 +16,7 @@ public class aComplete {
         this.drugDao = drugDao;
     }
 
-    @GetMapping("/list-drugs")
+/*    @GetMapping("/list-drugs")
     @ResponseBody
     public List<Drugs> listDrugs() {
         return drugDao.findAll();
@@ -25,7 +25,7 @@ public class aComplete {
              ) {
 
         }
-    }
+    }*/
 
 
     @GetMapping("/Autocomplete")

@@ -47,7 +47,6 @@ public class JoeController {
         model.addAttribute("prescriptions", prescriptionsDao.findAllByPrescriberId(id));
         model.addAttribute("doctorInfo", prescriberDao.findByUser(userDao.getOne(id)));
         return "views/doctor/doctorProfile";
-
     }
 
     @GetMapping("/prescription/{id}")
