@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @Controller
-public class aComplete {
+public class AutoComplete {
 
     private final DrugsRepository drugDao;
 
-    public aComplete(DrugsRepository drugDao) {
+    public AutoComplete(DrugsRepository drugDao) {
         this.drugDao = drugDao;
     }
 
