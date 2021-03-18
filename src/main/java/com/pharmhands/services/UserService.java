@@ -16,6 +16,7 @@ public class UserService {
     }
 
     public User loggedInUser(){
+
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(user.getUsername()==null){
             return null;
