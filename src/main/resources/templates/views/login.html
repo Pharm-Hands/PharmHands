@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/head :: head">
+    <title> Login</title>
 </head>
 <body>
 
@@ -12,11 +13,11 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="username">Username</label>
-                        <input type="text" class="validate" name="username" id="username" />
+                        <input type="text" class="validate" name="username" id="username"/>
                     </div>
                     <div class="input-field col s12">
                         <label for="password">Password </label>
-                        <input type="password" class="validate" name="password" id="password" />
+                        <input type="password" class="validate" name="password" id="password"/>
                     </div>
                 </div>
             </div>
@@ -26,8 +27,8 @@
             </div>
         </form>
 
-        <small ><a href="/forgotPassword">Forgot password ? </a></small>
-        <p>If you do not  already have an account please <a href="/register">Sign Up</a></p>
+        <small><a href="/forgotPassword">Forgot password ? </a></small>
+        <p>If you do not already have an account please <a href="/register">Sign Up</a></p>
 
 
         <div th:if="${param.error}">
@@ -36,14 +37,6 @@
         <div th:if="${param.logout}">
             You have been logged out.
         </div>
-
-<!--        <form th:action="@{/login}" method="post">-->
-<!--            <label for="username">Username</label>-->
-<!--            <input id="username" name="username" type="text" />-->
-<!--            <label for="password">Password</label>-->
-<!--            <input id="password" name="password" type="password" />-->
-<!--            <input type="submit" value="Log In" />-->
-<!--        </form>-->
     </div>
 </div>
 
