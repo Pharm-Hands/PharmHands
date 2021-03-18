@@ -16,16 +16,16 @@ public class aComplete {
         this.drugDao = drugDao;
     }
 
-    @GetMapping("/list-drugs")
-    @ResponseBody
-    public List<Drugs> listDrugs() {
-        return drugDao.findAll();
-        for (Drug:Drugs
-
-             ) {
-
-        }
-    }
+//    @GetMapping("/list-drugs")
+//    @ResponseBody
+//    public List<Drugs> listDrugs() {
+//        return drugDao.findAll();
+//        for (Drug:Drugs
+//
+//             ) {
+//
+//        }
+//    }
 
 
     @GetMapping("/Autocomplete")
