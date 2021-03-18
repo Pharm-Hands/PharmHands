@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
+<head th:replace="partials/head :: head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>AutoComplete</title>
 </head>
 <body>
-        <div class="container-full">
-            <nav>
-            <div class="nav-wrapper">
+<div class="container-full">
+    <nav>
+        <div class="nav-wrapper">
             <form>
                 <div class="input-field">
                     <input id="search" type="search" required>
@@ -16,22 +16,19 @@
                     <i class="material-icons red-text">close</i>
                 </div>
             </form>
-            </div>
-            </nav>
         </div>
-
+    </nav>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
-    $(function() {
-        // $('.modal').modal();
+    $(function () {
+        $('.modal').modal();
         $("#search").autocomplete({
-            source:"DrugAutocomplete",
-            minLength:3
-
+            source: "/list-drugs",
+            minLength: 3
         });
     });
-
-    function getId() {
-        alert($('#aComplete').data('id'))}
 </script>
 </body>
 </html>
