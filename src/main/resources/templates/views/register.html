@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/head :: head">
+    <title>Register</title>
 </head>
 <body>
 
@@ -13,13 +14,13 @@
                 <div class="row">
 
                     <div class="input-field col s12">
-                        <select id="user-picked">
+                        <label><select id="user-picked">
                             <option value="" disabled selected>Please select who to register</option>
                             <option value="1">Patient</option>
                             <option value="2">Pharmacist</option>
                             <option value="3">Doctor</option>
                         </select>
-                        <label></label>
+                        </label>
                     </div>
                 </div>
             </div>
