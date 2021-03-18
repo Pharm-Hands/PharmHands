@@ -55,6 +55,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/email"// only authenticated users can create ads
                 )
                 .authenticated()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/?/doctorProfile")
+                .hasAuthority("doctor")
         ;
     }
 }
