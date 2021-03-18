@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Profile</title>
 </head>
 <body>
 <div>
-    <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="post" th:object="${post}">
+    patientProfile/{id}/edit
+    <form th:action="@{/patientProfile/{id}/edit(id=${patient.id})}" th:method="post" th:object="${patient}">
         <div>
-            <label for="editTitle">Title <input type="text"  id="editTitle" th:field="*{title}"   th:value="${post.title}"></label>
+            <label for="editUsername">Edit Username
+                <input type="text"  id="editUsername" class="validate" th:field="*{username}"/>
+            </label>
         </div>
         <div>
-            <label for="editBody">Content <textarea id="editBody"  th:field="*{content}"   th:text="${post.content}"></textarea></label>
+            <label for="editAddress">Edit Address
+                <input type="text" id="editAddress"  th:field="*{address}"/>
+            </label>
+        </div>
+        <div>
+            <label for="editDob"> Edit Date of Birth
+                <input type="text" id="editDob"  th:field="*{dob}"/>
+            </label>
         </div>
         <input type="hidden" th:field="*{id}"/>
 
         <button type="submit">Submit</button>
-        <button type="submit">Delete Post</button>
-
     </form>
 
     <!--    <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="POST" th:object="{post}">-->
