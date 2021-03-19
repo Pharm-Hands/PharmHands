@@ -37,8 +37,9 @@ public class PharmacistViewController {
     public String editPharmacistInfoForm(Model model, @PathVariable long id){
         User user = userDao.getOne(id);
         model.addAttribute("user", user);
-        return "/views/pharmacist/pharmacistInfoEdit";
+        return "views/pharmacist/pharmacistInfoEdit";
     }
+
 
     @PostMapping("/pharmacistProfile/{id}/edit")
     public String editPharmacistInfo(@ModelAttribute User user, @PathVariable long id){
