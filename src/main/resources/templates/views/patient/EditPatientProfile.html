@@ -7,7 +7,6 @@
 </head>
 <body>
 <div>
-    patientProfile/{id}/edit
     <form th:action="@{/patientProfile/{id}/edit(id=${patient.id})}" th:method="post" th:object="${patient}">
         <div>
             <label for="editUsername">Edit Username
