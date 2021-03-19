@@ -49,11 +49,12 @@ public class PatientProfileController {
     }
     @GetMapping("/patientProfile/{id}/edit")
     public String editProfileForm(@PathVariable long id, Model model) {
-        model.addAttribute("patient", userDao.getOne(id));
-        User temp = userService.loggedInUser();
-        if (temp == null) {
+        User loggedInUser = userService.loggedInUser();
+        if (loggedInUser == null) {
             return "redirect:/";
         }
+        User user = userDao.getOne(loggedInUser.getId());
+        model.addAttribute("patient", user);
         return "views/patient/patientProfile";
     }
 
