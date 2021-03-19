@@ -29,14 +29,22 @@
 </div>
 
 
-
-
-
-
-
-
-
 <div th:replace="partials/scripts :: scripts"></div>
+
 <script type="text/javascript" src="/js/rxFormValidation.js"></script>
+<script>
+$(document).ready(function(){
+$("form").submit(function(){
+alert("Submitted");
+});
+});
+</script>
 </body>
 </html>
+
+
+
+
+
+
+

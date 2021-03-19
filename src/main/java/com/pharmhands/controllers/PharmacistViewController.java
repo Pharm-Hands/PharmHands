@@ -42,11 +42,11 @@ public class PharmacistViewController {
 
     @PostMapping(path = "pharmacistProfile/{id}/edit")
     public String editPharmacistInfo(@ModelAttribute User user){
-//        User loggedIn = userDao.getOne(4l);
+//        User loggedIn = userDao.getOne();
         user.setFull_name(user.getFull_name());
         user.setEmail(user.getEmail());
         userDao.save(user);
-        return "redirect:/pharmacistProfile/{id}/";
+        return "redirect:/";
     }
 
 }
