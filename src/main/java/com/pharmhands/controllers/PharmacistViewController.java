@@ -33,20 +33,29 @@ public class PharmacistViewController {
         return "views/pharmacist/pharmacistProfile";
     }
 
-    @GetMapping("pharmacistProfile/{id}/edit")
+    @GetMapping("/pharmacistProfile/{id}/edit")
     public String editPharmacistInfoForm(Model model, @PathVariable long id){
         User user = userDao.getOne(id);
         model.addAttribute("user", user);
         return "views/pharmacist/pharmacistInfoEdit";
     }
 
-    @PostMapping(path = "pharmacistProfile/{id}/edit")
-    public String editPharmacistInfo(@ModelAttribute User user,@PathVariable long id){
-//        User loggedIn = userDao.getOne(4l);
+
+    @PostMapping("/pharmacistProfile/{id}/edit")
+    public String editPharmacistInfo(@ModelAttribute User user, @PathVariable long id){
+        User loggedIn = userService.loggedInUser();
+
         user.setFull_name(user.getFull_name());
         user.setEmail(user.getEmail());
+        user.setPassword(loggedIn.getPassword());
+        user.setPhone_number(loggedIn.getPhone_number());
+        user.setUsername(loggedIn.getUsername());
+        user.setIs_deleted(loggedIn.getIs_deleted());
+        user.setRole(loggedIn.getRole());
+
         userDao.save(user);
-        return "redirect:/pharmacistProfile/{id}/";
+        return "redirect:/pharmacistProfile/" + id;
     }
 
 }
+

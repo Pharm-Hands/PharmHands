@@ -6,7 +6,8 @@
 </head>
 <body>
 <div th:fragment="scripts">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
 
@@ -18,10 +19,9 @@
             //DOB for registration forms
             $('.datepicker').datepicker();
             Materialize.updateTextFields();
-            $("form").submit(function(){
-                alert("Submitted");
-            });
+
         });
+
 
         type="text/javascript">
             $(".button-collapse").sideNav();
@@ -47,22 +47,6 @@
             }
         });
     </script>
-
-    <script>
-        //This is for the new prescriptions form next buttons.
-        $(".NewPrescription01").click(function (){
-            window.location.href=("/prescritpion-create-02")
-        });
-
-        $(".NewPrescription02").click(function (){
-            window.location.href=("/prescritpion-create-03")
-        });
-    </script>
-
-
-
-
-
 
 </div>
 </body>
