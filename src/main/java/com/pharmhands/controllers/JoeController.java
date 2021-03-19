@@ -1,16 +1,15 @@
 package com.pharmhands.controllers;
 
 import com.pharmhands.models.Fills;
+import com.pharmhands.models.PrescriptionRequests;
 import com.pharmhands.models.Prescriptions;
-import com.pharmhands.repositories.FillsRepository;
-import com.pharmhands.repositories.PrescriberInfoRepository;
-import com.pharmhands.repositories.PrescriptionsRepository;
-import com.pharmhands.repositories.UserRepository;
+import com.pharmhands.repositories.*;
 import com.pharmhands.services.EmailService;
 import com.pharmhands.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -30,14 +29,17 @@ public class JoeController {
 
     private final FillsRepository fillsDao;
 
+    private final PrescriptionRequestsRepository requestsDao;
+
     private final UserService userService;
 
-    public JoeController(EmailService emailService, UserRepository userDao, PrescriptionsRepository prescriptionsDao, PrescriberInfoRepository prescriberDao, FillsRepository fillsDao, UserService userService) {
+    public JoeController(EmailService emailService, UserRepository userDao, PrescriptionsRepository prescriptionsDao, PrescriberInfoRepository prescriberDao, FillsRepository fillsDao, PrescriptionRequestsRepository requestsDao, UserService userService) {
         this.emailService = emailService;
         this.userDao = userDao;
         this.prescriptionsDao = prescriptionsDao;
         this.prescriberDao = prescriberDao;
         this.fillsDao = fillsDao;
+        this.requestsDao = requestsDao;
         this.userService = userService;
     }
 
@@ -130,6 +132,28 @@ public class JoeController {
         fillsDao.save(fill);
 
         return "redirect:/prescription/{id}";
+    }
 
+    @GetMapping("/prescription/{id}/request")
+    public String requestForm(@PathVariable long id, Model model){
+        PrescriptionRequests request = new PrescriptionRequests();
+        model.addAttribute("request", request);
+        model.addAttribute("prescription", prescriptionsDao.getOne(id));
+
+        return "views/patient/requestForm";
+    }
+
+    @PostMapping("/prescription/request")
+    public String submitRequest(@ModelAttribute PrescriptionRequests request, @ModelAttribute Prescriptions prescription){
+        long d = System.currentTimeMillis();
+        Date date = new Date(d);
+        request.setCreated_at(date);
+        request.setIs_Fulfilled(0);
+        request.setPatient(userService.loggedInUser());
+        request.setPrescription(prescriptionsDao.getOne(prescription.getId()));
+
+        requestsDao.save(request);
+
+        return "redirect:/";
     }
 }

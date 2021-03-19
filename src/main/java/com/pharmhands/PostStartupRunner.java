@@ -47,15 +47,15 @@ public class PostStartupRunner implements CommandLineRunner {
 
 //      Setting user roles
         UserRoles doc = new UserRoles();
-        doc.setRole_name("doctor");
+        doc.setRole_name("ROLE_DOCTOR");
         UserRoles docRole = userRolesDao.save(doc);
 
         UserRoles pat = new UserRoles();
-        pat.setRole_name("patient");
+        pat.setRole_name("ROLE_PATIENT");
         UserRoles patRole = userRolesDao.save(pat);
 
         UserRoles pharm = new UserRoles();
-        pharm.setRole_name("pharmacist");
+        pharm.setRole_name("ROLE_PHARMACIST");
         UserRoles pharmRole = userRolesDao.save(pharm);
 
 //      doctor role
@@ -144,6 +144,52 @@ public class PostStartupRunner implements CommandLineRunner {
         Drugs drug3 = new Drugs();
         drug3.setDrug_name("Vicodin");
         Drugs savedDrug3 = drugsDao.save(drug3);
+
+        //      setting up a prescription
+        Prescriptions prescription1 = new Prescriptions();
+        long d = System.currentTimeMillis();
+        Date date = new Date(d);
+        prescription1.setCreated_at(date);
+        prescription1.setDays_supply(40);
+        prescription1.setDose(2);
+        prescription1.setDrug(savedDrug1);
+        prescription1.setDrug_form("pill");
+        prescription1.setDrug_Strength(2);
+        prescription1.setIs_verified(0);
+        prescription1.setQuantity(4);
+        prescription1.setSig("idk what this is");
+        prescription1.setIs_deleted(0);
+        prescription1.setPatient(jaya);
+
+        prescription1.setDoctor(joe);
+
+        Prescriptions savedPrescription = prescriptionsDao.save(prescription1);
+
+        Prescriptions prescription2 = new Prescriptions();
+        long d2 = System.currentTimeMillis();
+        Date date2 = new Date(d2);
+        prescription2.setCreated_at(date2);
+        prescription2.setDays_supply(40);
+        prescription2.setDose(2);
+        prescription2.setDrug(savedDrug2);
+        prescription2.setDrug_form("pill");
+        prescription2.setDrug_Strength(2);
+        prescription2.setIs_verified(0);
+        prescription2.setQuantity(4);
+        prescription2.setSig("idk what this is");
+        prescription2.setIs_deleted(0);
+        prescription2.setPatient(james);
+
+        prescription2.setDoctor(joe);
+
+        Prescriptions savedPrescription2 = prescriptionsDao.save(prescription2);
+
+        Fills fill = new Fills();
+        fill.setUser(rod);
+        fill.setFill_date(date);
+        fill.setFill_number(1);
+        fill.setPrescription(savedPrescription);
+        Fills savedFill = fillsDao.save(fill);
 
 
 

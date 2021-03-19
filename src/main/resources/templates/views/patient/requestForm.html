@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head-section "></head>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<body>
+    <form th:action="@{/prescription/request}" th:method="submit">
+        <div class="row">-->
+            <div class="input-field col s12">
+                <textarea id="note" name="note" class="materialize-textarea" th:height="300px"></textarea>
+                <label for="note">Leave A Note</label>
+            </div>
+        </div>
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+
+    </form>
+
+
+
+
+
+
+<div th:replace="partials/scripts :: scripts"></div>
+</body>
+</html>

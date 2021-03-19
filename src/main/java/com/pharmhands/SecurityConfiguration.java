@@ -37,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/") // user's home page, it can be any URL
+                .defaultSuccessUrl("/")
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
@@ -46,15 +46,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeRequests()
-                .antMatchers("/") // anyone can see the home and the ads pages
+                .antMatchers("/") // anyone can see the home page
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/email"// only authenticated users can create ads
+                        "/email"// only authenticated users can spam people with email
                 )
                 .authenticated()
+//              Pages for doctors
+                .and()
+                .authorizeRequests()
+                .antMatchers("/?/doctorProfile")
+                .hasRole("DOCTOR")
+//              Pages for Patients
+                .and()
+                .authorizeRequests()
+                .antMatchers("/patientProfile/?", "/patientProfile/?/*")
+                .hasRole("PATIENT")
+//              Pages for Pharmacists
+                .and()
+                .authorizeRequests()
+                .antMatchers("/pharmacistProfile/?", "/pharmacistProfile/?/*")
+                .hasRole("PHARMACIST")
         ;
     }
 }

@@ -28,6 +28,9 @@ public class Prescriptions {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "prescription")
     private List<PrescriptionNotes> prescription_notes;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "prescription")
+    private List<PrescriptionRequests> prescription_requests;
+
 //    @Column(nullable = false)
 //    private long prescriber_id;
 
@@ -64,7 +67,15 @@ public class Prescriptions {
     public Prescriptions() {
     }
 
-    public Prescriptions(long id, User patient, Drugs drug, List<Fills> fills, List<PrescriptionNotes> prescription_notes, User doctor, String drug_form, int drug_Strength, String sig, int dose, int quantity, int refill_count, int is_deleted, int is_verified, int days_supply, Date created_at) {
+    public List<PrescriptionRequests> getPrescription_requests() {
+        return prescription_requests;
+    }
+
+    public void setPrescription_requests(List<PrescriptionRequests> prescription_requests) {
+        this.prescription_requests = prescription_requests;
+    }
+
+    public Prescriptions(long id, User patient, Drugs drug, List<Fills> fills, List<PrescriptionNotes> prescription_notes, List<PrescriptionRequests> prescription_requests, User doctor, String drug_form, int drug_Strength, String sig, int dose, int quantity, int refill_count, int is_deleted, int is_verified, int days_supply, Date created_at) {
         this.id = id;
         this.patient = patient;
         this.drug = drug;
@@ -81,6 +92,7 @@ public class Prescriptions {
         this.is_verified = is_verified;
         this.days_supply = days_supply;
         this.created_at = created_at;
+        this.prescription_requests = prescription_requests;
     }
 
     public long getId() {

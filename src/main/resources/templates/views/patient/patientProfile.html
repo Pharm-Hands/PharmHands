@@ -59,8 +59,6 @@
     </div>
 
 
-    <div id="tab2" class="col s12">
-    </div>
     <div id="prescrip" class="col s12 ">
         <div th:each="prescription : ${patient.prescriptions}">
             <div class="container white-text">
@@ -70,21 +68,60 @@
                     <th>Created at</th>
                     <th>Verified</th>
                     <th>Doctor</th>
+                    <th>View Requests</th>
                 </tr>
                 <tr>
                     <td th:text="${prescription.drug.drug_name}">"</td>
                     <td th:text="${prescription.created_at}">"</td>
                     <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
                     <td th:text="${prescription.doctor.full_name}"></td>
+                    <td><a class="pRequest waves-effect waves-light btn" th:href="@{/prescription/{id}/request(id=${prescription.id})}">Request Fill</a></td>
                 </tr>
             </table>
+
+                <button data-target="modal1" class="btn modal-trigger">Modal</button>
             </div>
+        </div>
+
+        <!-- Modal Structure -->
+<!--        <div id="request" class="modal">-->
+<!--            <div class="modal-content">-->
+<!--                <h4>Prescription Fill Request</h4>-->
+<!--                <div class="row">-->
+<!--                    <form class="col s12">-->
+<!--                        <div class="row">-->
+<!--                            <div class="input-field col s12">-->
+<!--                                <textarea id="note" name="note" class="materialize-textarea"></textarea>-->
+<!--                                <label for="note">Leave A Note</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>-->
+<!--            </div>-->
         </div>
     </div>
 </div>
 
 <div th:replace="partials/scripts :: scripts">
+<script>
+    // let selected;
 
+    // $(document).ready(function(){
+    //     $('.modal').modal();
+    //
+    //     $('.trigger-modal').modal();
+    //
+    //     $('.pRequest').click(function(){
+    //         selected = $(this).attr('data-value').val();
+    //         console.log(selected)
+    //     });
+    // });
+
+</script>
 
 
 
