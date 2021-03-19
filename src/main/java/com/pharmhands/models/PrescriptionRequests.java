@@ -14,24 +14,28 @@ public class PrescriptionRequests {
     private String note;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "patient_id")
+    private User patient;
 
     @Column(nullable = false)
     private Date created_at;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "prescriptions")
     private Prescriptions prescription;
 
+    @Column(nullable = false)
+    private int is_Fulfilled;
 
     public PrescriptionRequests(){};
 
-    public PrescriptionRequests(long id, String note, User user, Date created_at, Prescriptions prescription) {
+    public PrescriptionRequests(long id, String note, User patient, Date created_at, Prescriptions prescription, int is_Fulfilled) {
         this.id = id;
         this.note = note;
-        this.user = user;
+        this.patient = patient;
         this.created_at = created_at;
         this.prescription = prescription;
+        this.is_Fulfilled = is_Fulfilled;
     }
 
     public long getId() {
@@ -50,12 +54,12 @@ public class PrescriptionRequests {
         this.note = note;
     }
 
-    public User getUser() {
-        return user;
+    public User getPatient() {
+        return patient;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPatient(User patient) {
+        this.patient = patient;
     }
 
     public Date getCreated_at() {
@@ -72,5 +76,13 @@ public class PrescriptionRequests {
 
     public void setPrescription(Prescriptions prescription) {
         this.prescription = prescription;
+    }
+
+    public int getIs_Fulfilled() {
+        return is_Fulfilled;
+    }
+
+    public void setIs_Fulfilled(int is_Fulfilled) {
+        this.is_Fulfilled = is_Fulfilled;
     }
 }
