@@ -4,7 +4,7 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 <body>
 
-<div class="valign-wrapper row pharmacistEdit ">
+<div class="valign-wrapper row">
     <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
         <form th:action="@{/pharmacistProfile/{id}/edit(id=${user.id})}" th:method="POST" th:object="${user}" >
             <div class="card-content #757575">
@@ -30,8 +30,6 @@
 
 
 <div th:replace="partials/scripts :: scripts"></div>
-
-<script type="text/javascript" src="/js/rxFormValidation.js"></script>
 <script>
 $(document).ready(function(){
 $("form").submit(function(){
