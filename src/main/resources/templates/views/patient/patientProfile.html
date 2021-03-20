@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head-section "></head>
 <nav th:replace="partials/navbar :: navbar"></nav>
+<head th:replace="partials/head :: head-section ">
+    <title>Profile Page</title>
+</head>
 <body>
 <div class="row">
     <div class="col s12">
@@ -11,22 +13,24 @@
             <li class="tab col s3>"><a href="#prescrip">Your Prescriptions</a></li>
         </ul>
     </div>
-    <div id="info" class="col s12">
+
+    <div id="info" class="col s12">Edit your profile information
+
         <ul class="collection">
             <li class="collection-item avatar">
                 <span class="title">Name</span>
                 <i class="material-icons circle green">badge</i>
-                <p th:text="${patient.username}"></p>
+                <p th:value="${patient.username}" th:name="username" th:text="${patient.username}"></p>
             </li>
             <li class="collection-item avatar">
                 <i class="material-icons circle green">home</i>
                 <span class="title">Address</span>
-                <p th:text="${patientInfo.address}">
+                <p th:value="${patientInfo.address}" th:name="address" th:text="${patientInfo.address}">
             </li>
             <li class="collection-item avatar">
                 <i class="material-icons circle green">cake</i>
                 <span class="title">Date of Birth</span>
-                <p th:text="${patientInfo.dob}"></p>
+                <p  th:value="${patientInfo.dob}" th:name="dob" th:text="${patientInfo.dob}"></p>
             </li>
         </ul>
         <input type="submit" class="btn orange  waves-effect waves-light" value="Edit Profile" id="edit">
@@ -60,7 +64,7 @@
     </div>
 
 
-    <div id="prescrip" class="col s12 ">
+    <div id="prescrip" class="col s12">
         <div th:each="prescription : ${patient.prescriptions}">
             <div class="container white-text">
                 <table class="striped">
@@ -83,43 +87,42 @@
         </div>
     </div>
 
-    <button data-target="modal1" class="btn modal-trigger">Modal</button>
-        <!-- Modal Structure -->
-        <div id="modal1" class="modal">
-            <div class="modal-content">
-                <h4>Prescription Fill Request</h4>
-                <div class="row">
-                    <form class="col s12">
-                        <div class="row modal-form-row">
-                            <div class= "input-field col s12">
-                                    <textarea id="note" name="note" class="materialize-textarea"></textarea>
-                                    <label for="note">Leave A Note</label>
-                            </div>
-                        </div>
-                    </form>
-                 </div>
-        </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div>
-        </div>
+<!--    <button data-target="modal1" class="btn modal-trigger">Modal</button>-->
+<!--        &lt;!&ndash; Modal Structure &ndash;&gt;-->
+<!--        <div id="modal1" class="modal">-->
+<!--            <div class="modal-content">-->
+<!--                <h4>Prescription Fill Request</h4>-->
+<!--                <div class="row">-->
+<!--                    <form class="col s12">-->
+<!--                        <div class="row modal-form-row">-->
+<!--                            <div class= "input-field col s12">-->
+<!--                                    <textarea id="note" name="note" class="materialize-textarea"></textarea>-->
+<!--                                    <label for="note">Leave A Note</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                 </div>-->
+<!--        </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>-->
+<!--            </div>-->
+<!--        </div>-->
 </div>
 
-<!--<div th:replace="partials/scripts :: scripts"/>-->
+<div th:replace="partials/scripts :: scripts"></div>
+<!--<script>-->
+<!--    // let selected;-->
 
-<script>
-    // let selected;
+<!--    $(document).ready(function(){-->
+<!--        $('.modal').modal()-->
+<!--        });-->
 
-    $(document).ready(function(){
-        $('.modal').modal()
-        });
-
-        // $('.trigger-modal').modal();
-        //
-        // $('.pRequest').click(function(){
-        //     selected = $(this).attr('data-value').val();
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!--        // $('.trigger-modal').modal();-->
+<!--        //-->
+<!--        // $('.pRequest').click(function(){-->
+<!--        //     selected = $(this).attr('data-value').val();-->
+<!--</script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>-->
+<!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
 </body>
 </html>
