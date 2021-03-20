@@ -62,7 +62,8 @@ public class PostStartupRunner implements CommandLineRunner {
         User doctor = new User();
         String hashDoc = encoder.encode("joe1996");
         doctor.setPassword(hashDoc);
-        doctor.setFull_name("Joe Cuthbert");
+        doctor.setFullName(("Joe Cuthbert"));
+//        doctor.setFull_name("Joe Cuthbert");
         doctor.setIs_deleted(0);
         doctor.setPhone_number("2102596441");
         doctor.setUsername("joe");
@@ -79,7 +80,8 @@ public class PostStartupRunner implements CommandLineRunner {
         User patient1 = new User();
         String hashPat1 = encoder.encode("jaya");
         patient1.setPassword(hashPat1);
-        patient1.setFull_name("Jaya Seyyadri");
+//        patient1.setFull_name("Jaya Seyyadri");
+        patient1.setFullName("Jaya Seyyadri");
         patient1.setIs_deleted(0);
         patient1.setPhone_number("098740987");
         patient1.setUsername("jaya");
@@ -101,7 +103,8 @@ public class PostStartupRunner implements CommandLineRunner {
         User patient2 = new User();
         String hashPat2 = encoder.encode("james");
         patient2.setPassword(hashPat2);
-        patient2.setFull_name("James Gemes");
+//        patient2.setFull_name("James Gemes");
+        patient2.setFullName("James Gemes");
         patient2.setIs_deleted(0);
         patient2.setPhone_number("098740987");
         patient2.setUsername("james");
@@ -124,7 +127,8 @@ public class PostStartupRunner implements CommandLineRunner {
         User pharmacist = new User();
         String hashPharm = encoder.encode("rod");
         pharmacist.setPassword(hashPharm);
-        pharmacist.setFull_name("Rod Sanati");
+//        pharmacist.setFull_name("Rod Sanati");
+        pharmacist.setFullName("Rod Sanati");
         pharmacist.setIs_deleted(0);
         pharmacist.setPhone_number("098740987");
         pharmacist.setUsername("rod");

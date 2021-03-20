@@ -95,7 +95,7 @@
                     <span class="card-title center-align">Prescription</span>
                     <hr>
                     <h5 th:text="${prescription.drug.drug_name}"></h5>
-                    <p th:text="${prescription.patient.full_name}"></p>
+                    <p th:text="${prescription.patient.fullName}"></p>
                     <hr>
                     <br>
                     <label for="verified">Verified</label>
@@ -151,7 +151,7 @@
                             <td th:text="${prescription.drug.drug_name}"></td>
                             <td th:text="${prescription.created_at}">"</td>
                             <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
-                            <td th:text="${prescription.patient.full_name}"></td>
+                            <td th:text="${prescription.patient.fullName}"></td>
                             <td th:text="${prescription.doctor.id}"></td>
                         </tr>
                     </table>

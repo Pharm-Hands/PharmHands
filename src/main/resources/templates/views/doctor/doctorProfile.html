@@ -12,7 +12,7 @@
         </ul>
     </div>
     <div id="tab1" class="col s12">
-        <h1 th:text="${doctor.full_name}"></h1>
+        <h1 th:text="${doctor.fullName}"></h1>
         <h3 th:text="${doctor.username}"></h3>
         <br>
         <p th:text="${doctor.email}" ></p>
@@ -36,7 +36,7 @@
                     <td th:text="${prescription.drug.drug_name}">"</td>
                     <td th:text="${prescription.created_at}">"</td>
                     <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
-                    <td th:text="${prescription.patient.full_name}"></td>
+                    <td th:text="${prescription.patient.fullName}"></td>
                 </tr>
             </table>
 

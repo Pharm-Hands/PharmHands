@@ -66,7 +66,9 @@ public class PatientProfileController {
         patientInfo.setDob(patientInfo.getDob());
 
         patient.setEmail(loggedUser.getEmail());
-        patient.setFull_name(loggedUser.getFull_name());
+//        patient.setFull_name(loggedUser.getFull_name());
+        patient.setFullName(loggedUser.getFullName());
+
         patient.setPassword(loggedUser.getPassword());
         patient.setFills(loggedUser.getFills());
         patient.setIs_deleted(loggedUser.getIs_deleted());
@@ -87,7 +89,7 @@ public class PatientProfileController {
 
     @PostMapping("/patientProfile/{id}")
     public String emailSend(@PathVariable long id) {
-        emailService.prepareAndSend(userDao.getOne(id), "Message Sent", "Dear"+userDao.getOne(id).getFull_name()+"Your Pharmacist will be notified &  should reach out to you in 2 business days .Thank you");
+        emailService.prepareAndSend(userDao.getOne(id), "Message Sent", "Dear"+userDao.getOne(id).getFullName()+"Your Pharmacist will be notified &  should reach out to you in 2 business days .Thank you");
         return "redirect:/";
     }
 
