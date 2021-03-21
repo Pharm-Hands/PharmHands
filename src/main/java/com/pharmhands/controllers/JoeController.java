@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Date;
 import java.util.Calendar;
@@ -134,26 +135,26 @@ public class JoeController {
         return "redirect:/prescription/{id}";
     }
 
-    @GetMapping("/prescription/{id}/request")
-    public String requestForm(@PathVariable long id, Model model){
+    @GetMapping("/prescription/{prescriptionId}/request")
+    public String requestForm(@PathVariable long prescriptionId, Model model){
         PrescriptionRequests request = new PrescriptionRequests();
         model.addAttribute("request", request);
-        model.addAttribute("prescription", prescriptionsDao.getOne(id));
+        model.addAttribute("prescription", prescriptionsDao.getOne(prescriptionId));
 
         return "views/patient/requestForm";
     }
 
-    @PostMapping("/prescription/request")
-    public String submitRequest(@ModelAttribute PrescriptionRequests request, @ModelAttribute Prescriptions prescription){
+    @PostMapping("/prescription/{prescriptionId}/request")
+    public String submitRequest(@ModelAttribute PrescriptionRequests request, @PathVariable long prescriptionId, RedirectAttributes redir){
         long d = System.currentTimeMillis();
         Date date = new Date(d);
         request.setCreated_at(date);
         request.setIs_Fulfilled(0);
         request.setPatient(userService.loggedInUser());
-        request.setPrescription(prescriptionsDao.getOne(prescription.getId()));
+        request.setPrescription(prescriptionsDao.getOne(prescriptionId));
 
         requestsDao.save(request);
-
-        return "redirect:/";
+        redir.addFlashAttribute("success", "You have successfully requested a fill for your prescription of " + prescriptionsDao.getOne(prescriptionId).getDrug() + "!");
+        return "redirect:/patientProfile/" + userService.loggedInUser().getId();
     }
 }
