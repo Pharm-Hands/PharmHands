@@ -22,7 +22,7 @@
         <ul class="collection">
             <li class="collection-item avatar">
                 <span class="title">Name</span>
-                <p th:text="${user.full_name}"></p>
+                <p th:text="${user.fullName}"></p>
                 <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
             </li>
             <li class="collection-item avatar">
@@ -68,8 +68,8 @@
                     <td th:text="${prescription.drug.drug_name}"></td>
                     <td th:text="${prescription.created_at}">"</td>
                     <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
-                    <td th:text="${prescription.patient.full_name}"></td>
-                    <td th:text="${prescription.doctor.full_name}"></td>
+                    <td th:text="${prescription.patient.fullName}"></td>
+                    <td th:text="${prescription.doctor.fullName}"></td>
                 </tr>
             </table>
 

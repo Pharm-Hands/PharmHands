@@ -79,7 +79,7 @@
                         <td th:text="${prescription.drug.drug_name}">"</td>
                         <td th:text="${prescription.created_at}">"</td>
                         <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
-                        <td th:text="${prescription.doctor.full_name}"></td>
+                        <td th:text="${prescription.doctor.fullName}"></td>
                         <td><a class="pRequest waves-effect waves-light btn" th:href="@{/prescription/{id}/request(id=${prescription.id})}">Request Fill</a></td>
                     </tr>
                 </table>
