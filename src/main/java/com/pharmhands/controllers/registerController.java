@@ -71,7 +71,8 @@ public class registerController {
     public String pharmSave(@ModelAttribute User pharmacist){
         String hashPharm = encoder.encode(pharmacist.getPassword());
         pharmacist.setPassword(hashPharm);
-        pharmacist.setFull_name(pharmacist.getFull_name());
+//        pharmacist.setFull_name(pharmacist.getFull_name());
+        pharmacist.setFullName(pharmacist.getFullName());
         pharmacist.setIs_deleted(0);
         pharmacist.setPhone_number(pharmacist.getPhone_number());
         pharmacist.setUsername(pharmacist.getUsername());
@@ -85,7 +86,8 @@ public class registerController {
     public String doctorSave(@ModelAttribute User doctor, @ModelAttribute PrescriberInfo info){
         String hashDoc = encoder.encode(doctor.getPassword());
         doctor.setPassword(hashDoc);
-        doctor.setFull_name(doctor.getFull_name());
+//        doctor.setFull_name(doctor.getFull_name());
+        doctor.setFullName(doctor.getFullName());
         doctor.setIs_deleted(0);
         doctor.setPhone_number(doctor.getPhone_number());
         doctor.setUsername(doctor.getUsername());
@@ -103,7 +105,8 @@ public class registerController {
     public String patientSave(@ModelAttribute User patient, @ModelAttribute PatientInfo info){
         String hashPat = encoder.encode(patient.getPassword());
         patient.setPassword(hashPat);
-        patient.setFull_name(patient.getFull_name());
+//        patient.setFull_name(patient.getFull_name());
+        patient.setFullName(patient.getFullName());
         patient.setIs_deleted(0);
         patient.setPhone_number(patient.getPhone_number());
         patient.setUsername(patient.getUsername());

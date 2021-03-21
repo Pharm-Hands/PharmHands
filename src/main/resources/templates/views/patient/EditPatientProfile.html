@@ -7,29 +7,28 @@
 </head>
 <body>
 <div>
-    <form th:action="@{/patientProfile/{id}/edit(id=${patient.id})}" th:method="post" th:object="${patient}">
+    <form th:action="@{/patientProfile/{id}/edit(id=${patient.id})}" th:method="post">
         <div>
             <label for="editUsername">Edit Username
-                <input type="text"  id="editUsername" class="validate" th:field="*{username}"/>
+                <input type="text"  id="editUsername" class="validate" th:value="${patient.username}"/>
             </label>
         </div>
         <div>
             <label for="editAddress">Edit Address
-                <input type="text" id="editAddress"  th:field="*{address}"/>
+                <input type="text" id="editAddress"  th:value="${patientInfo.address}"/>
             </label>
         </div>
         <div>
             <label for="editDob"> Edit Date of Birth
-                <input type="text" id="editDob"  th:field="*{dob}"/>
+                <input type="text" id="editDob"  th:value="${patientInfo.dob}"/>
             </label>
         </div>
-        <input type="hidden" th:field="*{id}"/>
-
-        <button type="submit">Submit</button>
+        <div class="card-action right-align">
+        <input type="submit" class="btn orange  waves-effect waves-light" value="Submit" >
+        </div>
     </form>
 
-    <!--    <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="POST" th:object="{post}">-->
-    <!--    </form>-->
+
 </div>
 
 </body>

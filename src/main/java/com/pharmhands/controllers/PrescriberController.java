@@ -6,12 +6,13 @@ import com.pharmhands.models.User;
 import com.pharmhands.repositories.*;
 import com.pharmhands.services.EmailService;
 import com.pharmhands.services.UserService;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
-
+@Secured({"ROLE_DOCTOR"})
 @Controller
 public class PrescriberController{
 
