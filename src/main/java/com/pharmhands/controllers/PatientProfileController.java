@@ -7,6 +7,7 @@ import com.pharmhands.repositories.PrescriptionsRepository;
 import com.pharmhands.repositories.UserRepository;
 import com.pharmhands.services.EmailService;
 import com.pharmhands.services.UserService;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@Secured({"ROLE_PATIENT"})
 public class PatientProfileController {
 
     private final UserRepository userDao;
