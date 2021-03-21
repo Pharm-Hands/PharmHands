@@ -3,9 +3,11 @@ package com.pharmhands.controllers;
 import com.pharmhands.models.Fills;
 import com.pharmhands.models.PrescriptionRequests;
 import com.pharmhands.models.Prescriptions;
+import com.pharmhands.models.User;
 import com.pharmhands.repositories.*;
 import com.pharmhands.services.EmailService;
 import com.pharmhands.services.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,8 +46,10 @@ public class JoeController {
         this.userService = userService;
     }
 
-    @GetMapping("/{id}/doctorProfile")
+    @GetMapping("/doctorProfile/{id}")
     public String doctorProfile(Model model, @PathVariable long id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", user);
         model.addAttribute("doctor", userDao.getOne(id));
         model.addAttribute("prescriptions", prescriptionsDao.findAllByPrescriberId(id));
         model.addAttribute("doctorInfo", prescriberDao.findByUser(userDao.getOne(id)));

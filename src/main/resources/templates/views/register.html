@@ -4,7 +4,7 @@
     <title>Register</title>
 </head>
 <body>
-
+<nav th:replace="partials/navbar :: navbar"></nav>
 <div class="valign-wrapper row login-box ">
     <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
         <form>
@@ -16,7 +16,7 @@
 
                     <div class="input-field col s12">
                         <label><select id="user-picked">
-                            <option value="" disabled selected>Please select who to register</option>
+                            <option value="disabled selected">Please select who to register</option>
                             <option value="1">Patient</option>
                             <option value="2">Pharmacist</option>
                             <option value="3">Doctor</option>

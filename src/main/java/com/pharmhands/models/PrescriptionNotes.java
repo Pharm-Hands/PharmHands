@@ -14,7 +14,6 @@ public class PrescriptionNotes {
     @JoinColumn(name = "prescriptions")
     private Prescriptions prescription;
 
-
     @Column(nullable = false, length = 1000000)
     private String note;
 
@@ -24,7 +23,6 @@ public class PrescriptionNotes {
 
     @Column(nullable = false)
     private Date created_at;
-
 
     public PrescriptionNotes() {
     }
