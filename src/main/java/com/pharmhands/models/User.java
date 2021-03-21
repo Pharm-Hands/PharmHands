@@ -14,7 +14,7 @@ public class User {
     private String username;
 
     @Column(nullable = false)
-    private String full_name;
+    private String fullName;
 
     @Column(nullable = false)
     private String email;
@@ -43,10 +43,10 @@ public class User {
     public User() {
     }
 
-    public User(long id, String username, String full_name, String email, String password, int is_deleted, String phone_number, UserRoles role) {
+    public User(long id, String username, String fullName, String email, String password, int is_deleted, String phone_number, UserRoles role) {
         this.id = id;
         this.username = username;
-        this.full_name = full_name;
+        this.fullName = fullName;
         this.email = email;
         this.password = password;
         this.is_deleted = is_deleted;
@@ -57,7 +57,8 @@ public class User {
     public User(User copy) {
         id = copy.id;
         username = copy.username;
-        full_name = copy.full_name;
+        fullName= copy.fullName;
+//        full_name = copy.full_name;
         email = copy.email;
         password = copy.password;
         is_deleted = copy.is_deleted;
@@ -89,12 +90,12 @@ public class User {
         this.username = username;
     }
 
-    public String getFull_name() {
-        return full_name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {

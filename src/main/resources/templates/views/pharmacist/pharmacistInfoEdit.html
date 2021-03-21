@@ -4,7 +4,7 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 <body>
 
-<div class="valign-wrapper row pharmacistEdit ">
+<div class="valign-wrapper row">
     <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
         <form th:action="@{/pharmacistProfile/{id}/edit(id=${user.id})}" th:method="POST" th:object="${user}" >
             <div class="card-content #757575">
@@ -12,11 +12,11 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="full_name">Full Name</label>
-                        <input th:field="*{full_name}" th:value="${user.full_name}" type="text" class="text" name="full_name" id="full_name" />
+                        <input th:field="*{fullName}"  type="text" class="text" name="full_name" id="full_name" />
                     </div>
                     <div class="input-field col s12">
                         <label for="email">Email address</label>
-                        <input th:field="*{email}" th:value="${user.email}" type="email" class="text" name="email" id="email" />
+                        <input th:field="*{email}"  type="email" class="text" name="email" id="email" />
                     </div>
                 </div>
             </div>
@@ -29,14 +29,20 @@
 </div>
 
 
-
-
-
-
-
-
-
 <div th:replace="partials/scripts :: scripts"></div>
-<script type="text/javascript" src="/js/rxFormValidation.js"></script>
+<script>
+$(document).ready(function(){
+$("form").submit(function(){
+alert("Submitted");
+});
+});
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
