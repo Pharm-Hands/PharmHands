@@ -28,6 +28,7 @@ class Home {
     public String mainPage(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", user);
+        System.out.println(user.getRole().getId());
         return "views/landingPage";
     }
 
