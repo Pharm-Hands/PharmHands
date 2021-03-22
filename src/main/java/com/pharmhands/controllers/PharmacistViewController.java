@@ -1,6 +1,7 @@
 package com.pharmhands.controllers;
 
 import com.pharmhands.models.User;
+import com.pharmhands.repositories.PrescriptionRequestsRepository;
 import com.pharmhands.repositories.PrescriptionsRepository;
 import com.pharmhands.repositories.UserRepository;
 import com.pharmhands.services.UserService;
@@ -20,18 +21,22 @@ public class PharmacistViewController {
 
     private final PrescriptionsRepository prescriptionsDao;
 
+    private final PrescriptionRequestsRepository requestDao;
+
     private final UserService userService;
 
-    public PharmacistViewController(UserRepository userDao, PrescriptionsRepository prescriptionsDao, UserService userService) {
+    public PharmacistViewController(UserRepository userDao, PrescriptionsRepository prescriptionsDao, PrescriptionRequestsRepository requestDao, UserService userService) {
         this.userDao = userDao;
         this.prescriptionsDao = prescriptionsDao;
+        this.requestDao = requestDao;
         this.userService = userService;
     }
 
     @GetMapping("/pharmacistProfile/{id}")
     public String pharmacistProfileView( Model model,@PathVariable long id) {
         model.addAttribute("user", userDao.getOne(id));
-        model.addAttribute("prescriptions", prescriptionsDao.findAllUnverified());
+        model.addAttribute("prescriptions", prescriptionsDao.findAll());
+        model.addAttribute("requests", requestDao.findAllUnfulfilled());
         return "views/pharmacist/pharmacistProfile";
     }
 
