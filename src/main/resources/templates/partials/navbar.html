@@ -16,18 +16,27 @@
                     <li th:if="${user} != null">
                         <a th:if="${user.getRole().getId()} == 1" th:href="@{/doctorProfile/{id}(id=${user.getId()})}">
 <!--                        <a th:href="@{/doctorProfile/{id}(id=${user.getId()})}">-->
-                            <span th:text="|${user.getUsername()}''s Profile|"></span>
+                            <span th:text="|${user.getUsername()}'s Profile|"></span>
                         </a>
 <!--                        <a th:href="@{/pharmacistProfile/{id}(id=${user.getId()})}">-->
                         <a th:if="${user.getRole().getId()} == 3" th:href="@{/pharmacistProfile/{id}(id=${user.getId()})}">
-                            <span th:text="|${user.getUsername()}''s Profile|"></span>
+                            <span th:text="|${user.getUsername()}'s Profile|"></span>
                         </a>
 <!--                        <a th:href="@{/patientProfile/{id}(id=${user.getId()})}">-->
                         <a th:if="${user.getRole().getId()} == 2" th:href="@{/patientProfile/{id}(id=${user.getId()})}">
-                            <span th:text="|${user.getUsername()}''s Profile|"></span>
+                            <span th:text="|${user.getUsername()}'s Profile|"></span>
                         </a>
                     </li>
-
+                    <li>
+                        <a th:href="@{/}">
+                            <span th:text="Home"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/about}">
+                            <span th:text="About"></span>
+                        </a>
+                    </li>
                 </ul>
                 <ul sec:authorize="!isAuthenticated()">
                     <li><a href="/login">Login</a></li>

@@ -5,6 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
+import java.util.List;
+
 @Repository
 public interface FillsRepository extends JpaRepository<Fills, Long> {
 
@@ -15,6 +18,14 @@ public interface FillsRepository extends JpaRepository<Fills, Long> {
     @Query(value = "SELECT * FROM Fills JOIN prescriptions p on fills.prescriptions = p.id WHERE p.id = ?1 ORDER BY fill_date LIMIT 1", nativeQuery = true)
     Fills mostRecent(long id);
 
+    @Query(value = "SELECT * FROM Fills WHERE prescription.id = ?1", nativeQuery = true)
+    List<Fills> fillsByPrescription(long prescriptionId);
+
+//    @Query(value = "SELECT CASE WHEN TRUE" +
+//            "(SELECT * FROM Fills )" +
+//            " THEN CAST(1 AS BIT) " +
+//            "ELSE CAST(0 AS BIT) END", nativeQuery = true)
+//    boolean canBeFilled(Date currentDate);
 
 //    Fills findTop1ByPrescriptionIdOrderByFill_date(long id);
 

@@ -29,14 +29,20 @@ class Home {
         User user;
         try{
             user = userService.loggedInUser();
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", user);
         }catch(Exception e){
             System.out.println("Empty user object");
         }
 
-//        System.out.println(user.getRole().getId());
         return "views/landingPage";
+    }
+
+    @GetMapping("/about")
+    public String aboutPage(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", user);
+        System.out.println(user.getRole().getId());
+        return "views/about";
     }
 
     @GetMapping("/email")
