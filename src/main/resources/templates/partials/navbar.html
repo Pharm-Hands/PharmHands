@@ -27,7 +27,16 @@
                             <span th:text="|${user.getUsername()}'s Profile|"></span>
                         </a>
                     </li>
-
+                    <li>
+                        <a th:href="@{/}">
+                            <span th:text="Home"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/about}">
+                            <span th:text="About"></span>
+                        </a>
+                    </li>
                 </ul>
                 <ul sec:authorize="!isAuthenticated()">
                     <li><a href="/login">Login</a></li>
