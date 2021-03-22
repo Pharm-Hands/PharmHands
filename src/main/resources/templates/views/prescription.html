@@ -5,7 +5,8 @@
 </head>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <body>
-<div class="contanier">
+<div id="fill-alert" th:if="${fillMessage} != null" th:text="${fillMessage}" style="display: none"></div>
+<div class="container">
 
     <div class="row">
 
@@ -15,6 +16,7 @@
                     <span class="card-title center-align">Prescription</span>
                     <hr>
                     <h5 th:text="${prescription.drug.drug_name}"></h5>
+                    <br>
                     <p th:text="${prescription.patient.fullName}"></p>
                     <hr>
                     <br>
@@ -56,23 +58,21 @@
         <div class="col s12 m6">
             <div class="card #ffffff white">
                 <div class="card-content black-text">
-                    <span class="card-title center-align">Fills table</span>
+                    <span class="card-title center-align">Fills</span>
                     <hr>
 
                     <table class="responsive-table striped #757575 grey darken-1">
                         <tr>
-                            <th>Prescription Id</th>
-                            <th>Prescription name</th>
+                            <th>Drug</th>
+                            <th>Fill Date</th>
+                            <th>Fill Number</th>
                             <th>Patient</th>
-                            <th>Current fill number</th>
-                            <th>Doctor</th>
                         </tr>
-                        <tr class="prescription" th:href="@{/prescription/{id}(id=${prescription.id})}">
-                            <td th:text="${prescription.drug.drug_name}"></td>
-                            <td th:text="${prescription.created_at}">"</td>
-                            <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
-                            <td th:text="${prescription.patient.fullName}"></td>
-                            <td th:text="${prescription.doctor.id}"></td>
+                        <tr th:each="fill : ${prescription.fills}" class="prescription" th:href="@{/prescription/{id}(id=${prescription.id})}">
+                            <td th:text="${fill.prescription.drug.drug_name}"></td>
+                            <td th:text="${fill.fill_date}">"</td>
+                            <td th:text="${fill.fill_number}"></td>
+                            <td th:text="${fill.prescription.patient.fullName}"></td>
                         </tr>
                     </table>
                     <hr>
@@ -94,16 +94,17 @@
         </div>
     </div>
 </div>
-</div>
-
-
-
-
-
-
-
 
 <div th:replace="partials/scripts :: scripts"></div>
+<script>
+    $(document).ready(function(){
+        let msg = $("#fill-alert").text();
+
+        if(msg.length){
+            alert(msg)
+        }
+    })
+</script>
 </body>
 </html>
 
