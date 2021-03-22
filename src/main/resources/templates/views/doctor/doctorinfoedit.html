@@ -6,13 +6,13 @@
 
 <div class="valign-wrapper row">
     <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
-        <form th:action="@{/pharmacistProfile/{id}/edit(id=${user.id})}" th:method="POST" th:object="${user}" >
+        <form th:action="@{/doctorProfile/{id}/edit(id=${user.id})}" th:method="POST" th:object="${user}" >
             <div class="card-content #757575">
                 <span class="card-title">Pharmacist Info</span>
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="full_name">Full Name</label>
-                        <input th:field="*{fullName}"  type="text" class="text" name="full_name" id="full_name" />
+                        <input th:field="*{full_name}"  type="text" class="text" name="full_name" id="full_name" />
                     </div>
                     <div class="input-field col s12">
                         <label for="email">Email address</label>
