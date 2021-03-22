@@ -8,6 +8,7 @@ import com.pharmhands.repositories.*;
 import com.pharmhands.services.EmailService;
 import com.pharmhands.services.UserService;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,8 @@ public class PrescriberController{
 
         @GetMapping("/doctorProfile/prescription-create")
         public String registerForm(Model model){
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", user);
             model.addAttribute("prescription", new Prescriptions());
             model.addAttribute("doctor_user", userDao.getOne(userService.loggedInUser().getId()));
             model.addAttribute("patient_user", new User());
@@ -108,7 +111,7 @@ public class PrescriberController{
     public String editDoctorInfo(@PathVariable long id ,@ModelAttribute User user, @ModelAttribute PrescriberInfo prescriberInfo){
         User loggedIn = userService.loggedInUser();
 
-        user.setFull_name(user.getFull_name());
+//        user.setFull_name(user.getFull_name());
         user.setEmail(user.getEmail());
         prescriberInfo.setNpi(prescriberInfo.getId());
 
