@@ -111,7 +111,7 @@ public class PrescriberController{
     public String editDoctorInfo(@PathVariable long id ,@ModelAttribute User user, @ModelAttribute PrescriberInfo prescriberInfo){
         User loggedIn = userService.loggedInUser();
 
-        user.setFull_name(user.getFull_name());
+//        user.setFull_name(user.getFull_name());
         user.setEmail(user.getEmail());
         prescriberInfo.setNpi(prescriberInfo.getId());
 
