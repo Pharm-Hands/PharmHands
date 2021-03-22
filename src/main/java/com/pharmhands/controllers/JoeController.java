@@ -150,7 +150,7 @@ public class JoeController {
         return "redirect:/prescription/{id}";
     }
 
-    @GetMapping("/prescription/{prescriptionId}/request")
+    @GetMapping("/prescription-request/{prescriptionId}")
     public String requestForm(@PathVariable long prescriptionId, Model model){
         PrescriptionRequests request = new PrescriptionRequests();
         model.addAttribute("request", request);
@@ -159,7 +159,7 @@ public class JoeController {
         return "views/patient/requestForm";
     }
 
-    @PostMapping("/prescription/{prescriptionId}/request")
+    @PostMapping("/prescription-request/{prescriptionId}")
     public String submitRequest(@ModelAttribute PrescriptionRequests request, @PathVariable long prescriptionId, RedirectAttributes redir){
         Prescriptions prescription = prescriptionsDao.getOne(prescriptionId);
 
