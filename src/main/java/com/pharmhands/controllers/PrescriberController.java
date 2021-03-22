@@ -108,12 +108,11 @@ public class PrescriberController{
     }
 
     @PostMapping("/doctorProfile/{id}/edit")
-    public String editDoctorInfo(@PathVariable long id ,@ModelAttribute User user, @ModelAttribute PrescriberInfo prescriberInfo){
+    public String editDoctorInfo(@PathVariable long id ,@ModelAttribute User user){
         User loggedIn = userService.loggedInUser();
 
-//        user.setFull_name(user.getFull_name());
+        user.setFull_name(user.getFull_name());
         user.setEmail(user.getEmail());
-        prescriberInfo.setNpi(prescriberInfo.getId());
 
         user.setPassword(loggedIn.getPassword());
         user.setPhone_number(loggedIn.getPhone_number());
@@ -123,7 +122,6 @@ public class PrescriberController{
 
         userDao.save(user);
         return "redirect:/doctorProfile/" + id;
-//        PrescriberInfo.save(prescriberInfo);
 
     }
 
