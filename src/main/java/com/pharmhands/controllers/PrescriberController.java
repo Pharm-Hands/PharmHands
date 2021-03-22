@@ -1,6 +1,7 @@
 package com.pharmhands.controllers;
 
 import com.pharmhands.models.Drugs;
+import com.pharmhands.models.PrescriberInfo;
 import com.pharmhands.models.Prescriptions;
 import com.pharmhands.models.User;
 import com.pharmhands.repositories.*;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.attribute.standard.PresentationDirection;
 import java.sql.Date;
 @Secured({"ROLE_DOCTOR"})
 @Controller
@@ -97,4 +99,32 @@ public class PrescriberController{
 //    public String registerForm3() {
 //            return "views/prescriptionForm3";
 //        }
+
+    @GetMapping("doctorProfile/{id}/edit")
+    public String editDoctorInfoForm(Model model, @PathVariable long id){
+        User user = userDao.getOne(id);
+        model.addAttribute("user", user);
+        return "/views/doctor/doctorinfoedit";
+    }
+
+    @PostMapping("/doctorProfile/{id}/edit")
+    public String editDoctorInfo(@PathVariable long id ,@ModelAttribute User user, @ModelAttribute PrescriberInfo prescriberInfo){
+        User loggedIn = userService.loggedInUser();
+
+        user.setFull_name(user.getFull_name());
+        user.setEmail(user.getEmail());
+        prescriberInfo.setNpi(prescriberInfo.getId());
+
+        user.setPassword(loggedIn.getPassword());
+        user.setPhone_number(loggedIn.getPhone_number());
+        user.setUsername(loggedIn.getUsername());
+        user.setIs_deleted(loggedIn.getIs_deleted());
+        user.setRole(loggedIn.getRole());
+
+        userDao.save(user);
+        return "redirect:/doctorProfile/" + id;
+//        PrescriberInfo.save(prescriberInfo);
+
+    }
+
 }
