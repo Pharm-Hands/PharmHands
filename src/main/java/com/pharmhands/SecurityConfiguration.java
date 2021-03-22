@@ -46,29 +46,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeRequests()
-                .antMatchers("/") // anyone can see the home page
+                .antMatchers("/", "/about") // anyone can see the home page
                 .permitAll()
                 /* Pages that require authentication */
-                .and()
-                .authorizeRequests()
-                .antMatchers(
-                        "/email"// only authenticated users can spam people with email
-                )
-                .authenticated()
 //              Pages for doctors
                 .and()
                 .authorizeRequests()
-                .antMatchers("/?/doctorProfile")
+                .antMatchers("/doctorProfile/?", "/doctorProfile/?/*", "/prescription/?")
                 .hasRole("DOCTOR")
 //              Pages for Patients
                 .and()
                 .authorizeRequests()
-                .antMatchers("/patientProfile/?", "/patientProfile/?/*")
+                .antMatchers("/patientProfile/?", "/patientProfile/?/*", "/prescription-request/?")
                 .hasRole("PATIENT")
 //              Pages for Pharmacists
                 .and()
                 .authorizeRequests()
-                .antMatchers("/pharmacistProfile/?", "/pharmacistProfile/?/*")
+                .antMatchers("/pharmacistProfile/?", "/pharmacistProfile/?/*", "/prescription/*")
                 .hasRole("PHARMACIST")
         ;
     }

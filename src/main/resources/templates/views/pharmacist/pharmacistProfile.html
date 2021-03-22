@@ -9,9 +9,8 @@
     <div class="col s12">
         <ul class="tabs">
             <li class="tab col s3"><a href="#tab1">View Profile</a> </li>
-            <li class="tab col s3>"><a href="#tab2"></a> </li>
-            <li class="tab col s3>"><a href="#tab3">Dispatch Prescriptions</a> </li>
-            <li class="tab col s3>"><a href="#tab3">View Fill Requests</a> </li>
+            <li class="tab col s3>"><a href="#tab2">Prescriptions</a> </li>
+            <li class="tab col s3>"><a href="#tab3">Fill Requests</a> </li>
 
         </ul>
     </div>
@@ -49,13 +48,10 @@
         </ul>
 
     </div>
-    <div id="tab2" class="col s12">New messages will go here</div>
 
 
-    <div id="tab3" class="col s12">
-<!--        <label for="verfifiedOnly"></label>-->
-<!--        <input type="checkbox" name="verfifiedOnly" id="verfifiedOnly" value="">-->
-        <div th:each="prescription : ${prescriptions}">
+    <div id="tab2" class="col s12">
+        <div>
             <table class="highlight">
                 <tr>
                     <th>Name</th>
@@ -64,7 +60,7 @@
                     <th>Patient</th>
                     <th>Doctor</th>
                 </tr>
-                <tr class="prescription" th:href="@{/prescription/{id}(id=${prescription.id})}">
+                <tr th:each="prescription : ${prescriptions}" class="prescription" th:href="@{/prescription/{id}(id=${prescription.id})}">
                     <td th:text="${prescription.drug.drug_name}"></td>
                     <td th:text="${prescription.created_at}">"</td>
                     <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
@@ -72,11 +68,28 @@
                     <td th:text="${prescription.doctor.fullName}"></td>
                 </tr>
             </table>
-
         </div>
+    </div>
 
-
-
+    <div id="tab3" class="col s12">
+        <div>
+            <table class="highlight">
+                <tr>
+                    <th>Patient</th>
+                    <th>Prescription</th>
+                    <th>Created At</th>
+                    <th>Patient</th>
+                    <th>View Prescription</th>
+                </tr>
+                <tr th:each="request : ${requests}" class="requests">
+                    <td th:text="${request.patient.fullName}"></td>
+                    <td th:text="${request.prescription.drug.drug_name}"></td>
+                    <td th:text="${request.created_at}"></td>
+                    <td th:text="${request.note}"></td>
+                    <td><a class="pRequest waves-effect waves-light btn" th:href="@{/prescription/{id}(id=${request.prescription.id})}">View Prescription</a></td>
+                </tr>
+            </table>
+        </div>
     </div>
 
 </div>

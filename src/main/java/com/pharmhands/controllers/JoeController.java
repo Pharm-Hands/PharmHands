@@ -63,7 +63,7 @@ public class JoeController {
     }
 
     @PostMapping("/prescription/{id}/fill")
-    public String fillPrescription(@PathVariable long id) {
+    public String fillPrescription(@PathVariable long id, RedirectAttributes redir) {
         Prescriptions prescription = prescriptionsDao.getOne(id);
 
 //        get the most recent fill date unless no fills have been performed
@@ -81,9 +81,11 @@ public class JoeController {
             System.out.println(fillCheck.getTime());
 //        check the current date against the most recent fill date plus days supply and redirect if it is within the range
             if (fillCheck.getTime().after(now.getTime())) {
-                return "redirect:/";
+                redir.addFlashAttribute("fillMessage", "Sorry, this prescription is not eligible to be filled. The days supply since last fill has not run out yet.");
+                return "redirect:/prescription/{id}";
             }
         }
+
 
         Fills fill = new Fills();
         fill.setUser(userService.loggedInUser());
@@ -92,6 +94,11 @@ public class JoeController {
         fill.setPrescription(prescription);
         fillsDao.save(fill);
 
+        for(PrescriptionRequests request : requestsDao.findAllByPrescriptionId(prescription.getId())){
+            request.setIs_Fulfilled(1);
+        }
+
+        redir.addFlashAttribute("fillMessage", "You have successfully filled the prescription for " + prescription.getPatient().getFullName());
         return "redirect:/prescription/{id}";
     }
 
@@ -105,7 +112,7 @@ public class JoeController {
     }
 
     @PostMapping("/prescription/{id}/verifyAndFill")
-    public String verifyAndFill(@PathVariable long id) {
+    public String verifyAndFill(@PathVariable long id, RedirectAttributes redir) {
         Prescriptions prescription = prescriptionsDao.getOne(id);
         prescription.setIs_verified(1);
         prescriptionsDao.save(prescription);
@@ -125,7 +132,8 @@ public class JoeController {
             System.out.println(fillCheck.getTime());
 //        check the current date against the most recent fill date plus days supply and redirect if it is within the range
             if (fillCheck.getTime().after(now.getTime())) {
-                return "redirect:/";
+                redir.addFlashAttribute("fillMessage", "Sorry, this prescription is not eligible to be filled. The days supply since last fill has not run out yet.");
+                return "redirect:/prescription/{id}";
             }
         }
 
@@ -136,10 +144,13 @@ public class JoeController {
         fill.setPrescription(prescription);
         fillsDao.save(fill);
 
+
+
+        redir.addFlashAttribute("fillMessage", "You have successfully verified and filled the prescription for " + prescription.getPatient().getFullName());
         return "redirect:/prescription/{id}";
     }
 
-    @GetMapping("/prescription/{prescriptionId}/request")
+    @GetMapping("/prescription-request/{prescriptionId}")
     public String requestForm(@PathVariable long prescriptionId, Model model){
         PrescriptionRequests request = new PrescriptionRequests();
         model.addAttribute("request", request);
@@ -148,8 +159,26 @@ public class JoeController {
         return "views/patient/requestForm";
     }
 
-    @PostMapping("/prescription/{prescriptionId}/request")
+    @PostMapping("/prescription-request/{prescriptionId}")
     public String submitRequest(@ModelAttribute PrescriptionRequests request, @PathVariable long prescriptionId, RedirectAttributes redir){
+        Prescriptions prescription = prescriptionsDao.getOne(prescriptionId);
+
+//        get the most recent fill date unless no fills have been performed
+        Calendar fillCheck = Calendar.getInstance();
+        Calendar now = Calendar.getInstance();
+        now.setTime(new Date());
+        System.out.println(fillsDao.fillCount(prescriptionId));
+        if (fillsDao.fillCount(prescriptionId) != 0) {
+            fillCheck.setTime(fillsDao.mostRecent(prescriptionId).getFill_date());
+            fillCheck.add(Calendar.DATE, prescription.getDays_supply());
+
+//        check the current date against the most recent fill date plus days supply and redirect if it is within the range
+            if (fillCheck.getTime().after(now.getTime())) {
+                redir.addFlashAttribute("requestMessage", "Sorry, this prescription is not eligible to be filled. The days supply since last fill has not run out yet. Please wait to request a fill once this prescription becomes eligible.");
+                return "redirect:/patientProfile/" + userService.loggedInUser().getId();
+            }
+        }
+
         long d = System.currentTimeMillis();
         Date date = new Date(d);
         request.setCreated_at(date);
@@ -158,7 +187,7 @@ public class JoeController {
         request.setPrescription(prescriptionsDao.getOne(prescriptionId));
 
         requestsDao.save(request);
-        redir.addFlashAttribute("success", "You have successfully requested a fill for your prescription of " + prescriptionsDao.getOne(prescriptionId).getDrug() + "!");
+        redir.addFlashAttribute("requestMessage", "You have successfully requested a fill for your prescription of " + prescriptionsDao.getOne(prescriptionId).getDrug().getDrug_name() + "!");
         return "redirect:/patientProfile/" + userService.loggedInUser().getId();
     }
 }
