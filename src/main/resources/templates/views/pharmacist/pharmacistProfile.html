@@ -32,7 +32,7 @@
                 <p th:text="${user.email}" class="blue-text"></p>
             </li>
         </ul>
-        <input type="submit" class="btn orange  waves-effect waves-light" value="Edit Profile" id="edit"/>
+        <a th:href="@{/pharmacistProfile/{id}/edit(id=${user.getId()})}" class="btn orange  waves-effect waves-light">Edit profile</a>
 
     </div>
 
@@ -67,7 +67,7 @@
 
         <div>
             <table class="highlight centered responsive-table">
-                <tr class="white-text">
+                <tr class="white-text" style>
                     <th class="center-align">PATIENT</th>
                     <th class="center-align">PRESCRIPTION</th>
                     <th class="center-align">CREATED AT</th>
