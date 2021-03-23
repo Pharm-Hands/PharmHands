@@ -3,7 +3,7 @@
 <head th:replace="partials/head :: head-section "></head>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <body>
-    <form th:action="@{/prescription/{prescriptionId}/request(prescriptionId=${prescription.id})}" th:method="submit">
+    <form th:action="@{/prescription-request/{prescriptionId}(prescriptionId=${prescription.id})}" th:method="submit">
         <div class="row">-->
             <div class="input-field col s12">
                 <textarea id="note" name="note" class="materialize-textarea" th:height="300px"></textarea>

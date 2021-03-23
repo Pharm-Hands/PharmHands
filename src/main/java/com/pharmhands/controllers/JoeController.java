@@ -59,7 +59,12 @@ public class JoeController {
     @GetMapping("/prescription/{id}")
     public String viewPrescription(Model model, @PathVariable long id) {
         model.addAttribute("prescription", prescriptionsDao.getOne(id));
-        return "views/prescription";
+        model.addAttribute("user", userService.loggedInUser());
+        if(userService.loggedInUser() == prescriptionsDao.getOne(id).getDoctor() || userService.loggedInUser().getRole().getRole_name().equalsIgnoreCase("ROLE_PHARMACIST")){
+            return "views/prescription";
+        }   else{
+            return "redirect:/";
+        }
     }
 
     @PostMapping("/prescription/{id}/fill")
