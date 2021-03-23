@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.print.attribute.standard.PresentationDirection;
+import java.util.Date;
+
 @Controller
 @Secured({"ROLE_PATIENT"})
 public class PatientProfileController {
@@ -45,49 +48,102 @@ public class PatientProfileController {
         return "views/patient/patientProfile";
     }
 
+//    @GetMapping("/patientProfile/{id}/edit")
+//    public String editPatientInfoForm(@PathVariable long id, Model model) {
+//        User loggedUser = userDao.getOne(id);
+//        if (loggedUser == null) {
+//            return "redirect:/";
+//        }
+//        User user = userDao.getOne(loggedUser.getId());
+//        model.addAttribute("patient", user);
+//        model.addAttribute("patientInfo", patientDao.findByUser(userDao.getOne(id)));
+//        return "views/patient/EditPatientProfile";
+//    }
+
     @GetMapping("/patientProfile/{id}/edit")
-    public String editProfileForm(@PathVariable long id, Model model) {
-        User loggedUser = userService.loggedInUser();
-        if (loggedUser == null) {
-            return "redirect:/";
-        }
-        User user = userDao.getOne(loggedUser.getId());
-        model.addAttribute("patient", user);
-        model.addAttribute("patientInfo", patientDao.findByUser(userDao.getOne(id)));
+    public String editPatientInfoForm(Model model, @PathVariable long id){
+        User user = userDao.getOne(id);
+        model.addAttribute("user", user);
         return "views/patient/EditPatientProfile";
     }
+
     @PostMapping("/patientProfile/{id}/edit")
-    public String updatePatient(@ModelAttribute User patient,@ModelAttribute PatientInfo patientInfo ,@PathVariable long id,Model model) {
-        User loggedUser = userService.loggedInUser();
+    public String editPatientInfo(@ModelAttribute User user, @PathVariable long id){
+        User loggedIn = userService.loggedInUser();
 
-//        model.addAttribute("patientInfo", patientDao.findByUser(patientDao.getOne(id)));
-//        PatientInfo patientInfo =patientDao.findByUser(loggedUser);
+//        user.setFull_name(user.getFull_name());
+        user.setFullName(user.getFullName());
+        user.setEmail(user.getEmail());
+        user.setPassword(loggedIn.getPassword());
+        user.setPhone_number(loggedIn.getPhone_number());
+        user.setUsername(loggedIn.getUsername());
+        user.setIs_deleted(loggedIn.getIs_deleted());
+        user.setRole(loggedIn.getRole());
 
-        patient.setUsername(patient.getUsername());
-        patientInfo.setAddress(patientInfo.getAddress());
-        patientInfo.setDob(patientInfo.getDob());
-
-        patient.setEmail(loggedUser.getEmail());
-//        patient.setFull_name(loggedUser.getFull_name());
-        patient.setFullName(loggedUser.getFullName());
-
-        patient.setPassword(loggedUser.getPassword());
-        patient.setFills(loggedUser.getFills());
-        patient.setIs_deleted(loggedUser.getIs_deleted());
-        patient.setPhone_number(loggedUser.getPhone_number());
-        patient.setPrescriptions(loggedUser.getPrescriptions());
-        patient.setRole(loggedUser.getRole());
-
-        patientInfo.setCity(patientDao.findByUser(loggedUser).getCity());
-        patientInfo.setSex(patientDao.findByUser(loggedUser).getSex());
-        patientInfo.setState(patientDao.findByUser(loggedUser).getState());
-        patientInfo.setUser(patientDao.findByUser(loggedUser).getUser());
-        patientInfo.setZip(patientDao.findByUser(loggedUser).getZip());
-
-        userDao.save(patient);
-        patientDao.save(patientInfo);
-        return "redirect:/patientProfile/{id}";
+        userDao.save(user);
+        return "redirect:/patientProfile/{id}/edit02";
     }
+
+    @GetMapping("/patientProfile/{id}/edit02")
+    public String editPatientInfoAddress(Model model, @PathVariable long id){
+        User user = userDao.getOne(id);
+
+        model.addAttribute("user", user );
+        model.addAttribute("patientInfo", patientDao.findByUser(userDao.getOne(id)));
+        return "views/patient/editPatientProfile02";
+    }
+
+    @PostMapping("/patientProfile/{patientId}/edit02")
+    public String editPatientInfoAddress(@ModelAttribute User user, @ModelAttribute PatientInfo patientInfo, @PathVariable long patientId){
+        User loggedInPatient = userService.loggedInUser();
+        Date dob = patientDao.findByUser(loggedInPatient).getDob();
+        String sex = patientDao.findByUser(loggedInPatient).getSex();
+
+        patientInfo.setAddress(patientInfo.getAddress());
+        patientInfo.setCity(patientInfo.getCity());
+        patientInfo.setDob(dob);
+        patientInfo.setState(patientInfo.getState());
+        patientInfo.setZip(patientInfo.getZip());
+        patientInfo.setUser(loggedInPatient);
+
+        patientInfo.setSex(sex);
+
+        patientDao.save(patientInfo);
+        return "redirect:/patientProfile/" + patientId;
+    }
+
+//    @PostMapping("/patientProfile/{id}/edit")
+//    public String updatePatient(@ModelAttribute User patient,@ModelAttribute PatientInfo patientInfo ,@PathVariable long id,Model model) {
+//        User loggedUser = userService.loggedInUser();
+//
+////        model.addAttribute("patientInfo", patientDao.findByUser(patientDao.getOne(id)));
+////        PatientInfo patientInfo =patientDao.findByUser(loggedUser);
+//
+//        patient.setUsername(patient.getUsername());
+//        patientInfo.setAddress(patientInfo.getAddress());
+//        patientInfo.setDob(patientInfo.getDob());
+//
+//        patient.setEmail(loggedUser.getEmail());
+////        patient.setFull_name(loggedUser.getFull_name());
+//        patient.setFullName(loggedUser.getFullName());
+//
+//        patient.setPassword(loggedUser.getPassword());
+//        patient.setFills(loggedUser.getFills());
+//        patient.setIs_deleted(loggedUser.getIs_deleted());
+//        patient.setPhone_number(loggedUser.getPhone_number());
+//        patient.setPrescriptions(loggedUser.getPrescriptions());
+//        patient.setRole(loggedUser.getRole());
+//
+//        patientInfo.setCity(patientDao.findByUser(loggedUser).getCity());
+//        patientInfo.setSex(patientDao.findByUser(loggedUser).getSex());
+//        patientInfo.setState(patientDao.findByUser(loggedUser).getState());
+//        patientInfo.setUser(patientDao.findByUser(loggedUser).getUser());
+//        patientInfo.setZip(patientDao.findByUser(loggedUser).getZip());
+//
+//        userDao.save(patient);
+//        patientDao.save(patientInfo);
+//        return "redirect:/patientProfile/{id}";
+//    }
 
     @PostMapping("/patientProfile/{id}")
     public String emailSend(@PathVariable long id) {
