@@ -51,9 +51,17 @@ public class PrescriberController{
         }
 
         @PostMapping("/doctorProfile/prescription-create")
-        public String submitForm(Model model, @Valid Prescriptions prescriptions, Errors validation, @ModelAttribute User patient_user, @ModelAttribute Prescriptions prescription, @RequestParam(name = "name") String name, @RequestParam(name= "phone_number") String phone, @RequestParam(name= "drugName") String drugName){
+        public String submitForm(Model model, @Valid Prescriptions prescription, Errors validation, @ModelAttribute User patient_user, @RequestParam(name = "name") String name, @RequestParam(name= "phone_number") String phone, @RequestParam(name= "drugName") String drugName){
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", user);
             User patientUser = userDao.findByUserFullNameAndPhone(name, phone);
             User doctorUser = userDao.getOne(userService.loggedInUser().getId());
+        if (validation.hasErrors()) {
+                model.addAttribute("errors", validation);
+                model.addAttribute("prescriptions", prescription);
+                model.addAttribute("patient_user", patient_user);
+                return "views/prescriptionForm";
+            }
             prescription.setPatient(patientUser);
             prescription.setDoctor(doctorUser);
             Drugs drug = drugsDao.findDrugsByDrug_name(drugName);
@@ -63,13 +71,10 @@ public class PrescriberController{
             prescription.setCreated_at(date);
             prescription.setIs_verified(0);
             prescription.setIs_deleted(0);
-            if (validation.hasErrors()) {
-                model.addAttribute("errors", validation);
-                model.addAttribute("prescriptions", prescriptions);
-                return "ads/create";
-            }
+
             prescriptionDao.save(prescription);
             return "redirect:/doctorProfile/"+ doctorUser.getId() +"/#tab2";
+
         }
 //        @GetMapping("/profile/prescription-create/1")
 //    public String registerForm1(Model model, @PathVariable long id) {

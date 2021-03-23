@@ -35,7 +35,7 @@ public class Prescriptions {
 //    @Column(nullable = false)
 //    private long prescriber_id;
 
-    @NotBlank(message = "Ads must have a title")
+    @NotBlank(message = "Prescriptions must have a drug_form")
     @Column(nullable = false)
     private String drug_form;
 

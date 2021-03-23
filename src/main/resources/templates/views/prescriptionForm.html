@@ -32,8 +32,8 @@
                             </div>
                             <div class="input-field col s12">
                                 <label for="drug_form">Form</label>
-                                <input type="text" class="validate" th:field="*{drug_form}" name="drug_form"
-                                       id="drug_form"/>
+                                <input type="text" class="validate" th:field="*{drug_form}" name="drug_form" id="drug_form"/>
+                                <p th:if="${#fields.hasErrors('drug_form')}" th:errors="*{drug_form}"></p>
                             </div>
                             <div class="input-field col s12">
                                 <label for="drug_strength">Strength (mg)</label>
