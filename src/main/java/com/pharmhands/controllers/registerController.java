@@ -77,7 +77,7 @@ public class registerController {
         pharmacist.setPhone_number(pharmacist.getPhone_number());
         pharmacist.setUsername(pharmacist.getUsername());
         pharmacist.setEmail(pharmacist.getEmail());
-        pharmacist.setRole(userRolesDao.findByRoleName("pharmacist"));
+        pharmacist.setRole(userRolesDao.findByRoleName("ROLE_PHARMACIST"));
         userDao.save(pharmacist);
         return "redirect:/";
     }
@@ -92,7 +92,7 @@ public class registerController {
         doctor.setPhone_number(doctor.getPhone_number());
         doctor.setUsername(doctor.getUsername());
         doctor.setEmail(doctor.getEmail());
-        doctor.setRole(userRolesDao.findByRoleName("doctor"));
+        doctor.setRole(userRolesDao.findByRoleName("ROLE_DOCTOR"));
         userDao.save(doctor);
 
         info.setNpi(info.getNpi());
@@ -111,7 +111,7 @@ public class registerController {
         patient.setPhone_number(patient.getPhone_number());
         patient.setUsername(patient.getUsername());
         patient.setEmail(patient.getEmail());
-        patient.setRole(userRolesDao.findByRoleName("patient"));
+        patient.setRole(userRolesDao.findByRoleName("ROLE_PATIENT"));
         userDao.save(patient);
 
         info.setUser(patient);
