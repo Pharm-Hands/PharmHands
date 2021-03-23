@@ -37,7 +37,7 @@
                 <p th:value="${patientInfo.dob}" th:name="dob" th:text="${patientInfo.dob}"></p>
             </li>
         </ul>
-        <input type="submit" class="btn orange  waves-effect waves-light" value="Edit Profile" id="edit">
+        <a th:href="@{/patientProfile/{id}/edit(id=${patient.getId()})}" class="btn orange  waves-effect waves-light">Edit profile</a>
     </div>
 
     <div id="message" class="col s12 white-text">
@@ -109,30 +109,6 @@
 </script>
 
 
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>-->
-<!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
 
-<!--BUFFER CODE-->
-
-<!--    <button data-target="modal1" class="btn modal-trigger">Modal</button>-->
-<!--        &lt;!&ndash; Modal Structure &ndash;&gt;-->
-<!--        <div id="modal1" class="modal">-->
-<!--            <div class="modal-content">-->
-<!--                <h4>Prescription Fill Request</h4>-->
-<!--                <div class="row">-->
-<!--                    <form class="col s12">-->
-<!--                        <div class="row modal-form-row">-->
-<!--                            <div class= "input-field col s12">-->
-<!--                                    <textarea id="note" name="note" class="materialize-textarea"></textarea>-->
-<!--                                    <label for="note">Leave A Note</label>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                 </div>-->
-<!--        </div>-->
-<!--            <div class="modal-footer">-->
-<!--                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>-->
-<!--            </div>-->
-<!--        </div>-->
 </body>
 </html>
