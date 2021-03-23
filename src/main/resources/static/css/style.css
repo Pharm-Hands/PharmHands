@@ -20,6 +20,7 @@ body{
     font-family: "Roboto";
 }
 
+
 /*body {*/
 /*    background: url(static/img/pexels-alexandros-chatzidimos-3652750.jpg) no-repeat center center fixed;*/
 /*    -webkit-background-size: cover;*/
@@ -27,6 +28,13 @@ body{
 /*    -o-background-size: cover;*/
 /*    background-size: cover;*/
 /*}*/
+.icon-block {
+    padding: 0 15px;
+}
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
 
 /*body {*/
 /*    display: flex;*/
