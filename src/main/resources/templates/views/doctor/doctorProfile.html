@@ -36,7 +36,7 @@
                 <p th:value="${doctor.email}" th:name="email" th:text="${doctor.email}" class="blue-text"></p>
             </li>
         </ul>
-        <input type="submit" class="btn orange  waves-effect waves-light" value="Edit Profile" id="edit"/>
+        <a th:href="@{/doctorProfile/{id}/edit(id=${user.getId()})}" class="btn orange  waves-effect waves-light">Edit profile</a>
     </div>
 
 

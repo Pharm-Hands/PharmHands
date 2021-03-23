@@ -27,13 +27,13 @@ body{
 /*    -o-background-size: cover;*/
 /*    background-size: cover;*/
 /*}*/
-
 .icon-block {
     padding: 0 15px;
 }
 .icon-block .material-icons {
     font-size: inherit;
 }
+
 
 /*body {*/
 /*    display: flex;*/
