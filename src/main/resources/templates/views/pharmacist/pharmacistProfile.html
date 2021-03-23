@@ -10,48 +10,47 @@
 <div class="row">
     <div class="col s12">
         <ul class="tabs">
-            <li class="tab col s3"><a href="#tab1">View Profile</a> </li>
-            <li class="tab col s3>"><a href="#tab2">Prescriptions</a> </li>
-            <li class="tab col s3>"><a href="#tab3">Fill Requests</a> </li>
+            <li class="tab col s3"><a href="#info">View Profile</a></li>
+            <li class="tab col s3>"><a href="#prescriptions">Prescriptions</a></li>
+            <li class="tab col s3>"><a href="#fillReq">Fill Requests</a></li>
         </ul>
     </div>
 
-    <!--    <h4 th:text  th:value="" th:object="${users}">Welcome ,<p th:field="*{getEmail}"></p> </h4>-->
-    <div class="col s12" id="tab1">Your profile information below:
+    <div id="info" class="col s12">
+        <h5 class="white-text">Your profile information</h5>
 
         <ul class="collection">
             <li class="collection-item avatar">
                 <span class="title">Name</span>
-                <p th:text="${user.fullName}"></p>
-                <a class="secondary-content" href="#"><i class="material-icons">grade</i></a>
+                <i class="material-icons circle black">badge</i>
+                <p th:text="${user.fullName}" class="blue-text"></p>
             </li>
 
             <li class="collection-item avatar">
-                <i class="material-icons circle green">insert_chart</i>
+                <i class="material-icons circle green">email</i>
                 <span class="title">Email Address</span>
-                <p th:text="${user.email}"></p>
-                <a class="secondary-content" href="#"><i class="material-icons">grade</i></a>
+                <p th:text="${user.email}" class="blue-text"></p>
             </li>
-
         </ul>
+        <input type="submit" class="btn orange  waves-effect waves-light" value="Edit Profile" id="edit"/>
 
     </div>
 
-        <!--        <label for="verfifiedOnly"></label>-->
-        <!--        <input type="checkbox" name="verfifiedOnly" id="verfifiedOnly" value="">-->
 
+    <div id="prescriptions" class="col s12">
+        <h5 class="white-text">Your prescriptions </h5>
 
-    <div id="tab2" class="col s12">
         <div>
-            <table class="highlight">
-                <tr>
-                    <th>Name</th>
-                    <th>Created at</th>
-                    <th>Verified</th>
-                    <th>Patient</th>
-                    <th>Doctor</th>
+            <table class="highlight centered responsive-table">
+                <tr class=" white-text">
+                    <th class="center-align">NAME</th>
+                    <th class="center-align">CREATED AT</th>
+                    <th class="center-align">VERIFIED</th>
+                    <th class="center-align">PATIENT</th>
+                    <th class="center-align">DOCTOR</th>
                 </tr>
-                <tr th:each="prescription : ${prescriptions}" class="prescription" th:href="@{/prescription/{id}(id=${prescription.id})}">
+                <tr th:each="prescription : ${prescriptions}" class="prescription orange-text"
+                    th:href="@{/prescription/{id}(id=${prescription.id})}">
                     <td th:text="${prescription.drug.drug_name}"></td>
                     <td th:text="${prescription.created_at}">"</td>
                     <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
@@ -59,25 +58,29 @@
                     <td th:text="${prescription.doctor.fullName}"></td>
                 </tr>
             </table>
+
         </div>
     </div>
 
-    <div id="tab3" class="col s12">
+    <div id="fillReq" class="col s12">
+        <h5 class="white-text">Incoming fill Requests: </h5>
+
         <div>
-            <table class="highlight">
-                <tr>
-                    <th>Patient</th>
-                    <th>Prescription</th>
-                    <th>Created At</th>
-                    <th>Patient</th>
-                    <th>View Prescription</th>
+            <table class="highlight centered responsive-table">
+                <tr class="white-text">
+                    <th class="center-align">PATIENT</th>
+                    <th class="center-align">PRESCRIPTION</th>
+                    <th class="center-align">CREATED AT</th>
+                    <th class="center-align">PATIENT NAME</th>
+                    <th class="center-align">VIEW PRESCRIPTION</th>
                 </tr>
                 <tr th:each="request : ${requests}" class="requests">
                     <td th:text="${request.patient.fullName}"></td>
                     <td th:text="${request.prescription.drug.drug_name}"></td>
                     <td th:text="${request.created_at}"></td>
                     <td th:text="${request.note}"></td>
-                    <td><a class="pRequest waves-effect waves-light btn" th:href="@{/prescription/{id}(id=${request.prescription.id})}">View Prescription</a></td>
+                    <td><a class="pRequest waves-effect waves-light btn"
+                           th:href="@{/prescription/{id}(id=${request.prescription.id})}">View Prescription</a></td>
                 </tr>
             </table>
         </div>
@@ -98,3 +101,8 @@
 
 </body>
 </html>
+<!--BUFFER CODE-->
+
+<!--    <h4 th:text  th:value="" th:object="${users}">Welcome ,<p th:field="*{getEmail}"></p> </h4>-->
+<!--        <label for="verfifiedOnly"></label>-->
+<!--        <input type="checkbox" name="verfifiedOnly" id="verfifiedOnly" value="">-->

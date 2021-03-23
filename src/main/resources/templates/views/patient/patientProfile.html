@@ -15,45 +15,50 @@
         </ul>
     </div>
 
-    <div id="info" class="col s12">Edit your profile information
+    <div id="info" class="col s12">
+
+        <h5 class="white-text">Your profile information</h5>
 
         <ul class="collection">
             <li class="collection-item avatar">
                 <span class="title">Name</span>
-                <i class="material-icons circle green">badge</i>
-                <p th:value="${patient.username}" th:name="username" th:text="${patient.username}"></p>
+                <i class="material-icons circle black">badge</i>
+                <p th:value="${patient.username}" th:name="username" th:text="${patient.username}"
+                   class="blue-text"></p>
             </li>
             <li class="collection-item avatar">
-                <i class="material-icons circle green">home</i>
+                <i class="material-icons circle waves-orange">home</i>
                 <span class="title">Address</span>
                 <p th:value="${patientInfo.address}" th:name="address" th:text="${patientInfo.address}">
             </li>
             <li class="collection-item avatar">
-                <i class="material-icons circle green">cake</i>
+                <i class="material-icons circle pink">cake</i>
                 <span class="title">Date of Birth</span>
-                <p  th:value="${patientInfo.dob}" th:name="dob" th:text="${patientInfo.dob}"></p>
+                <p th:value="${patientInfo.dob}" th:name="dob" th:text="${patientInfo.dob}"></p>
             </li>
         </ul>
         <input type="submit" class="btn orange  waves-effect waves-light" value="Edit Profile" id="edit">
     </div>
 
-    <div id="message" class="col s12 white-text"> Message your Pharmacist !
+    <div id="message" class="col s12 white-text">
+        <h5>Message your Pharmacist !</h5>
         <hr>
         <form th:action="@{|/patientProfile/${patient.id}|}" th:method="POST">
             <div class="container">
                 <div class="row">
                     <div class="input-field col s12">
                         <span class="material-icons circle green ">app_registration</span>
-                      <label>
-                          <input placeholder="Subject" id="subject" type="text" class="required white-text"/>
-                      </label>
+                        <label>
+                            <input placeholder="Subject" id="subject" type="text" class="required white-text"/>
+                        </label>
                     </div>
                 </div>
             </div>
             <div class="container">
                 <div class="row">
                     <div class="input-field col s12">
-                        <label><textarea id="msg" class="materialize-textarea white-text" placeholder="Your message here"></textarea></label>
+                        <label><textarea id="msg" class="materialize-textarea white-text"
+                                         placeholder="Your message here" data-length="300"></textarea></label>
                     </div>
                 </div>
             </div>
@@ -65,29 +70,49 @@
     </div>
 
 
-
     <div id="prescrip" class="col s12">
         <div th:each="prescription : ${patient.prescriptions}">
             <div class="container white-text">
-                <table class="striped">
-                    <tr class="black-text">
-                        <th>Name</th>
-                        <th>Created at</th>
-                        <th>Verified</th>
-                        <th>Doctor</th>
-                        <th>View Requests</th>
+                <table class="striped centered responsive-table">
+                    <tr class="black-text center-align">
+                        <th>NAME</th>
+                        <th>CREATED AT</th>
+                        <th>VERIFIED</th>
+                        <th>DOCTOR</th>
+                        <th>VIEW REQUESTS</th>
                     </tr>
                     <tr>
                         <td th:text="${prescription.drug.drug_name}">"</td>
                         <td th:text="${prescription.created_at}">"</td>
                         <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
                         <td th:text="${prescription.doctor.fullName}"></td>
-                        <td><a class="pRequest waves-effect waves-light btn" th:href="@{/prescription-request/{id}(id=${prescription.id})}">Request Fill</a></td>
+                        <td><a class="pRequest waves-effect waves-light btn"
+                               th:href="@{/prescription-request/{id}(id=${prescription.id})}">Request Fill</a></td>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
+
+</div>
+
+<div th:replace="partials/scripts :: scripts"></div>
+<script>
+    $(document).ready(function () {
+        let msg = $("#request-message").text();
+
+        if (msg.length) {
+            alert(msg)
+        }
+        $('#msg').trigger('autoresize');
+    })
+</script>
+
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>-->
+<!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+
+<!--BUFFER CODE-->
 
 <!--    <button data-target="modal1" class="btn modal-trigger">Modal</button>-->
 <!--        &lt;!&ndash; Modal Structure &ndash;&gt;-->
@@ -109,19 +134,5 @@
 <!--                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>-->
 <!--            </div>-->
 <!--        </div>-->
-</div>
-
-<div th:replace="partials/scripts :: scripts"></div>
-<script>
-    $(document).ready(function(){
-        let msg = $("#request-message").text();
-
-        if(msg.length){
-            alert(msg)
-        }
-    })
-</script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>-->
-<!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
 </body>
 </html>

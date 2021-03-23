@@ -8,10 +8,9 @@
 <div class="row">
     <div class="col s12">
         <ul class="tabs">
-<<<<<<< HEAD
             <li class="tab col s3"><a href="#info">Doctor Info</a></li>
             <li class="tab col s3>"><a href="#prescriptions">Your Prescriptions</a></li>
-            <li class="pointer tab col s3" id="rxFormLink" style="color: rgba(238, 110, 115, 0.7); cursor:pointer;">
+            <li class="pointer tab col s3" id="rxFormLink" style="color: rgba(238,110,115,0.7); cursor:pointer;">
                 Create Prescription
             </li>
         </ul>
@@ -19,114 +18,107 @@
 
 
     <div id="info" class="col s12">
-        <h5 class="white-text">Your profile information:</h5>                <i class="material-icons circle orange">badge</i>
-
-
+        <h5 class="white-text"><i class="material-icons circle black">badge</i>Your profile information:</h5>
         <ul class="collection">
             <li class="collection-item avatar">
-                <span class="title">Full name</span>
-                <i class="material-icons circle green">badge</i>
-                <p th:value="${doctor.fullName}" th:name="username" th:text="${doctor.fullName}"></p>
+                <i class="material-icons circle black">drive_file_rename_outline </i>
+                <span class="title ">Full name</span>
+                <p th:value="${doctor.fullName}" th:name="username" th:text="${doctor.fullName}" class="blue-text"></p>
             </li>
             <li class="collection-item avatar">
-                <i class="material-icons circle green">home</i>
-                <span class="title">Username</span>
-                <p th:value="${doctor.username}" th:name="address" th:text="${doctor.username}">
+                <i class="material-icons circle pink">create</i>
+                <span class="title ">Username</span>
+                <p th:value="${doctor.username}" th:name="username" th:text="${doctor.username}" class="blue-text">
             </li>
             <li class="collection-item avatar">
-                <i class="material-icons circle green">cake</i>
-                <span class="title">Email</span>
-                <p th:value="${doctor.email}" th:name="email" th:text="${doctor.email}"></p>
+                <i class="material-icons circle green">email</i>
+                <span class="title  ">Email</span>
+                <p th:value="${doctor.email}" th:name="email" th:text="${doctor.email}" class="blue-text"></p>
             </li>
         </ul>
-        <input type="submit" class="btn orange  waves-effect waves-light" value="Edit Profile" id="edit">
+        <input type="submit" class="btn orange  waves-effect waves-light" value="Edit Profile" id="edit"/>
     </div>
 
-<!--    <div id="prescriptions" class="col s12">-->
-<!--    </div>-->
+
     <div id="prescriptions" class="col s12">
         <div th:each="prescription : ${prescriptions}">
             <div class="container white-text">
-                <table class="striped">
+                <table class="striped centered responsive-table">
                     <tr class="black-text">
-                        <th>Name</th>
-                        <th>Created at</th>
-                        <th>Verified</th>
-                        <th>Patient</th>
+                        <th class="center-align">NAME</th>
+                        <th class="center-align">CREATED AT</th>
+                        <th class="center-align">VERIFIED</th>
+                        <th class="center-align">PATIENT</th>
                     </tr>
-                    <tr>
-                        <td th:text="${prescription.drug.drug_name}">"</td>
-                        <td th:text="${prescription.created_at}">"</td>
-                        <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
-                        <td th:text="${prescription.patient.fullName}"></td>
+                    <tr class="white-text">
+                        <td th:text="${prescription.drug.drug_name}" class="text-bold"></td>
+                        <td th:text="${prescription.created_at}" class="text-bold"></td>
+                        <td class="text-bold" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
+                        <td th:text="${prescription.patient.fullName}" class="text-bold"></td>
                     </tr>
                 </table>
 
             </div>
         </div>
     </div>
-    <!--            <li class="tab col s3>"><a href="#tab2">Messages</a> </li>-->
-=======
-            <li class="tab col s3"><a href="#tab1">Doctor Info</a> </li>
-            <li class="tab col s3>"><a href="#tab2">Your Prescriptions</a> </li>
-            <li id="rxFormLink" class="pointer tab col s3" style="color: rgba(238, 110, 115, 0.7); cursor:pointer;">Create Prescription</li>
-        </ul>
-    </div>
-    <div id="tab1" class="col s12">
+
+
+</div>
+<div th:replace="partials/scripts :: scripts"></div>
+<script type="text/javascript" src="/js/doctorProfileClickHandler.js"></script>
+</body>
+</html>
+<!--BUFFER CODE-->
+<!--            <li class="tab col s3>"><a href="#tab2">Messages</a> </li>-->
+<!--            <li id="rxFormLink" class="pointer tab col s3" style="color: rgba(238, 110, 115, 0.7); cursor:pointer;">Create Prescription</li>-->
+<!--        </ul>-->
+<!--    <div id="tab1" class="col s12">-->
+<!--&lt;!&ndash;        <h1 th:text="${doctor.fullName}"></h1>&ndash;&gt;-->
+<!--&lt;!&ndash;        <h3 th:text="${doctor.username}"></h3>&ndash;&gt;-->
+<!--&lt;!&ndash;        <br>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p th:text="${doctor.email}" ></p>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p th:text="${doctorInfo.getNpi}" ></p>&ndash;&gt;-->
+<!--        <div class="row">-->
+<!--            <div class="col s12 m6">-->
+<!--                <div class="card blue-grey darken-1">-->
+<!--                    <div class="card-content white-text">-->
+<!--                        <span class="card-title">Card Title</span>-->
+<!--                        <p>I am a very simple card. I am good at containing small bits of information.-->
+<!--                            I am convenient because I require little markup to use effectively.</p>-->
+<!--                    </div>-->
+<!--&lt;!&ndash;                    <div class="card-action">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a href="#">This is a link</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a href="#">This is a link</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div id="tab2" class="col s12">-->
+<!--        <table class="striped white text">-->
+<!--        <tr>-->
+<!--            <th style="text-align:center; font-weight: bold">NAME</th>-->
+<!--            <th  style="text-align:center; font-weight: bold">CREATED AT</th>-->
+<!--            <th  style="text-align:center; font-weight: bold">VERIFIED</th>-->
+<!--            <th  style="text-align:center; font-weight: bold">PATIENT</th>-->
+<!--        </tr>-->
+<!--        <div th:each="prescription : ${prescriptions}">-->
+<!--                <tr>-->
+<!--                    <td style="text-align:center;" th:text="${prescription.drug.drug_name}">"</td>-->
+<!--                    <td style="text-align:center;" th:text="${prescription.created_at}">"</td>-->
+<!--                    <td style="text-align:center;" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>-->
+<!--                    <td style="text-align:center;" th:text="${prescription.patient.fullName}"></td>-->
+<!--                </tr>-->
+<!--        </div>-->
+<!--        </table>-->
+<!--        </div>-->
+<!--</div>-->
+
+
 <!--        <h1 th:text="${doctor.fullName}"></h1>-->
 <!--        <h3 th:text="${doctor.username}"></h3>-->
 <!--        <br>-->
 <!--        <p th:text="${doctor.email}" ></p>-->
-<!--        <p th:text="${doctorInfo.getNpi}" ></p>-->
-        <div class="row">
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <span class="card-title">Card Title</span>
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">This is a link</a>
-                        <a href="#">This is a link</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="tab2" class="col s12">
-        <table class="striped">
-        <tr>
-            <th style="text-align:center; font-weight: bold">NAME</th>
-            <th  style="text-align:center; font-weight: bold">CREATED AT</th>
-            <th  style="text-align:center; font-weight: bold">VERIFIED</th>
-            <th  style="text-align:center; font-weight: bold">PATIENT</th>
-        </tr>
-        <div th:each="prescription : ${prescriptions}">
-                <tr>
-                    <td style="text-align:center;" th:text="${prescription.drug.drug_name}">"</td>
-                    <td style="text-align:center;" th:text="${prescription.created_at}">"</td>
-                    <td style="text-align:center;" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
-                    <td style="text-align:center;" th:text="${prescription.patient.fullName}"></td>
-                </tr>
-        </div>
-        </table>
-        </div>
-</div>
-
->>>>>>> main
-
-
-    <!--        <h1 th:text="${doctor.fullName}"></h1>-->
-    <!--        <h3 th:text="${doctor.username}"></h3>-->
-    <!--        <br>-->
-    <!--        <p th:text="${doctor.email}" ></p>-->
-    <!--        <p th:text="${doctor.prescriberInfo}" ></p>-->
-    <!--        <p th:text="${doctor.}" ></p>-->
-
-</div>
-    <div th:replace="partials/scripts :: scripts"></div>
-    <script type="text/javascript" src="/js/doctorProfileClickHandler.js"></script>
-</body>
-</html>
+<!--        <p th:text="${doctor.prescriberInfo}" ></p>-->
+<!--        <p th:text="${doctor.}" ></p>-->
