@@ -1,35 +1,36 @@
+
+
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Profile</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head-section"></head>
+<nav th:replace="partials/navbar :: navbar"></nav>
 <body>
-<div>
-    <form th:action="@{/patientProfile/{id}/edit(id=${patient.id})}" th:method="post">
-        <div>
-            <label for="editUsername">Edit Username
-                <input type="text"  id="editUsername" class="validate" th:value="${patient.username}"/>
-            </label>
-        </div>
-        <div>
-            <label for="editAddress">Edit Address
-                <input type="text" id="editAddress"  th:value="${patientInfo.address}"/>
-            </label>
-        </div>
-        <div>
-            <label for="editDob"> Edit Date of Birth
-                <input type="text" id="editDob"  th:value="${patientInfo.dob}"/>
-            </label>
-        </div>
-        <div class="card-action right-align">
-        <input type="submit" class="btn orange  waves-effect waves-light" value="Submit" >
-        </div>
-    </form>
 
-
+<div class="valign-wrapper row">
+    <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
+        <form th:action="@{/patientProfile/{id}/edit(id=${user.id})}" th:method="POST" th:object="${user}" >
+            <div class="card-content #757575">
+                <span class="card-title">Patient Info</span>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="full_name">Full Name</label>
+                        <input th:field="*{fullName}"  type="text" class="text" name="full_name" id="full_name" />
+                    </div>
+                    <div class="input-field col s12">
+                        <label for="email">Email address</label>
+                        <input th:field="*{email}"  type="email" class="text" name="email" id="email" />
+                    </div>
+                </div>
+            </div>
+            <div class="card-action right-align">
+                <input type="reset" id="reset" class="btn-flat grey-text waves-effect">
+                <input type="submit" class="btn orange  waves-effect waves-light" value="Submit">
+            </div>
+        </form>
+    </div>
 </div>
 
+
+<div th:replace="partials/scripts :: scripts"></div>
 </body>
 </html>

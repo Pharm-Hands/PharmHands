@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head-section"></head>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<body>
+
+<div class="valign-wrapper row">
+    <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
+        <form th:action="@{/patientProfile/{patientId}/edit02(patientId=${user.id})}" th:method="POST" th:object="${patientInfo}" >
+            <div class="card-content #757575">
+                <span class="card-title">Patient Info</span>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="address">Address</label>
+                        <input th:field="*{address}"  type="text" class="text" name="address" id="address" />
+                    </div>
+                    <div class="input-field col s12">
+                        <label for="city">city</label>
+                        <input th:field="*{city}"  type="text" class="text" name="city" id="city" />
+                    </div>
+<!--                    <div class="input-field col s12">-->
+<!--                        <label for="DOB">DOB</label>-->
+<!--                        <input th:value="*{dob}"  type="hidden" class="text" name="dob" id="dob" />-->
+<!--                    </div>-->
+                    <div class="input-field col s12">
+                        <label for="State">State</label>
+                        <input th:field="*{state}"  type="text" class="text" name="state" id="state" />
+                    </div>
+                    <div class="input-field col s12">
+                        <label for="Zip">ZipCode</label>
+                        <input th:field="*{zip}"  type="text" class="text" name="zip" id="zip" />
+                    </div>
+                    <input th:field="*{id}"  type="hidden" class="text" name="id" id="id">
+                </div>
+            </div>
+            <div class="card-action right-align">
+                <input type="reset" id="reset" class="btn-flat grey-text waves-effect">
+                <input type="submit" class="btn orange  waves-effect waves-light" value="Submit">
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div th:replace="partials/scripts :: scripts"></div>
+</body>
+</html>
