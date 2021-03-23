@@ -68,7 +68,6 @@
                     <th class="center-align">CREATED AT</th>
                     <th class="center-align">VERIFIED</th>
                     <th class="center-align">PATIENT</th>
-                    <th class="center-align">DOCTOR</th>
                 </tr>
                 <tr th:each="prescription : ${prescriptions}" class="prescription orange-text"
                     th:href="@{/prescription/{id}(id=${prescription.id})}">
@@ -76,7 +75,6 @@
                     <td th:text="${prescription.created_at}">"</td>
                     <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
                     <td th:text="${prescription.patient.fullName}"></td>
-                    <td th:text="${prescription.doctor.fullName}"></td>
                 </tr>
             </table>
 
@@ -87,6 +85,14 @@
 </div>
 <div th:replace="partials/scripts :: scripts"></div>
 <script type="text/javascript" src="/js/doctorProfileClickHandler.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.prescription').click(function () {
+            window.location = $(this).attr('href');
+            return false;
+        });
+    });
+</script>
 </body>
 </html>
 <!--BUFFER CODE-->
