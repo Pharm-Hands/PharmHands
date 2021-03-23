@@ -1,6 +1,7 @@
 package com.pharmhands.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class Prescriptions {
 //    @Column(nullable = false)
 //    private long prescriber_id;
 
+    @NotBlank(message = "Ads must have a title")
     @Column(nullable = false)
     private String drug_form;
 

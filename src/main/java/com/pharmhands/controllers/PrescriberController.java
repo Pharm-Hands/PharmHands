@@ -11,9 +11,11 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.print.attribute.standard.PresentationDirection;
+import javax.validation.Valid;
 import java.sql.Date;
 @Secured({"ROLE_DOCTOR"})
 @Controller
@@ -49,32 +51,23 @@ public class PrescriberController{
         }
 
         @PostMapping("/doctorProfile/prescription-create")
-        public String submitForm(@ModelAttribute User patient_user, @ModelAttribute Prescriptions prescription, @RequestParam(name = "name") String name, @RequestParam(name= "phone_number") String phone, @RequestParam(name= "drugName") String drugName){
+        public String submitForm(Model model, @Valid Prescriptions prescriptions, Errors validation, @ModelAttribute User patient_user, @ModelAttribute Prescriptions prescription, @RequestParam(name = "name") String name, @RequestParam(name= "phone_number") String phone, @RequestParam(name= "drugName") String drugName){
             User patientUser = userDao.findByUserFullNameAndPhone(name, phone);
-//            int doctorId = (int) prescriberDao.findByUser(userDao.getOne(id)).getId();
-            //why is findById Optional Type?
             User doctorUser = userDao.getOne(userService.loggedInUser().getId());
-
             prescription.setPatient(patientUser);
             prescription.setDoctor(doctorUser);
-//            prescription.setDrug_form(prescription.getDrug_form());
             Drugs drug = drugsDao.findDrugsByDrug_name(drugName);
             prescription.setDrug(drug);
-
             long d = System.currentTimeMillis();
             Date date = new Date(d);
             prescription.setCreated_at(date);
-
-//            prescription.setDays_supply(prescription.getDays_supply());
-//            prescription.setDose(prescription.getDose());
-//            prescription.setDrug(prescription.getDrug());
-//            prescription.setDrug_Strength(prescription.getDrug_Strength());
-//            prescription.setQuantity(prescription.getQuantity());
-//            prescription.setSig(prescription.getSig());
-
             prescription.setIs_verified(0);
             prescription.setIs_deleted(0);
-
+            if (validation.hasErrors()) {
+                model.addAttribute("errors", validation);
+                model.addAttribute("prescriptions", prescriptions);
+                return "ads/create";
+            }
             prescriptionDao.save(prescription);
             return "redirect:/doctorProfile#tab2";
         }
