@@ -41,7 +41,7 @@
 
 
     <div id="prescriptions" class="col s12">
-        <div th:each="prescription : ${prescriptions}">
+        <div>
             <div class="container white-text">
                 <table class="striped centered responsive-table">
                     <tr class="black-text">
@@ -50,7 +50,7 @@
                         <th class="center-align">VERIFIED</th>
                         <th class="center-align">PATIENT</th>
                     </tr>
-                    <tr class="white-text">
+                    <tr  th:each="prescription : ${prescriptions}" class="white-text">
                         <td th:text="${prescription.drug.drug_name}" class="text-bold"></td>
                         <td th:text="${prescription.created_at}" class="text-bold"></td>
                         <td class="text-bold" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>

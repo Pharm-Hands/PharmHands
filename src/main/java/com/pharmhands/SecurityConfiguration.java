@@ -62,7 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //              Pages for Pharmacists
                 .and()
                 .authorizeRequests()
-                .antMatchers("/pharmacistProfile/?", "/pharmacistProfile/?/*", "/prescription/*")
+                .antMatchers("/pharmacistProfile/?", "/pharmacistProfile/?/*", "/prescription/?", "/prescription/*")
                 .hasRole("PHARMACIST")
         ;
     }
