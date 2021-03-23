@@ -71,7 +71,7 @@ public class PatientProfileController {
     public String editPatientInfo(@ModelAttribute User user, @PathVariable long id){
         User loggedIn = userService.loggedInUser();
 
-//        user.setFull_name(user.getFull_name());
+
         user.setFullName(user.getFullName());
         user.setEmail(user.getEmail());
         user.setPassword(loggedIn.getPassword());
@@ -112,38 +112,6 @@ public class PatientProfileController {
         return "redirect:/patientProfile/" + patientId;
     }
 
-//    @PostMapping("/patientProfile/{id}/edit")
-//    public String updatePatient(@ModelAttribute User patient,@ModelAttribute PatientInfo patientInfo ,@PathVariable long id,Model model) {
-//        User loggedUser = userService.loggedInUser();
-//
-////        model.addAttribute("patientInfo", patientDao.findByUser(patientDao.getOne(id)));
-////        PatientInfo patientInfo =patientDao.findByUser(loggedUser);
-//
-//        patient.setUsername(patient.getUsername());
-//        patientInfo.setAddress(patientInfo.getAddress());
-//        patientInfo.setDob(patientInfo.getDob());
-//
-//        patient.setEmail(loggedUser.getEmail());
-////        patient.setFull_name(loggedUser.getFull_name());
-//        patient.setFullName(loggedUser.getFullName());
-//
-//        patient.setPassword(loggedUser.getPassword());
-//        patient.setFills(loggedUser.getFills());
-//        patient.setIs_deleted(loggedUser.getIs_deleted());
-//        patient.setPhone_number(loggedUser.getPhone_number());
-//        patient.setPrescriptions(loggedUser.getPrescriptions());
-//        patient.setRole(loggedUser.getRole());
-//
-//        patientInfo.setCity(patientDao.findByUser(loggedUser).getCity());
-//        patientInfo.setSex(patientDao.findByUser(loggedUser).getSex());
-//        patientInfo.setState(patientDao.findByUser(loggedUser).getState());
-//        patientInfo.setUser(patientDao.findByUser(loggedUser).getUser());
-//        patientInfo.setZip(patientDao.findByUser(loggedUser).getZip());
-//
-//        userDao.save(patient);
-//        patientDao.save(patientInfo);
-//        return "redirect:/patientProfile/{id}";
-//    }
 
     @PostMapping("/patientProfile/{id}")
     public String emailSend(@PathVariable long id) {
