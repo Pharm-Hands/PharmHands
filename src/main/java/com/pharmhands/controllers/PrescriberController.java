@@ -76,7 +76,7 @@ public class PrescriberController{
             prescription.setIs_deleted(0);
 
             prescriptionDao.save(prescription);
-            return "redirect:/doctorProfile#tab2";
+            return "redirect:/doctorProfile/"+ doctorUser.getId() +"/#tab2";
         }
 //        @GetMapping("/profile/prescription-create/1")
 //    public String registerForm1(Model model, @PathVariable long id) {
