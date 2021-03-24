@@ -34,6 +34,11 @@ body{
     font-size: inherit;
 }
 
+#verify-form{
+    display: flex;
+    justify-content: space-evenly;
+}
+
 
 /*body {*/
 /*    display: flex;*/

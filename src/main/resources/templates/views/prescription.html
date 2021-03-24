@@ -77,12 +77,12 @@
                     </table>
                     <hr>
                     <div th:if="${user.role.role_name} == ROLE_PHARMACIST">
-                        <div th:if="${prescription.is_verified} == 0">
+                        <div id="verify-form" th:if="${prescription.is_verified} == 0">
                             <form th:action="@{/prescription/{id}/verify(id=${prescription.id})}" method="post">
                                 <button class="btn orange waves-effect waves-light" type="submit">Verify Prescription</button>
-                                <form th:action="@{/prescription/{id}/verifyAndFill(id=${prescription.id})}" method="post">
-                                    <button class="btn orange waves-effect waves-light right" type="submit">Verify and Fill Prescription</button>
-                                </form>
+                            </form>
+                            <form th:action="@{/prescription/{id}/verifyAndFill(id=${prescription.id})}" method="post">
+                                <button class="btn orange waves-effect waves-light right" type="submit">Verify and Fill Prescription</button>
                             </form>
                         </div>
                         <div th:unless="${prescription.is_verified} == 0">
