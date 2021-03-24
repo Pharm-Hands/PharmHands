@@ -19,12 +19,12 @@ public class AutoComplete {
         this.drugDao = drugDao;
     }
 
-/*    @GetMapping("/list-drugs")
+   @GetMapping("/list-drugs")
     @ResponseBody
     public Stream listDrugs(@RequestParam(value="term", required=false, defaultValue = "")String term) {
         return drugDao.findAll().stream().map(drug ->drug.getDrug_name());
         }
-    }*/
+
 
 
     @GetMapping("/Autocomplete")
