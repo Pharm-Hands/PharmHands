@@ -22,7 +22,14 @@ public class UserDetailsLoader implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("No user found for " + username);
         }
-
         return new UserWithRoles(user);
+
     }
+        public UserDetails loadUserByEmail(String email) {
+             User userEmail = userDao.findByEmail(email);
+            if (email == null) {
+                throw new UsernameNotFoundException("No user found for " +email);
+            }
+            return new UserWithRoles(userEmail);
+        }
 }
