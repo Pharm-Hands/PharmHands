@@ -49,8 +49,8 @@ public class PrescriberController{
         }
 
         @PostMapping("/doctorProfile/prescription-create")
-        public String submitForm(@ModelAttribute User patient_user, @ModelAttribute Prescriptions prescription, @RequestParam(name = "name") String name, @RequestParam(name= "phone_number") String phone, @RequestParam(name= "drugName") String drugName){
-            User patientUser = userDao.findByUserFullNameAndPhone(name, phone);
+        public String submitForm(@ModelAttribute Prescriptions prescription, @RequestParam(name = "fullName") String fullName, @RequestParam(name= "phone_number") String phone, @RequestParam(name= "drugName") String drugName){
+            User patientUser = userDao.findByUserFullNameAndPhone(fullName, phone);
 //            int doctorId = (int) prescriberDao.findByUser(userDao.getOne(id)).getId();
             //why is findById Optional Type?
             User doctorUser = userDao.getOne(userService.loggedInUser().getId());
