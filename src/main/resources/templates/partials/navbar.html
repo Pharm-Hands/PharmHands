@@ -6,10 +6,10 @@
     <title>Navbar</title>
 </head>
 <body>
-<nav th:fragment="navbar">
-    <div class="nav-wrapper grey darken-1">
+<nav th:fragment="navbar" class="transparent">
+    <div class="nav-wrapper">
         <div class="container">
-            <a href="#!" class="brand-logo left-align"></a> <img src="../../img/Pharm-Hands-clear.png" width="150" height="60">
+            <a href="#!" class="brand-logo center"></a> <img src="../../img/Pharm-Hands-clear.png" width="150" height="60">
             <ul  id="slide-out" class="sidenav">
 
                 <ul sec:authorize="isAuthenticated()">
