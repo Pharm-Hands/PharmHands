@@ -12,8 +12,8 @@
 .icon-black{
     color: black;
 }
-body{
-    /*background-color: #004181 ;*/
+.landing{
+    background-color: white;
 }
 
 body{
@@ -33,17 +33,19 @@ body{
 /*    justify-content: space-evenly;*/
 /*}*/
 
-/*.nav-wrapper{*/
 
-/*    opacity: 0.5;*/
-/*}*/
 
-/*.sidenav{*/
-/*    opacity: 20%;*/
-/*}*/
+.welcome{
+    border-radius: 15px;
+}
+.nav-wrapper{
+    background-color: #004181;
+}
+
+
 
 p {
-    line-height: 2rem;
+    line-height: 3rem;
 }
 
 .sidenav-trigger {
