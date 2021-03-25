@@ -104,7 +104,7 @@ public class PrescriberController{
     public String editDoctorInfoForm(Model model, @PathVariable long id){
         User user = userDao.getOne(id);
         model.addAttribute("user", user);
-        return "/views/doctor/doctorinfoedit";
+        return "views/doctor/doctorinfoedit";
     }
 
     @PostMapping("/doctorProfile/{id}/edit")
