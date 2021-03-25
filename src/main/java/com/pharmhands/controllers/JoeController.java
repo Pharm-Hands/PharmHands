@@ -48,7 +48,7 @@ public class JoeController {
 
     @GetMapping("/doctorProfile/{id}")
     public String doctorProfile(Model model, @PathVariable long id) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userService.loggedInUser();
         model.addAttribute("user", user);
         model.addAttribute("doctor", userDao.getOne(id));
         model.addAttribute("prescriptions", prescriptionsDao.findAllByPrescriberId(id));
@@ -60,11 +60,13 @@ public class JoeController {
     public String viewPrescription(Model model, @PathVariable long id) {
         model.addAttribute("prescription", prescriptionsDao.getOne(id));
         model.addAttribute("user", userService.loggedInUser());
-        if(userService.loggedInUser() == prescriptionsDao.getOne(id).getDoctor() || userService.loggedInUser().getRole().getRole_name().equalsIgnoreCase("ROLE_PHARMACIST")){
+
+//        this is erroring for pharmacists atm
+//        if(userService.loggedInUser() == prescriptionsDao.getOne(id).getDoctor() || userService.loggedInUser().getRole().getRole_name().equalsIgnoreCase("ROLE_PHARMACIST")){
             return "views/prescription";
-        }   else{
-            return "redirect:/";
-        }
+//        }   else{
+//            return "redirect:/";
+//        }
     }
 
     @PostMapping("/prescription/{id}/fill")
