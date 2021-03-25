@@ -34,7 +34,7 @@
             <li class="collection-item avatar">
                 <i class="material-icons circle pink">cake</i>
                 <span class="title">Date of Birth</span>
-                <p th:value="${patientInfo.dob}" th:name="dob" th:text="${patientInfo.dob}"></p>
+                <p th:value="${#dates.format(patientInfo.dob,'dd/MM/yyyy')}" th:name="dob" th:text="${#dates.format(patientInfo.dob,'dd/MM/yyyy')}"></p>
             </li>
         </ul>
         <a th:href="@{/patientProfile/{id}/edit(id=${patient.getId()})}" class="btn orange  waves-effect waves-light">Edit profile</a>
