@@ -4,51 +4,12 @@
 <head th:replace="partials/head :: head-section ">
     <title>Profile Page</title>
 </head>
-<style>
-    .table-bg{
-        background-color: #004181;
-    }
-
-    .table-body{
-        background-color: white;
-    }
-    h4, h5, h6{
-        color: #004181;
-    }
-    i.profile-icon{
-        color: #004181;
-    }
-    h2{
-        margin: 0;
-    }
-    .profile-info{
-        display: flex;
-        width:100%;
-
-    }
-
-    .sub-title{
-        margin-top: 0;
-    }
-    .rounded{
-        border-radius: 10px;
-    }
-    .user-info{
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
-    .user-full{
-        margin: 0;
-    }
-
-</style>
 <body>
 <div id="request-message" th:if="${requestMessage} != null" th:text="${requestMessage}" style="display: none"></div>
 <div class="container">
     <div class="profile-card">
         <div class="row">
-            <div id="info" class="col s12">
+            <div class="col s12 info">
                 <div class="card horizontal rounded">
 
                     <div class="card-stacked">
@@ -103,7 +64,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:unless="${p.index > 4}" th:each="prescription, p : ${patient.prescriptions}" class="table-body">
+                            <tr th:each="prescription : ${patient.prescriptions}" class="table-body">
                                 <td th:text="${prescription.drug.drug_name}">"</td>
                                 <td th:text="${prescription.created_at}">"</td>
                                 <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>

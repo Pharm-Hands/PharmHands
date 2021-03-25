@@ -24,6 +24,47 @@ body{
     background-color: #004181;
 }
 
+.table-bg{
+    background-color: #004181;
+}
+
+.table-body{
+    background-color: white;
+}
+h4, h5, h6{
+    color: #004181;
+}
+i.profile-icon{
+    color: #004181;
+}
+h2{
+    margin: 0;
+}
+.profile-info{
+    display: flex;
+    width:100%;
+
+}
+
+table.highlight>tbody>tr:hover {
+    background-color: #fed8b1;
+}
+
+.sub-title{
+    margin-top: 0;
+}
+.rounded{
+    border-radius: 10px;
+}
+.user-info{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.user-full{
+    margin: 0;
+}
+
 /*body {*/
 /*    background: url(static/img/pexels-alexandros-chatzidimos-3652750.jpg) no-repeat center center fixed;*/
 /*    -webkit-background-size: cover;*/

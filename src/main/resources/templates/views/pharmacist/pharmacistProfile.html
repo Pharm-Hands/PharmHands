@@ -3,122 +3,90 @@
 
 <head th:replace="partials/head :: head-section ">
     <title>Welcome </title>
+    <style>
 
+    </style>
 </head>
-<style>
-    .table-bg{
-        background-color: #004181;
-    }
-    .profile-card{
-        background-color: lightgrey;
-        border-color: #323232;
-        width: 95vw;
-        min-height: 90vh;
-    }
-    .center-body{
-        display: flex;
-        justify-content: center;
-    }
-    .table-body{
-        background-color: white;
-    }
-    h3{
-       color: #004181;
-    }
-
-</style>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <body>
-<div class="center-body">
-    <div class="card profile-card">
+<div class="container">
+    <div class="profile-card">
         <div class="row">
-            <div class="col s12">
-                <ul class="tabs">
-                    <li class="tab col s3"><a href="#info">View Profile</a></li>
-                    <li class="tab col s3>"><a href="#prescriptions">Prescriptions</a></li>
-                    <li class="tab col s3>"><a href="#fillReq">Fill Requests</a></li>
-                </ul>
-            </div>
+            <div class="col s12 info">
+                <div class="card horizontal rounded">
 
-            <div id="info" class="col s12">
-                <h3>Your profile information</h3>
-
-                <ul class="collection">
-                    <li class="collection-item avatar">
-                        <span class="title">Name</span>
-                        <i class="material-icons circle black">badge</i>
-                        <p th:text="${user.fullName}" class="blue-text"></p>
-                    </li>
-
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle green">email</i>
-                        <span class="title">Email Address</span>
-                        <p th:text="${user.email}" class="blue-text"></p>
-                    </li>
-                </ul>
-                <a th:href="@{/pharmacistProfile/{id}/edit(id=${user.getId()})}" class="btn orange  waves-effect waves-light">Edit profile</a>
-
-            </div>
-
-
-            <div id="prescriptions" class="col s12">
-                <h3>Your prescriptions </h3>
-
-                <div>
-                    <table class="centered responsive-table highlight">
-                        <thead>
-                        <tr class="white-text">
-                            <th class="center-align">NAME</th>
-                            <th class="center-align">CREATED AT</th>
-                            <th class="center-align">VERIFIED</th>
-                            <th class="center-align">PATIENT</th>
-                            <th class="center-align">DOCTOR</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="prescription : ${prescriptions}" class="prescription orange-text highlight"
-                            th:href="@{/prescription/{id}(id=${prescription.id})}">
-                            <td th:text="${prescription.drug.drug_name}"></td>
-                            <td th:text="${prescription.created_at}">"</td>
-                            <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
-                            <td th:text="${prescription.patient.fullName}"></td>
-                            <td th:text="${prescription.doctor.fullName}"></td>
-                        </tr>
-                        </tbody>
-
-                    </table>
-
+                    <div class="card-stacked">
+                        <div class="profile-info">
+                            <div class="card-image">
+                                <h2><i class="material-icons profile-icon" style="font-size:200px">medication</i></h2>
+                            </div>
+                            <div class="card-content">
+                                <h4 class="user-full" th:text="${user.fullName} + ' - ' + Pharmacist"></h4>
+                                <h5 th:text="${user.username}"></h5>
+                                <div class="user-info">
+                                    <div>
+                                        <h6 th:text="Phone + ': ' + ${user.phone_number}"></h6>
+                                        <h6 th:text="Email + ': ' + ${user.email}"></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <a th:href="@{/pharmacistProfile/{id}/edit(id=${user.getId()})}" class="btn orange  waves-effect waves-light">Edit profile</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div id="fillReq" class="col s12">
-                <h3>Fill Requests</h3>
+            <div id="prescrip" class="col s12 table">
+                <h4 class="sub-title">Prescriptions</h4>
 
                 <div class="table-radius">
                     <table class="centered responsive-table highlight">
                         <thead>
                         <tr class="white-text table-bg" style>
-                            <th class="center-align">PATIENT</th>
-                            <th class="center-align">PRESCRIPTION</th>
+                            <th class="center-align">NAME</th>
                             <th class="center-align">CREATED AT</th>
-                            <th class="center-align">PATIENT NAME</th>
-                            <th class="center-align">VIEW PRESCRIPTION</th>
+                            <th class="center-align">VERIFIED</th>
+                            <th class="center-align">DOCTOR</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="request : ${requests}" class="requests">
-                            <td th:text="${request.patient.fullName}"></td>
-                            <td th:text="${request.prescription.drug.drug_name}"></td>
-                            <td th:text="${request.created_at}"></td>
-                            <td th:text="${request.note}"></td>
-                            <td><a class="pRequest waves-effect waves-light btn" th:href="@{/prescription/{id}(id=${request.prescription.id})}">View Prescription</a></td>
+                        <tr th:each="prescription : ${prescriptions}" class="prescription table-body" th:href="@{/prescription/{id}(id=${prescription.id})}">
+                            <td th:text="${prescription.drug.drug_name}">"</td>
+                            <td th:text="${prescription.created_at}">"</td>
+                            <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
+                            <td th:text="${prescription.doctor.fullName}"></td>
                         </tr>
                         </tbody>
 
                     </table>
                 </div>
             </div>
+            <div id="fills" class="col s12 table">
+                <h4>Fill Requests</h4>
 
+                <div class="table-radius">
+                    <table class="centered responsive-table highlight">
+                        <thead>
+                            <tr class="white-text table-bg" style>
+                                <th class="center-align">PATIENT</th>
+                                <th class="center-align">PRESCRIPTION</th>
+                                <th class="center-align">CREATED AT</th>
+                                <th class="center-align">PATIENT NAME</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="request : ${requests}" class="requests" th:href="@{/prescription/{id}(id=${request.prescription.id})}">
+                                <td th:text="${request.patient.fullName}"></td>
+                                <td th:text="${request.prescription.drug.drug_name}"></td>
+                                <td th:text="${request.created_at}"></td>
+                                <td th:text="${request.note}"></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -126,10 +94,109 @@
 
 
 
+
+
+<!--<div class="center-body">-->
+<!--    <div class="card profile-card">-->
+<!--        <div class="row">-->
+<!--            <div class="col s12">-->
+<!--                <ul class="tabs">-->
+<!--                    <li class="tab col s3"><a href="#info">View Profile</a></li>-->
+<!--                    <li class="tab col s3>"><a href="#prescriptions">Prescriptions</a></li>-->
+<!--                    <li class="tab col s3>"><a href="#fillReq">Fill Requests</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
+<!--            <div id="info" class="col s12">-->
+<!--                <h3>Your profile information</h3>-->
+
+<!--                <ul class="collection">-->
+<!--                    <li class="collection-item avatar">-->
+<!--                        <span class="title">Name</span>-->
+<!--                        <i class="material-icons circle black">badge</i>-->
+<!--                        <p th:text="${user.fullName}" class="blue-text"></p>-->
+<!--                    </li>-->
+
+<!--                    <li class="collection-item avatar">-->
+<!--                        <i class="material-icons circle green">email</i>-->
+<!--                        <span class="title">Email Address</span>-->
+<!--                        <p th:text="${user.email}" class="blue-text"></p>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--                <a th:href="@{/pharmacistProfile/{id}/edit(id=${user.getId()})}" class="btn orange  waves-effect waves-light">Edit profile</a>-->
+
+<!--            </div>-->
+
+
+<!--            <div id="prescriptions" class="col s12">-->
+<!--                <h3>Your prescriptions </h3>-->
+
+<!--                <div>-->
+<!--                    <table class="centered responsive-table highlight">-->
+<!--                        <thead>-->
+<!--                        <tr class="white-text">-->
+<!--                            <th class="center-align">NAME</th>-->
+<!--                            <th class="center-align">CREATED AT</th>-->
+<!--                            <th class="center-align">VERIFIED</th>-->
+<!--                            <th class="center-align">PATIENT</th>-->
+<!--                            <th class="center-align">DOCTOR</th>-->
+<!--                        </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+<!--                        <tr th:each="prescription : ${prescriptions}" class="prescription orange-text highlight"-->
+<!--                            th:href="@{/prescription/{id}(id=${prescription.id})}">-->
+<!--                            <td th:text="${prescription.drug.drug_name}"></td>-->
+<!--                            <td th:text="${prescription.created_at}">"</td>-->
+<!--                            <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>-->
+<!--                            <td th:text="${prescription.patient.fullName}"></td>-->
+<!--                            <td th:text="${prescription.doctor.fullName}"></td>-->
+<!--                        </tr>-->
+<!--                        </tbody>-->
+
+<!--                    </table>-->
+
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div id="fillReq" class="col s12">-->
+<!--                <h3>Fill Requests</h3>-->
+
+<!--                <div class="table-radius">-->
+<!--                    <table class="centered responsive-table highlight">-->
+<!--                        <thead>-->
+<!--                        <tr class="white-text table-bg" style>-->
+<!--                            <th class="center-align">PATIENT</th>-->
+<!--                            <th class="center-align">PRESCRIPTION</th>-->
+<!--                            <th class="center-align">CREATED AT</th>-->
+<!--                            <th class="center-align">PATIENT NAME</th>-->
+<!--                            <th class="center-align">VIEW PRESCRIPTION</th>-->
+<!--                        </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+<!--                        <tr th:each="request : ${requests}" class="requests">-->
+<!--                            <td th:text="${request.patient.fullName}"></td>-->
+<!--                            <td th:text="${request.prescription.drug.drug_name}"></td>-->
+<!--                            <td th:text="${request.created_at}"></td>-->
+<!--                            <td th:text="${request.note}"></td>-->
+<!--                            <td><a class="pRequest waves-effect waves-light btn" th:href="@{/prescription/{id}(id=${request.prescription.id})}">View Prescription</a></td>-->
+<!--                        </tr>-->
+<!--                        </tbody>-->
+
+<!--                    </table>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+
 <div th:replace="partials/scripts :: scripts"></div>
 <script>
     $(document).ready(function () {
-        $('.prescription').click(function () {
+        $('.prescription, .requests').click(function () {
             window.location = $(this).attr('href');
             return false;
         });
@@ -138,8 +205,3 @@
 
 </body>
 </html>
-<!--BUFFER CODE-->
-
-<!--    <h4 th:text  th:value="" th:object="${users}">Welcome ,<p th:field="*{getEmail}"></p> </h4>-->
-<!--        <label for="verfifiedOnly"></label>-->
-<!--        <input type="checkbox" name="verfifiedOnly" id="verfifiedOnly" value="">-->
