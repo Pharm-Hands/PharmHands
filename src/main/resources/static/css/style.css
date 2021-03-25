@@ -20,6 +20,10 @@ body{
     font-family: "Roboto";
 }
 
+#table-bg{
+    background-color: #004181;
+}
+
 /*body {*/
 /*    background: url(static/img/pexels-alexandros-chatzidimos-3652750.jpg) no-repeat center center fixed;*/
 /*    -webkit-background-size: cover;*/
