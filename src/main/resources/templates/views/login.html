@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head">
+<!--<head th:replace="partials/head :: head">-->
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+
+<link th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="stylesheet" th:href="@{/css/loginStyle.css}">
     <title> Login</title>
 </head>
-<body>
+<body class="img">
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="valign-wrapper row login-box ">
     <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
@@ -39,7 +45,33 @@
         </div>
     </div>
 </div>
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+<!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="col s12 14 offset-14">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="card">&ndash;&gt;-->
 
-<div th:replace="partials/scripts :: scripts"></div>
+<!--&lt;!&ndash;            <div class="card-action red white-text">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h3>Login Form</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="card-content">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="form-field">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <label for="username">Username</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <input type="text" class="validate" name="username" id="username"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div><br>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="form-field col s12">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <label for="password">Password </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <input type="password" class="validate" name="password" id="password"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div><br>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="form-field center-align">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <button class="btn-large red">Login</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div><br>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+
+
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div th:replace="partials/scripts :: scripts"></div>-->
 </body>
 </html>
