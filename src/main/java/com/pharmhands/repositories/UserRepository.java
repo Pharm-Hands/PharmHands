@@ -12,8 +12,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
     @Query("FROM User WHERE role = ?1 AND id = ?2")
     User getOneByRole(UserRoles role, long id);
+
     @Query("FROM User where fullName = ?1 and phone_number = ?2")
-    User findByUserFullNameAndPhone(String fullname, String phone_number);
+    User findByUserFullNameAndPhone(String fullName, String phone_number);
 
  }
 

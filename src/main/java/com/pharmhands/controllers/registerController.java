@@ -106,7 +106,7 @@ public class registerController {
         String hashPat = encoder.encode(patient.getPassword());
         patient.setPassword(hashPat);
 //        patient.setFull_name(patient.getFull_name());
-        patient.setFullName(patient.getFullName());
+//        patient.setFullName(patient.getFullName());
         patient.setIs_deleted(0);
         patient.setPhone_number(patient.getPhone_number());
         patient.setUsername(patient.getUsername());

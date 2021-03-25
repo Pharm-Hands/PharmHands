@@ -60,29 +60,34 @@
                 <div class="card-content black-text">
                     <span class="card-title center-align">Fills</span>
                     <hr>
-
-                    <table class="responsive-table striped #757575 grey darken-1">
-                        <tr>
-                            <th>Drug</th>
-                            <th>Fill Date</th>
-                            <th>Fill Number</th>
-                            <th>Patient</th>
-                        </tr>
-                        <tr th:each="fill : ${prescription.fills}" class="prescription" th:href="@{/prescription/{id}(id=${prescription.id})}">
-                            <td th:text="${fill.prescription.drug.drug_name}"></td>
-                            <td th:text="${fill.fill_date}">"</td>
-                            <td th:text="${fill.fill_number}"></td>
-                            <td th:text="${fill.prescription.patient.fullName}"></td>
-                        </tr>
-                    </table>
+                        <table class="centered responsive-table">
+                            <thead>
+                                <tr class="white-text table-bg" style>
+                                    <th class="center-align">DRUG</th>
+                                    <th class="center-align">FILL DATE</th>
+                                    <th class="center-align">FILL NUMBER</th>
+                                    <th class="center-align">PATIENT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="fill : ${prescription.fills}" class="prescription table-body" th:href="@{/prescription/{id}(id=${prescription.id})}">
+                                    <td th:text="${fill.prescription.drug.drug_name}"></td>
+                                    <td th:text="${fill.fill_date}">"</td>
+                                    <td th:text="${fill.fill_number}"></td>
+                                    <td th:text="${fill.prescription.patient.fullName}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     <hr>
+
+
                     <div th:if="${user.role.role_name} == ROLE_PHARMACIST">
-                        <div th:if="${prescription.is_verified} == 0">
+                        <div id="verify-form" th:if="${prescription.is_verified} == 0">
                             <form th:action="@{/prescription/{id}/verify(id=${prescription.id})}" method="post">
                                 <button class="btn orange waves-effect waves-light" type="submit">Verify Prescription</button>
-                                <form th:action="@{/prescription/{id}/verifyAndFill(id=${prescription.id})}" method="post">
-                                    <button class="btn orange waves-effect waves-light right" type="submit">Verify and Fill Prescription</button>
-                                </form>
+                            </form>
+                            <form th:action="@{/prescription/{id}/verifyAndFill(id=${prescription.id})}" method="post">
+                                <button class="btn orange waves-effect waves-light right" type="submit">Verify and Fill Prescription</button>
                             </form>
                         </div>
                         <div th:unless="${prescription.is_verified} == 0">
@@ -91,7 +96,6 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

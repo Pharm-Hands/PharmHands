@@ -48,7 +48,7 @@ public class JoeController {
 
     @GetMapping("/doctorProfile/{id}")
     public String doctorProfile(Model model, @PathVariable long id) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userService.loggedInUser();
         model.addAttribute("user", user);
         model.addAttribute("doctor", userDao.getOne(id));
         model.addAttribute("prescriptions", prescriptionsDao.findAllByPrescriberId(id));
@@ -60,11 +60,13 @@ public class JoeController {
     public String viewPrescription(Model model, @PathVariable long id) {
         model.addAttribute("prescription", prescriptionsDao.getOne(id));
         model.addAttribute("user", userService.loggedInUser());
-        if(userService.loggedInUser() == prescriptionsDao.getOne(id).getDoctor() || userService.loggedInUser().getRole().getRole_name().equalsIgnoreCase("ROLE_PHARMACIST")){
+
+//        this is erroring for pharmacists atm
+//        if(userService.loggedInUser() == prescriptionsDao.getOne(id).getDoctor() || userService.loggedInUser().getRole().getRole_name().equalsIgnoreCase("ROLE_PHARMACIST")){
             return "views/prescription";
-        }   else{
-            return "redirect:/";
-        }
+//        }   else{
+//            return "redirect:/";
+//        }
     }
 
     @PostMapping("/prescription/{id}/fill")
@@ -100,7 +102,9 @@ public class JoeController {
         fillsDao.save(fill);
 
         for(PrescriptionRequests request : requestsDao.findAllByPrescriptionId(prescription.getId())){
+            System.out.println(request.getId());
             request.setIs_Fulfilled(1);
+            requestsDao.save(request);
         }
 
         redir.addFlashAttribute("fillMessage", "You have successfully filled the prescription for " + prescription.getPatient().getFullName());
@@ -108,11 +112,12 @@ public class JoeController {
     }
 
     @PostMapping("/prescription/{id}/verify")
-    public String verifyPrescription(@PathVariable long id) {
+    public String verifyPrescription(@PathVariable long id, RedirectAttributes redir) {
         Prescriptions prescription = prescriptionsDao.getOne(id);
         prescription.setIs_verified(1);
         prescriptionsDao.save(prescription);
 
+        redir.addFlashAttribute("fillMessage", "You have successfully verified the prescription for " + prescription.getPatient().getFullName());
         return "redirect:/prescription/{id}";
     }
 
@@ -137,7 +142,7 @@ public class JoeController {
             System.out.println(fillCheck.getTime());
 //        check the current date against the most recent fill date plus days supply and redirect if it is within the range
             if (fillCheck.getTime().after(now.getTime())) {
-                redir.addFlashAttribute("fillMessage", "Sorry, this prescription is not eligible to be filled. The days supply since last fill has not run out yet.");
+                redir.addFlashAttribute("fillMessage", "Sorry, this prescription is not eligible to be filled. The days supply since last fill has not run out yet. Your prescription has still been verified");
                 return "redirect:/prescription/{id}";
             }
         }
@@ -149,7 +154,11 @@ public class JoeController {
         fill.setPrescription(prescription);
         fillsDao.save(fill);
 
-
+        for(PrescriptionRequests request : requestsDao.findAllByPrescriptionId(prescription.getId())){
+            System.out.println(request.getId());
+            request.setIs_Fulfilled(1);
+            requestsDao.save(request);
+        }
 
         redir.addFlashAttribute("fillMessage", "You have successfully verified and filled the prescription for " + prescription.getPatient().getFullName());
         return "redirect:/prescription/{id}";
