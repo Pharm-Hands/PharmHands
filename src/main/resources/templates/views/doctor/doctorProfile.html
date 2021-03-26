@@ -41,21 +41,21 @@
                 <h4 class="sub-title">Prescriptions</h4>
 
                 <div class="table-radius">
-                    <table class="centered responsive-table highlight">
+                    <table class="prescription-table centered responsive-table highlight">
                         <thead>
                         <tr class="white-text table-bg" style>
-                            <th class="center-align">NAME</th>
-                            <th class="center-align">CREATED AT</th>
-                            <th class="center-align">VERIFIED</th>
-                            <th class="center-align">PATIENT</th>
+                            <th class="heading-rx-drug-name center-align">NAME</th>
+                            <th class="heading-rx-created center-align">CREATED AT</th>
+                            <th class="heading-rx-verified center-align">VERIFIED</th>
+                            <th class="heading-rx-patient-name center-align">PATIENT</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="prescription : ${prescriptions}" class="prescription table-body" th:href="@{/prescription/{id}(id=${prescription.id})}">
-                            <td th:text="${prescription.drug.drug_name}">"</td>
-                            <td th:text="${prescription.created_at}">"</td>
-                            <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
-                            <td th:text="${prescription.doctor.fullName}"></td>
+                            <td class="rx-drug-name" th:text="${prescription.drug.drug_name}">"</td>
+                            <td class="rx-created" th:text="${prescription.created_at}">"</td>
+                            <td class="rx-verified" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
+                            <td class="rx-patient-name" th:text="${prescription.getPatient().getFullName()}"></td>
                         </tr>
                         </tbody>
 
@@ -148,6 +148,7 @@
 </div>
 <div th:replace="partials/scripts :: scripts"></div>
 <script type="text/javascript" src="/js/doctorProfileClickHandler.js"></script>
+<script type="text/javascript" src="/js/prescriptionSort.js"></script>
 <script>
     $(document).ready(function () {
         $('.prescription').click(function () {
