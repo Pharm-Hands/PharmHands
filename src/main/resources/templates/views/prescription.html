@@ -5,7 +5,18 @@
 </head>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <body>
-<div id="fill-alert" th:if="${fillMessage} != null" th:text="${fillMessage}" style="display: none"></div>
+<!--<div th:if="${fillMessage} != null" th:text="${fillMessage}" ></div>-->
+
+<div th:if="${fillMessage} != null" id="modal" class="modal">
+    <div class="modal-content">
+        <h4>Prescription Fill</h4>
+        <p id="fill-alert" th:text="${fillMessage}"></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
+</div>
+
 <div class="container">
 
     <div class="row">
@@ -108,8 +119,11 @@
         let msg = $("#fill-alert").text();
 
         if(msg.length){
-            alert(msg)
+            $('.modal').modal();
+            $('.modal').modal('open');
         }
+
+
     })
 </script>
 </body>

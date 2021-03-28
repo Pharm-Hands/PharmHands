@@ -124,5 +124,4 @@ public class PrescriberController{
         return "redirect:/doctorProfile/" + id;
 
     }
-
 }
