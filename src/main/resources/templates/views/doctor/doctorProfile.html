@@ -61,6 +61,11 @@
 
                     </table>
                 </div>
+                <div th:if="${#lists.size(prescriptions) > 4}">
+                    <br>
+                    <a th:href="@{/prescription-list}" class="btn orange  waves-effect waves-light">View All Prescriptions</a>
+                </div>
+
             </div>
         </div>
     </div>

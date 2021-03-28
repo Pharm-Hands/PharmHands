@@ -12,6 +12,12 @@ public interface PrescriptionsRepository extends JpaRepository<Prescriptions,Lon
     @Query("FROM Prescriptions WHERE doctor.id = ?1 AND is_deleted = 0")
     List<Prescriptions> findAllByPrescriberId(long id);
 
+    @Query("FROM Prescriptions WHERE patient.id = ?1 AND is_deleted = 0")
+    List<Prescriptions> findAllByPatientId(long id);
+
+    @Query("FROM Prescriptions WHERE is_deleted = 0")
+    List<Prescriptions> findAllNotDeleted();
+
     @Query("FROM Prescriptions WHERE is_verified = 0 AND is_deleted = 0")
     List<Prescriptions> findAllUnverified();
 
