@@ -1,23 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head2 :: head-section2"></head>
-<body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="partials/head2 :: head-section2">
 <script src="https://kit.fontawesome.com/5779c08c81.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div th:replace="partials/scripts :: scripts"></div>
+</head>
+<body>
+<nav th:replace="partials/navbar02 :: navbar"></nav>
+
+
 
 <div id="index-banner" class="parallax-container ">
     <div class="section no-pad-bot">
         <div class="welcome container white">
             <br><br>
-            <h1 class="header center black-text">Welcome to Pharm Hands</h1>
+            <h1 class="header center black-text">Welcome to PharmHands</h1>
             <div class="row center">
                 <h5 class="header col s12 black-text">An all-in-one pharmacy database manager for doctors, pharmacists and patients.</h5>
             </div>
             <div class="row center">
-                <a href="@{/register}" id="register-button" class="btn-large waves-effect waves-light orange black-text">Register</a>
+                <a th:href="@{/register}" id="register-button" class="btn-large waves-effect waves-light orange black-text">Register</a>
             </div>
             <br><br>
         </div>
@@ -38,7 +42,7 @@
                     <h5 class="center">Doctors</h5>
 
 
-                    <p class="light black-text">Write prescriptions for your patients with little to no effort. Keep track of all records within your profile dashboard.</p>
+                    <p class="light black-text center-align">Write prescriptions for your patients with little to no effort. Keep track of all records within your profile dashboard.</p>
                 </div>
             </div>
 
@@ -48,7 +52,7 @@
                     <h5 class="center">Pharmacists</h5>
 
 
-                    <p class="light black-text">Simple Verification and prescription fill requests from all doctors and patients.</p>
+                    <p class="light black-text center-align">Simple Verification and prescription fill requests from all doctors and patients.</p>
                 </div>
             </div>
 
@@ -57,7 +61,7 @@
                     <h2 class="center black-text"><i class="fas fa-users"></i></h2>
                     <h5 class="center">Patients</h5>
 
-                    <p class="light black-text">Easily track and request refills for all your prescriptions in your patient dashboard.</p>
+                    <p class="light black-text center-align">Easily track and request refills for all your prescriptions in your patient dashboard.</p>
                 </div>
             </div>
         </div>
@@ -83,7 +87,7 @@
         <div class="row">
             <div class="col s12 right">
                 <h3><i class="mdi-content-send brown-text"></i></h3>
-                <h4>What it is</h4>
+                <h4>What is Pharmhands?</h4>
                 <p class="left-align light">PharmHands is an all-in-one pharmacy database manager for doctors, pharmacists and patients. The application provides workflows for each of 3 types of users to simulate the process of receiving a prescription for a medication, having a pharmacist verify and fill the prescription and a patient being able to see their prescription ready for pickup. Using Spring Boot as our back-end framework, we are able to combine Thymeleaf HTML templates, MySQL database tables and external JavaScript to create an MVC architecture application. SendGrid is utilized for our email service and the application and database are deployed via DigitalOcean’s cloud service.
 
                 </p>
@@ -105,31 +109,27 @@
     <div class="parallax"><img src="img/health.jpg" alt="Unsplashed background img 3"></div>
 </div>
 
-<footer class="page-footer orange">
+<footer class="page-footer orange" style="margin-bottom: 0px;">
     <div class="container">
         <div class="row">
-<!--            <div class="col l6 s12">-->
+            <div class="col l6 s12">
                 <h5 class="black-text">Get to know us !</h5>
-                <div class="fixed-action-btn horizontal click-to-toggle direction-left" style="bottom: 45px; right: 24px;">
-                   <a class="btn-floating btn-large red">
-                        <i class="large material-icons">Rod</i>
-                    </a>
-                    <ul>
-                        <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-                        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-                        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-                        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-                    </ul>
-                </div>
-<!--                <p class="grey-text text-lighten-4"></p>-->
-<!--                <ul>-->
-<!--                    <li><a class="black-text" href="">James Gemes</a></li>-->
-<!--                   -->
+                <p class="grey-text text-lighten-4"></p>
+                <ul>
+                    <li><a class="black-text" href="">James Gemes</a></li>
+                    <div class="fixed-action-btn">
+                        <ul>
+                            <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+                            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+                            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+                            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+                        </ul>
+                    </div>
 
-<!--                    <li><a class="black-text" href="">Rod Sananti</a></li>-->
-<!--                    <li><a class="black-text" href="">Jaya Seyyadri</a></li>-->
-<!--                    <li><a class="black-text" href="">Josiah Cutberth</a></li>-->
-<!--                </ul>-->
+                    <li><a class="black-text" href="">Rod Sananti</a></li>
+                    <li><a class="black-text" href="">Jaya Seyyadri</a></li>
+                    <li><a class="black-text" href="">Josiah Cutberth</a></li>
+                </ul>
 
             </div>
 
@@ -139,32 +139,22 @@
 <!--            </div>-->
         </div>
     </div>
-<!--    <div class="footer-copyright">-->
-<!--        <div class="container">-->
-<!--             <p class="black-text text-lighten-3"> Made by Team PharmHands</p>-->
-<!--        </div>-->
-<!--    </div>-->
 </footer>
 
 <!--  Scripts-->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <div th:replace="partials/scripts :: scripts"></div>
-<script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="/js/materialize.js"></script>
-<script type="text/javascript" src="/js/init.js"></script>
 <script>$(document).ready(function(){
     $('.parallax').parallax();
-    $('.fixed-action-btn').floatingActionButton();
-
 });</script>
 <script>
     $(document).ready(function(){
         $('.sidenav').sidenav();
     });
-
-    // $(document).ready(function (){
-    //     $(".dropdown-trigger").dropdown();
-    // });
 </script>
+
 
 </body>
 </html>
