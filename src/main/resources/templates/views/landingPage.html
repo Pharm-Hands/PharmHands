@@ -5,6 +5,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head2 :: head-section2">
 <script src="https://kit.fontawesome.com/5779c08c81.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../js/footerStyle">
 
 </head>
 <body>
@@ -109,36 +110,15 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <div class="parallax"><img src="img/health.jpg" alt="Unsplashed background img 3"></div>
 </div>
 
-<footer class="footer orange" style="margin-bottom: 0px;">
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                <h5 class="black-text">Get to know us !</h5>
-                <p class="grey-text text-lighten-4"></p>
+<footer class="footer orange " >
+    <div class="footer-copyright">
+        <div class="left-align " style="margin-left: 2px" >
+           <span> © 2021 -Your health is in safe hands!</span>
+         </div>
 
-                     <p class="black-text center-align"><a>James Gemes</a>
-                         <i class="fa fa-linkedin circle light-blue darken-4"><a class=" icon "href="https://www.linkedin.com/in/james-gemes/"> LinkedIn</a></i>
-                        <a class="black-text "href="https://github.com/JamesCGemes" > Github</a>
-                        <a class="black-text "href="#"> Alumni Portal</a>
-                     </p>
-                <p class="black-text center-align" ><a>Jaya Seyyadri</a>
-                    <a class="black-text " href=""> LinkedIn</a>
-                    <a class="black-text "href="" > Github</a>
-                    <a class="black-text " href="#"> Alumni Portal</a>
-                </p>
-                <p class="black-text center-align"><a>Rod Sanati</a>
-                    <a class="black-text " href="https://www.linkedin.com/in/rod-sanati/"> LinkedIn</a>
-                    <a class="black-text " href="https://github.com/Rod-S" > Github</a>
-                    <a  class="black-text "href="#"> Alumni Portal</a>
-                </p>
-                <p class="black-text center-align"><a>Joe Cuthbert</a>
-                    <a class="black-text "href="https://www.linkedin.com/in/josiah-cuthbert/"> LinkedIn</a>
-                    <a class="black-text " href="https://github.com/JosiahCuthbert" > Github</a>
-                    <a class="black-text "href="#"> Alumni Portal</a>
-                </p>
-
-            </div>
-
+         <div class="right-align" style="margin-right: 2px">
+            <a class="grey-text text-lighten-4 right-align" th:href="@{/about}"><span class="black-text" >Checkout Your Developers!</span>
+           </a>
         </div>
     </div>
 </footer>
