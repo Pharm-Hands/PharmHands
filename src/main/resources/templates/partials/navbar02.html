@@ -1,118 +1,112 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org"-->
-<!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">-->
-<!--    <title>Navbar</title>-->
-<!--</head>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-<!--<body>-->
-<!--    <nav th:fragment="navbar" class="black">-->
-<!--        <div class="nav-wrapper">-->
-<!--            <a href="#!" class="brand-logo">Logo</a>-->
-<!--            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>-->
-<!--            <ulright hide-on-med-and-down sec:authorize="isAuthenticated()" >-->
-<!--                <li th:if="${user} != null">-->
-<!--                    <a th:if="${user.getRole().getId()} == 1" th:href="@{/doctorProfile/{id}(id=${user.getId()})}">-->
-<!--                        &lt;!&ndash;                        <a th:href="@{/doctorProfile/{id}(id=${user.getId()})}">&ndash;&gt;-->
-<!--                        <span th:text="|${user.getUsername()}'s Profile|"></span>-->
-<!--                    </a>-->
-<!--                    &lt;!&ndash;                        <a th:href="@{/pharmacistProfile/{id}(id=${user.getId()})}">&ndash;&gt;-->
-<!--                    <a th:if="${user.getRole().getId()} == 3" th:href="@{/pharmacistProfile/{id}(id=${user.getId()})}">-->
-<!--                        <span th:text="|${user.getUsername()}'s Profile|"></span>-->
-<!--                    </a>-->
-<!--                    &lt;!&ndash;                        <a th:href="@{/patientProfile/{id}(id=${user.getId()})}">&ndash;&gt;-->
-<!--                    <a th:if="${user.getRole().getId()} == 2" th:href="@{/patientProfile/{id}(id=${user.getId()})}">-->
-<!--                        <span th:text="|${user.getUsername()}'s Profile|"></span>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <a th:href="@{/}">-->
-<!--                        <span th:text="Home"></span>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <a th:href="@{/about}">-->
-<!--                        <span th:text="About"></span>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--            <ul sec:authorize="!isAuthenticated()">-->
-<!--                <li><a href="/login">Login</a></li>-->
-<!--            </ul>-->
-<!--            <ul sec:authorize="!isAuthenticated()">-->
-<!--                <li><a href="/register">Register</a></li>-->
-<!--            </ul>-->
-<!--            <ul sec:authorize="isAuthenticated()">-->
-<!--                <li>-->
-<!--                    <form th:action="@{/logout}" th:method="post" th:hidden="true" name="logoutForm">-->
-<!--                        <input type="submit" value="Logout"/>-->
-<!--                    </form>-->
-<!--                    <a href="javascript: document.logoutForm.submit()">Logout</a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--            </ul>-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
 
-<!--        </div>-->
-<!--    </nav>-->
+<body>
+        <section th:fragment="navbar" >
+        <nav >
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo right"><img src="../../img/Pharm-Hands-clear.png" width="150" height="60"></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                        <!--  Desktop view -->
+                <ul class="hide-on-med-and-down" sec:authorize="isAuthenticated()" >
+                    <li th:if="${user} != null">
+                        <a th:if="${user.getRole().getId()} == 1" th:href="@{/doctorProfile/{id}(id=${user.getId()})}">
+                            <span th:text="|${user.getUsername()}'s Profile|"></span>
+                        </a>
+                        <a th:if="${user.getRole().getId()} == 3" th:href="@{/pharmacistProfile/{id}(id=${user.getId()})}">
+                            <span th:text="|${user.getUsername()}'s Profile|"></span>
+                        </a>
+                        <a th:if="${user.getRole().getId()} == 2" th:href="@{/patientProfile/{id}(id=${user.getId()})}">
+                            <span th:text="|${user.getUsername()}'s Profile|"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/}">
+                            <span th:text="Home"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/about}">
+                            <span th:text="About"></span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="hide-on-med-and-down" sec:authorize="!isAuthenticated()">
+                    <li><a href="/login">Login</a></li>
+                </ul>
+                <ul class="hide-on-med-and-down" sec:authorize="!isAuthenticated()">
+                    <li><a href="/register">Register</a></li>
+                </ul>
+                <ul class="hide-on-med-and-down" sec:authorize="isAuthenticated()">
+                    <li>
+                        <form th:action="@{/logout}" th:method="post" th:hidden="true" name="logoutForm">
+                            <input type="submit" value="Logout"/>
+                        </form>
+                        <a href="javascript: document.logoutForm.submit()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--Side nav for mobile view-->
+        <ul class="sidenav" id="mobile-demo">
+            <ul sec:authorize="isAuthenticated()">
+                <li th:if="${user} != null">
+                    <a th:if="${user.getRole().getId()} == 1" th:href="@{/doctorProfile/{id}(id=${user.getId()})}">
+                        <!--                        <a th:href="@{/doctorProfile/{id}(id=${user.getId()})}">-->
+                        <span th:text="|${user.getUsername()}'s Profile|"></span>
+                    </a>
+                    <!--                        <a th:href="@{/pharmacistProfile/{id}(id=${user.getId()})}">-->
+                    <a th:if="${user.getRole().getId()} == 3" th:href="@{/pharmacistProfile/{id}(id=${user.getId()})}">
+                        <span th:text="|${user.getUsername()}'s Profile|"></span>
+                    </a>
+                    <!--                        <a th:href="@{/patientProfile/{id}(id=${user.getId()})}">-->
+                    <a th:if="${user.getRole().getId()} == 2" th:href="@{/patientProfile/{id}(id=${user.getId()})}">
+                        <span th:text="|${user.getUsername()}'s Profile|"></span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/}">
+                        <span th:text="Home"></span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/about}">
+                        <span th:text="About"></span>
+                    </a>
+                </li>
+            </ul>
 
-<!--    <ul class="sidenav" id="mobile-demo">-->
-<!--        <ul sec:authorize="isAuthenticated()">-->
-<!--            <li th:if="${user} != null">-->
-<!--                <a th:if="${user.getRole().getId()} == 1" th:href="@{/doctorProfile/{id}(id=${user.getId()})}">-->
-<!--                    &lt;!&ndash;                        <a th:href="@{/doctorProfile/{id}(id=${user.getId()})}">&ndash;&gt;-->
-<!--                    <span th:text="|${user.getUsername()}'s Profile|"></span>-->
-<!--                </a>-->
-<!--                &lt;!&ndash;                        <a th:href="@{/pharmacistProfile/{id}(id=${user.getId()})}">&ndash;&gt;-->
-<!--                <a th:if="${user.getRole().getId()} == 3" th:href="@{/pharmacistProfile/{id}(id=${user.getId()})}">-->
-<!--                    <span th:text="|${user.getUsername()}'s Profile|"></span>-->
-<!--                </a>-->
-<!--                &lt;!&ndash;                        <a th:href="@{/patientProfile/{id}(id=${user.getId()})}">&ndash;&gt;-->
-<!--                <a th:if="${user.getRole().getId()} == 2" th:href="@{/patientProfile/{id}(id=${user.getId()})}">-->
-<!--                    <span th:text="|${user.getUsername()}'s Profile|"></span>-->
-<!--                </a>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--                <a th:href="@{/}">-->
-<!--                    <span th:text="Home"></span>-->
-<!--                </a>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--                <a th:href="@{/about}">-->
-<!--                    <span th:text="About"></span>-->
-<!--                </a>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--        <ul sec:authorize="!isAuthenticated()">-->
-<!--            <li><a href="/login">Login</a></li>-->
-<!--        </ul>-->
-<!--        <ul sec:authorize="!isAuthenticated()">-->
-<!--            <li><a href="/register">Register</a></li>-->
-<!--        </ul>-->
-<!--        <ul sec:authorize="isAuthenticated()">-->
-<!--            <li>-->
-<!--                <form th:action="@{/logout}" th:method="post" th:hidden="true" name="logoutForm">-->
-<!--                    <input type="submit" value="Logout"/>-->
-<!--                </form>-->
-<!--                <a href="javascript: document.logoutForm.submit()">Logout</a>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </ul>-->
+            <ul sec:authorize="!isAuthenticated()">
+                <li><a href="/login">Login</a></li>
+            </ul>
+            <ul sec:authorize="!isAuthenticated()">
+                <li><a href="/register">Register</a></li>
+            </ul>
+            <ul sec:authorize="isAuthenticated()">
+                <li>
+                    <form th:action="@{/logout}" th:method="post" th:hidden="true" name="hambuger">
+                        <input type="submit" value="Logout"/>
+                    </form>
+                    <a href="javascript: document.hambuger.submit()">Logout</a>
+                </li>
+            </ul>
+        </ul>
 
-<!--    </ul>-->
+        </section>
 
 
-<!--    <div th:replace="partials/scripts :: scripts"></div>-->
-<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
-<!--<script>-->
-<!--    $(document).ready(function(){-->
-<!--        $('.sidenav').sidenav();-->
-<!--    });-->
 
-<!--    // $(document).ready(function (){-->
-<!--    //     $(".dropdown-trigger").dropdown();-->
-<!--    // });-->
-<!--</script>-->
-<!--</body>-->
-<!--</html>-->
+
+
+</body>
+</html>
+
+
