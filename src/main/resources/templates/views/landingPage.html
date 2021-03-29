@@ -108,27 +108,28 @@
 <footer class="page-footer orange">
     <div class="container">
         <div class="row">
-            <div class="col l6 s12">
+<!--            <div class="col l6 s12">-->
                 <h5 class="black-text">Get to know us !</h5>
-                <p class="grey-text text-lighten-4"></p>
-                <ul>
-                    <li><a class="black-text" href="">James Gemes</a></li>
-                    <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large red">
-                            <i class="large material-icons">mode_edit</i>
-                        </a>
-                        <ul>
-                            <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-                            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-                            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-                            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-                        </ul>
-                    </div>
+                <div class="fixed-action-btn horizontal click-to-toggle direction-left" style="bottom: 45px; right: 24px;">
+                   <a class="btn-floating btn-large red">
+                        <i class="large material-icons">Rod</i>
+                    </a>
+                    <ul>
+                        <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+                        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+                        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+                        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+                    </ul>
+                </div>
+<!--                <p class="grey-text text-lighten-4"></p>-->
+<!--                <ul>-->
+<!--                    <li><a class="black-text" href="">James Gemes</a></li>-->
+<!--                   -->
 
-                    <li><a class="black-text" href="">Rod Sananti</a></li>
-                    <li><a class="black-text" href="">Jaya Seyyadri</a></li>
-                    <li><a class="black-text" href="">Josiah Cutberth</a></li>
-                </ul>
+<!--                    <li><a class="black-text" href="">Rod Sananti</a></li>-->
+<!--                    <li><a class="black-text" href="">Jaya Seyyadri</a></li>-->
+<!--                    <li><a class="black-text" href="">Josiah Cutberth</a></li>-->
+<!--                </ul>-->
 
             </div>
 
@@ -152,6 +153,8 @@
 <script type="text/javascript" src="/js/init.js"></script>
 <script>$(document).ready(function(){
     $('.parallax').parallax();
+    $('.fixed-action-btn').floatingActionButton();
+
 });</script>
 <script>
     $(document).ready(function(){
