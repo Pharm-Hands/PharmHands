@@ -51,7 +51,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="prescription : ${prescriptions}" class="prescription table-body" th:href="@{/prescription/{id}(id=${prescription.id})}">
+                        <tr th:unless="${p.index > 4}" th:each="prescription, p : ${prescriptions}" class="prescription table-body" th:href="@{/prescription/{id}(id=${prescription.id})}">
                             <td class="rx-drug-name" th:text="${prescription.drug.drug_name}">"</td>
                             <td class="rx-created" th:text="${prescription.created_at}">"</td>
                             <td class="rx-verified" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
@@ -61,7 +61,7 @@
 
                     </table>
                 </div>
-                <div th:if="${#lists.size(prescriptions) > 4}">
+                <div th:if="${#lists.size(prescriptions) > 5}">
                     <br>
                     <a th:href="@{/prescription-list}" class="btn orange  waves-effect waves-light">View All Prescriptions</a>
                 </div>

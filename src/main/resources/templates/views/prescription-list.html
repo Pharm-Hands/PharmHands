@@ -22,6 +22,7 @@
                             <th class="heading-rx-created center-align">CREATED AT</th>
                             <th class="heading-rx-verified center-align">VERIFIED</th>
                             <th class="heading-rx-patient-name center-align">PATIENT</th>
+                            <th th:if="${user.role.role_name} == ROLE_PATIENT"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -30,22 +31,32 @@
                             <td class="rx-created" th:text="${prescription.created_at}">"</td>
                             <td class="rx-verified" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
                             <td class="rx-patient-name" th:text="${prescription.getPatient().getFullName()}"></td>
+                            <td th:if="${user.role.role_name} == ROLE_PATIENT">
+                                <a class="request-btn waves-effect waves-light orange btn" th:href="@{/prescription-request/{id}(id=${prescription.id})}">Request Fill</a>
+                            </td>
+
                         </tr>
                         </tbody>
 
                     </table>
                 </div>
-                <div>
+                <div th:if="${user.role.role_name} == ROLE_DOCTOR">
                     <br>
-                    <a th:if="${user.role.role_name} == ROLE_PATIENT" th:href="@{/patientProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><= Return to Profile</a>
-                    <a th:if="${user.role.role_name} == ROLE_PHARMACIST" th:href="@{/pharmacistProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><= Return to Profile</a>
-                    <a th:if="${user.role.role_name} == ROLE_DOCTOR" th:href="@{/doctorProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><= Return to Profile</a>
+                    <a th:href="@{/doctorProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
                 </div>
+                <div th:if="${user.role.role_name} == ROLE_PATIENT">
+                    <br>
+                    <a th:href="@{/patientProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                </div>
+                <div th:if="${user.role.role_name} == ROLE_PHARMACIST">
+                    <br>
+                    <a th:href="@{/pharmacistProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                </div>
+
+
             </div>
         </div>
     </div>
-</div>
-
 </div>
 <div th:replace="partials/scripts :: scripts"></div>
 <script type="text/javascript" src="/js/prescriptionSort.js"></script>
@@ -54,6 +65,10 @@
         $('.prescription').click(function () {
             window.location = $(this).attr('href');
             return false;
+        });
+
+        $(".request-btn").click(function(e){
+            e.stopPropagation();
         });
     });
 </script>

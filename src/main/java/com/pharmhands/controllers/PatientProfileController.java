@@ -44,6 +44,8 @@ public class PatientProfileController {
     public String patientProfileView(@PathVariable long id, Model model){
         model.addAttribute("patient",userDao.getOne(id));
         model.addAttribute("patientInfo", patientDao.findByUser(userDao.getOne(id)));
+        model.addAttribute("prescriptions", prescriptionsDao.findAllByPatientId(id));
+
 //        model.addAttribute("prescriber",prescriptionsDao.getOne(id));
         return "views/patient/patientProfile";
     }

@@ -209,22 +209,22 @@ public class JoeController {
     @GetMapping("/prescription-list")
     public String prescriptionList(Model model){
         User user = userService.loggedInUser();
-        model.addAttribute("user", user);
-
         List<Prescriptions> prescriptionsList = null;
-
 
         switch (userService.loggedInUser().getRole().getRole_name()){
             case "ROLE_PATIENT":
                 prescriptionsList = prescriptionsDao.findAllByPatientId(user.getId());
+                break;
             case "ROLE_PHARMACIST":
                 prescriptionsList =  prescriptionsDao.findAll();
+                break;
             case "ROLE_DOCTOR":
                 prescriptionsList =  prescriptionsDao.findAllByPrescriberId(user.getId());
+                break;
         }
 
         model.addAttribute("prescriptions", prescriptionsList);
-
+        model.addAttribute("user", user);
         return "views/prescription-list";
     }
 

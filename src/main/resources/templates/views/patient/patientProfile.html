@@ -68,25 +68,26 @@
                                 <th class="center-align">VERIFIED</th>
                                 <th class="center-align">DOCTOR</th>
 <!--                                <th class="center-align">test</th>-->
-                                <th class="center-align">VIEW REQUESTS</th>
+                                <th class="center-align"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="prescription : ${patient.prescriptions}" class="table-body">
-                                <td th:text="${prescription.drug.drug_name}">"</td>
-                                <td th:text="${prescription.created_at}">"</td>
-                                <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
-                                <td th:text="${prescription.doctor.fullName}"></td>
-                                <td th:text="${prescription.days_supply}"></td>
-<!--                                <td th:if="${prescription.created_at}.before(${#temporals.createNow().minus(${prescription.days_supply})})">-->
-<!--                                    <a class="pRequest waves-effect waves-light orange btn" th:href="@{/prescription-request/{id}(id=${prescription.id})}">Request Fill</a>-->
-<!--                                </td>-->
+                            <tr th:unless="${p.index > 4}" th:each="prescription, p : ${prescriptions}" class="table-body prescription" th:href="@{/prescription/{id}(id=${prescription.id})}">
+                                <td class="link" th:text="${prescription.drug.drug_name}">"</td>
+                                <td class="link" th:text="${prescription.created_at}">"</td>
+                                <td class="link" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
+                                <td class="link" th:text="${prescription.doctor.fullName}"></td>
+<!--                                <td th:text="${prescription.days_supply}"></td>-->
+<!--                                th:if="${prescription.created_at}.before(${#temporals.createNow().minus(${prescription.days_supply})})"-->
+                                <td>
+                                    <a class="pRequest waves-effect waves-light orange btn request-btn" th:href="@{/prescription-request/{id}(id=${prescription.id})}">Request Fill</a>
+                                </td>
                             </tr>
                         </tbody>
 
                     </table>
                 </div>
-                <div th:if="${#lists.size(patient.prescriptions) > 4}">
+                <div th:if="${#lists.size(patient.prescriptions) > 5}">
                     <br>
                     <a th:href="@{/prescription-list}" class="btn orange  waves-effect waves-light">View All Prescriptions</a>
                 </div>
@@ -105,6 +106,15 @@
             $('.modal').modal();
             $('.modal').modal('open');
         }
+
+        $('.prescription').click(function () {
+            window.location = $(this).attr('href');
+            return false;
+        });
+
+        $(".request-btn").click(function(e){
+            e.stopPropagation();
+        });
 
     })
 
