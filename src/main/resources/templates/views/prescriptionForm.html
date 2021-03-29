@@ -10,6 +10,8 @@
     <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
         <form th:action="@{/doctorProfile/prescription-create}" method="POST">
             <div class="card-content #757575">
+                <span class="card-title center-align"><u>New Rx Form</u></span>
+
                 <div class="row" th:object="${prescription}">
                     <div class="card-content #757575">
                         <span class="card-title center-align">Patient Information</span>
