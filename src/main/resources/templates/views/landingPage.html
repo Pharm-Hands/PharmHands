@@ -12,12 +12,12 @@
     <div class="section no-pad-bot">
         <div class="welcome container white">
             <br><br>
-            <h1 class="header center black-text">Welcome to Pharm Hands</h1>
+            <h1 class="header center black-text">Welcome to PharmHands</h1>
             <div class="row center">
                 <h5 class="header col s12 black-text">An all-in-one pharmacy database manager for doctors, pharmacists and patients.</h5>
             </div>
             <div class="row center">
-                <a href="@{/register}" id="register-button" class="btn-large waves-effect waves-light orange black-text">Register</a>
+                <a th:href="@{/register}" id="register-button" class="btn-large waves-effect waves-light orange black-text">Register</a>
             </div>
             <br><br>
         </div>
@@ -38,7 +38,7 @@
                     <h5 class="center">Doctors</h5>
 
 
-                    <p class="light black-text">Write prescriptions for your patients with little to no effort. Keep track of all records within your profile dashboard.</p>
+                    <p class="light black-text center-align">Write prescriptions for your patients with little to no effort. Keep track of all records within your profile dashboard.</p>
                 </div>
             </div>
 
@@ -48,7 +48,7 @@
                     <h5 class="center">Pharmacists</h5>
 
 
-                    <p class="light black-text">Simple Verification and prescription fill requests from all doctors and patients.</p>
+                    <p class="light black-text center-align">Simple Verification and prescription fill requests from all doctors and patients.</p>
                 </div>
             </div>
 
@@ -57,7 +57,7 @@
                     <h2 class="center black-text"><i class="fas fa-users"></i></h2>
                     <h5 class="center">Patients</h5>
 
-                    <p class="light black-text">Easily track and request refills for all your prescriptions in your patient dashboard.</p>
+                    <p class="light black-text center-align">Easily track and request refills for all your prescriptions in your patient dashboard.</p>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
         <div class="row">
             <div class="col s12 right">
                 <h3><i class="mdi-content-send brown-text"></i></h3>
-                <h4>What it is</h4>
+                <h4>What is Pharmhands?</h4>
                 <p class="left-align light">PharmHands is an all-in-one pharmacy database manager for doctors, pharmacists and patients. The application provides workflows for each of 3 types of users to simulate the process of receiving a prescription for a medication, having a pharmacist verify and fill the prescription and a patient being able to see their prescription ready for pickup. Using Spring Boot as our back-end framework, we are able to combine Thymeleaf HTML templates, MySQL database tables and external JavaScript to create an MVC architecture application. SendGrid is utilized for our email service and the application and database are deployed via DigitalOcean’s cloud service.
 
                 </p>
@@ -105,7 +105,7 @@
     <div class="parallax"><img src="img/health.jpg" alt="Unsplashed background img 3"></div>
 </div>
 
-<footer class="page-footer orange">
+<footer class="page-footer orange" style="margin-bottom: 0px;">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
@@ -114,9 +114,6 @@
                 <ul>
                     <li><a class="black-text" href="">James Gemes</a></li>
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large red">
-                            <i class="large material-icons">mode_edit</i>
-                        </a>
                         <ul>
                             <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
                             <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>

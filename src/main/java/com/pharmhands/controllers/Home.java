@@ -39,9 +39,6 @@ class Home {
 
     @GetMapping("/about")
     public String aboutPage(Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("user", user);
-        System.out.println(user.getRole().getId());
         return "views/about";
     }
 
