@@ -5,8 +5,15 @@
     <title>Profile Page</title>
 </head>
 <body>
-<div id="request-message" th:if="${requestMessage} != null" th:text="${requestMessage}" style="display: none"></div>
-
+<div th:if="${requestMessage} != null" id="modal" class="modal">
+    <div class="modal-content">
+        <h4>Prescription Fill Request</h4>
+        <p id="request-alert" th:text="${requestMessage}"></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
+</div>
 <div class="container">
     <div class="profile-card">
         <div class="row">
@@ -60,20 +67,29 @@
                                 <th class="center-align">CREATED AT</th>
                                 <th class="center-align">VERIFIED</th>
                                 <th class="center-align">DOCTOR</th>
-                                <th class="center-align">VIEW REQUESTS</th>
+<!--                                <th class="center-align">test</th>-->
+                                <th class="center-align"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="prescription : ${patient.prescriptions}" class="table-body">
-                                <td th:text="${prescription.drug.drug_name}">"</td>
-                                <td th:text="${prescription.created_at}">"</td>
-                                <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
-                                <td th:text="${prescription.doctor.fullName}"></td>
-                                <td><a class="pRequest waves-effect waves-light orange btn" th:href="@{/prescription-request/{id}(id=${prescription.id})}">Request Fill</a></td>
+                            <tr th:unless="${p.index > 4}" th:each="prescription, p : ${prescriptions}" class="table-body prescription" th:href="@{/prescription/{id}(id=${prescription.id})}">
+                                <td class="link" th:text="${prescription.drug.drug_name}">"</td>
+                                <td class="link" th:text="${prescription.created_at}">"</td>
+                                <td class="link" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
+                                <td class="link" th:text="${prescription.doctor.fullName}"></td>
+<!--                                <td th:text="${prescription.days_supply}"></td>-->
+<!--                                th:if="${prescription.created_at}.before(${#temporals.createNow().minus(${prescription.days_supply})})"-->
+                                <td>
+                                    <a class="pRequest waves-effect waves-light orange btn request-btn" th:href="@{/prescription-request/{id}(id=${prescription.id})}">Request Fill</a>
+                                </td>
                             </tr>
                         </tbody>
 
                     </table>
+                </div>
+                <div th:if="${#lists.size(patient.prescriptions) > 5}">
+                    <br>
+                    <a th:href="@{/prescription-list}" class="btn orange  waves-effect waves-light">View All Prescriptions</a>
                 </div>
             </div>
         </div>
@@ -83,13 +99,22 @@
 
 <div th:replace="partials/scripts :: scripts"></div>
 <script>
-    $(document).ready(function () {
-        let msg = $("#request-message").text();
+    $(document).ready(function(){
+        let msg = $("#request-alert").text();
 
-        if (msg.length) {
-            alert(msg)
+        if(msg.length){
+            $('.modal').modal();
+            $('.modal').modal('open');
         }
-        $('#msg').trigger('autoresize');
+
+        $('.prescription').click(function () {
+            window.location = $(this).attr('href');
+            return false;
+        });
+
+        $(".request-btn").click(function(e){
+            e.stopPropagation();
+        });
 
     })
 

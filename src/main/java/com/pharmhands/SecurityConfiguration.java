@@ -64,11 +64,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/pharmacistProfile/?", "/pharmacistProfile/?/*", "/prescription/?*", "/prescription/*")
                 .hasRole("PHARMACIST")
-//              Prescription View
+//              Prescriptions
                 .and()
                 .authorizeRequests()
-                .antMatchers("/prescription/?*")
-                .hasAnyRole("PHARMACIST", "DOCTOR")
+                .antMatchers("/prescription-list*", "/prescription/?*")
+                .hasAnyRole("PHARMACIST", "DOCTOR", "PATIENT")
         ;
     }
 }

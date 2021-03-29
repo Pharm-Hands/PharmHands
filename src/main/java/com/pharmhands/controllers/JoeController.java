@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Date;
 import java.util.Calendar;
+import java.util.List;
 
 @Controller
 public class JoeController {
@@ -203,5 +204,36 @@ public class JoeController {
         requestsDao.save(request);
         redir.addFlashAttribute("requestMessage", "You have successfully requested a fill for your prescription of " + prescriptionsDao.getOne(prescriptionId).getDrug().getDrug_name() + "!");
         return "redirect:/patientProfile/" + userService.loggedInUser().getId();
+    }
+
+    @GetMapping("/prescription-list")
+    public String prescriptionList(Model model){
+        User user = userService.loggedInUser();
+        List<Prescriptions> prescriptionsList = null;
+
+        switch (userService.loggedInUser().getRole().getRole_name()){
+            case "ROLE_PATIENT":
+                prescriptionsList = prescriptionsDao.findAllByPatientId(user.getId());
+                break;
+            case "ROLE_PHARMACIST":
+                prescriptionsList =  prescriptionsDao.findAll();
+                break;
+            case "ROLE_DOCTOR":
+                prescriptionsList =  prescriptionsDao.findAllByPrescriberId(user.getId());
+                break;
+        }
+
+        model.addAttribute("prescriptions", prescriptionsList);
+        model.addAttribute("user", user);
+        return "views/prescription-list";
+    }
+
+    @GetMapping("/request-list")
+    public String requestList(Model model){
+        User user = userService.loggedInUser();
+        model.addAttribute("user", user);
+        model.addAttribute("requests", requestsDao.findAllUnfulfilled());
+
+        return "views/request-list";
     }
 }

@@ -5,7 +5,18 @@
 </head>
 <nav th:replace="partials/navbar02 :: navbar"></nav>
 <body>
-<div id="fill-alert" th:if="${fillMessage} != null" th:text="${fillMessage}" style="display: none"></div>
+<!--<div th:if="${fillMessage} != null" th:text="${fillMessage}" ></div>-->
+
+<div th:if="${fillMessage} != null" id="modal" class="modal">
+    <div class="modal-content">
+        <h4>Prescription Fill</h4>
+        <p id="fill-alert" th:text="${fillMessage}"></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
+</div>
+
 <div class="container">
 
     <div class="row">
@@ -51,6 +62,19 @@
                     <label for="strength">Strength</label>
                     <p id="strength" th:text="${prescription.drug_Strength}"></p>
                     <hr>
+                    <br>
+                    <div th:if="${user.role.role_name} == ROLE_DOCTOR">
+                        <br>
+                        <a th:href="@{/doctorProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                    </div>
+                    <div th:if="${user.role.role_name} == ROLE_PATIENT">
+                        <br>
+                        <a th:href="@{/patientProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                    </div>
+                    <div th:if="${user.role.role_name} == ROLE_PHARMACIST">
+                        <br>
+                        <a th:href="@{/pharmacistProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                    </div>
                 </div>
 
             </div>
@@ -108,8 +132,11 @@
         let msg = $("#fill-alert").text();
 
         if(msg.length){
-            alert(msg)
+            $('.modal').modal();
+            $('.modal').modal('open');
         }
+
+
     })
 </script>
 </body>
