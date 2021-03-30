@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head2 :: head-section2"></head>
+<head th:replace="partials/head2 :: head-section2">
+    <title></title>
+</head>
 <body>
 <nav th:replace="partials/navbar02 :: navbar"></nav>
-
+<!--<style>-->
+<!--    ul li:before{-->
+<!--        content: "\1F48A";-->
+<!--    }-->
+<!--</style>-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+<link type="text/css" rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <div th:replace="partials/scripts :: scripts"></div>
 
@@ -19,55 +29,155 @@
 <!--    </div>-->
 <!--</div>-->
 
-<div class="row">
+<div class="container">
+    <div class="section">
 
-    <div class="carousel">
-        <a class="carousel-item" href="https://www.linkedin.com/in/josiah-cuthbert/"><img src="../img/Joe.jpg">Josiah Cuthbert</a>
-        <a class="carousel-item" href="https://www.linkedin.com/in/jaya-seyyadri/"><img src="../img/Jaya.jpg" href=> Jaya Seyyadri</a>
-        <a class="carousel-item" href="https://www.linkedin.com/in/rod-sanati/"><img src="../img/Rod.jpeg" href=>Rod Sanati</a>
-        <a class="carousel-item" href="https://www.linkedin.com/in/james-gemes/"><img src="../img/James.png" href=>James Gemes</a>
-    </div>
-
-</div>
-
-
-<footer class="page-footer orange" style="margin-bottom: 0px;">
-    <div class="container">
+        <!--   Icon Section   -->
         <div class="row">
-            <div class="col l6 s12">
-                <h5 class="black-text">Company Bio</h5>
-                <p class="white-text text-lighten-4">We are a team of Codeup students working on this project</p>
+            <div class=" card col s12 m6  l3" style="margin-left: 10px">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="circle z-depth-1" src="../img/James.png" alt="picture of James" height="200" width="200" style="border-radius: 100%">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">James Gemes<i class="material-icons"></i></span>
+                    <ul>
+                        <li class="right-align" style="list-style:none "  >
+                            <a class="blue-text text-darken-3" href="https://www.linkedin.com/in/james-gemes/" ><i class="fa fa-linkedin blue-text small right-align "></i></a></li>
+
+                        <li class="right-align">
+                            <a class="black-text text-darken-3" href="https://github.com/JamesCGemes"><i class="fa fa-github small right-align"></i></a></li>
+
+                        <li class="right-align">
+                            <img class="black-text text-darken-3" src="../img/codeupLogo.png" alt="Codeup Alumni portal" height="15" width="50"><a href="https://codeup.com/jupiter/"></a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="col l3 s12">
-                <h5 class="black-text right-align">Pharm Hands On Deck:</h5>
-                <ul class="right-align">
-                    <li><a class="white-text" href="https://www.linkedin.com/in/josiah-cuthbert/">Josiah Cuthbert</a></li>
-                    <li><a class="white-text" href="https://www.linkedin.com/in/rod-sanati/">Rod Sanati</a></li>
-                    <li><a class="white-text" href="https://www.linkedin.com/in/james-gemes/">James Gemes</a></li>
-                    <li><a class="white-text" href="https://www.linkedin.com/in/jaya-seyyadri/">Jaya Seyyadri</a></li>
-                </ul>
+
+            <div class="card col s12 m6 l3" style="margin-left: 10px">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="circle z-depth-1" src="../img/Joe.jpg" alt="picture of Joe" height="200" width="200" style="border-radius: 100%" >
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Joe Cuthbert<i class="material-icons "></i></span>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title black-text text-darken-3"><i class="material-icons small right-align">close</i></span>
+                    <ul>
+                        <li class="right-align">
+                            <a class="black-text text-darken-3" href="https://www.linkedin.com/in/josiah-cuthbert/"><i class="fa fa-linkedin small right-align blue-text"></i></a></li>
+                        <li class="right-align">
+                            <a class="black-text text-darken-3" href="https://github.com/JosiahCuthbert"><i class="fa fa-github small right-align"></i></a></li>
+                        <li class="right-align">
+                            <img class="black-text text-darken-3" src="../img/codeupLogo.png" alt="codeup alumni portal" height="15" width="50"><a href="https://codeup.com/jupiter/"></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card col s12 m6 l3 " style="margin-left: 5px">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="circle z-depth-1" src="../img/Jaya.jpg" alt="picture of Jaya" height="200" width="200" style="border-radius: 100%" >
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Jaya Seyyadri<i class="material-icons"></i></span>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title black-text text-darken-4"><i class="material-icons small right-align">close</i></span>
+                    <ul>
+<!--                        <li class="right-align">-->
+<!--                            <a class="black-text text-darken-3" href="https://www.linkedin.com/in/jaya-seyyadri/"><i class="fa fa-linkedin blue-text small right-align"></i></a></li>-->
+                        <li class="right-align">
+                            <a class="black-text text-darken-3" href="https://github.com/jayaseyyadri"><i class="fa fa-github small right-align"></i></a></li>
+                        <li class="right-align">
+                            <img class="black-text text-darken-3" src="../img/codeupLogo.png" alt="codeup alumni portal"  height="15" width="50"><a href="https://codeup.com/jupiter/"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+            <div class="col s12 m3">
+                <div class="card">
+                <div class="card-image">
+                    <img class="circle z-depth-1" src="../img/Rod.jpeg" alt="picture of Rod" height="200" width="200" style="border-radius: 100%" >
+               <span>Rod Sanati</span>
+                </div>
+
+                <div class="card-action" style="padding:0">
 
 
-                <div class="col s12 16">
-                    <img class="circle z-depth-4" id="selfie" src="static/img/Jaya.jpg"  alt="Portrait image">
-
+                    <div class="fixed-action-btn horizontal" style="position:relative; float:right; bottom:35px; right:10px">
+                        <a class="btn-floating btn-large red">
+                            <i class="large material-icons">mode_edit</i>
+                        </a>
+                        <ul>
+<!--                            <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>-->
+                           <li> <a class="btn-floating blue" href="https://www.linkedin.com/in/rod-sanati/"><i class="fa fa-linkedin white-text small right-align"></i></a></li>
+                            <li><a class="btn-floating black" href="https://github.com/Rod-S"><i class="fa fa-github small right-align"></i></a></li>
+                            <li><a class="btn-floating white" href="https://codeup.com/jupiter/"><img class="black-text text-darken-3" src="../img/codeupLogo.png" alt="codeup alumni portal" height="32" width="32"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-content">  <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                </div>
                 </div>
 
 
+<!--                <div class="card-content">-->
+<!--                    <span class="card-title activator grey-text text-darken-4">Rod Sanati<i class="material-icons small"></i></span>-->
+<!--                </div>-->
+<!--                <div class="card-reveal">-->
+<!--                    <span class="card-title grey-text text-darken-4"><i class="material-icons small ">close</i></span>-->
+<!--&lt;!&ndash;                    <div class="fixed-action-btn" onclick="$('.tap-target').tapTarget('open');" >&ndash;&gt;-->
+<!--                        <a id="menu" class="btn btn-floating btn-large red"><i class="material-icons">plus_one</i></a>-->
+<!--                    </div>-->
+<!--<ul>-->
+<!--    <li class=" chip">-->
+<!--       <a href="https://www.linkedin.com/in/rod-sanati/">-->
+<!--           <i class="fa fa-linkedin blue-text small"></i></a>-->
+<!--    </li>-->
+<!--    <li class="chip">-->
+<!--        <a href="https://github.com/Rod-S">-->
+<!--            <i class="fa fa-github small "></i></a>-->
+<!--    </li>-->
+<!--    <li class="chip">-->
+<!--        <a href="https://codeup.com/jupiter/">-->
+<!--            <img class="black-text text-darken-3" src="../img/codeupLogo.png" alt="codeup alumni portal" height="32" width="32"></a>-->
+<!--    </li>-->
+<!--</ul>-->
+
+                </div>
             </div>
         </div>
     </div>
-</footer>
+</div>
 
+
+</div>
+<!--<footer class="page-footer orange" style="margin-bottom: 0;">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col l6 s12">-->
+<!--                <h5 class="black-text">Company Bio</h5>-->
+<!--                <p class="white-text text-lighten-4">We are a team of Codeup students working on this project</p>-->
+<!--            </div>-->
+<!--            <div class="col l3 s12">-->
+<!--                <h5 class="black-text right-align">Pharm Hands On Deck:</h5>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</footer>-->
 
 <!--  Scripts-->
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('.carousel').carousel();
+    $(document).ready(function() {
+        // $('.fixed-action-btn').floatingActionButton({
+        //     toolbarEnabled: true
+        // })
     });
 </script>
 
 <!--<script type="text/javascript" src="/js/rxFormValidation.js"></script>-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+
 <script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/js/materialize.js"></script>
 <script type="text/javascript" src="/js/init.js"></script>
