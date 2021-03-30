@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head-section ">
+    <title>Welcome </title>
+</head>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+
+<div class="container">
+    <div class="profile-card">
+        <div class="row">
+            <div id="fills" class="col s12 table">
+                <br>
+                <h4>Fill Requests</h4>
+
+                <div class="table-radius">
+                    <table class="centered responsive-table highlight">
+                        <thead>
+                        <tr class="white-text table-bg" style>
+                            <th class="center-align">PATIENT</th>
+                            <th class="center-align">PRESCRIPTION</th>
+                            <th class="center-align">CREATED AT</th>
+                            <th class="center-align">PATIENT NAME</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="request : ${requests}" class="requests" th:href="@{/prescription/{id}(id=${request.prescription.id})}">
+                            <td th:text="${request.patient.fullName}"></td>
+                            <td th:text="${request.prescription.drug.drug_name}"></td>
+                            <td th:text="${request.created_at}"></td>
+                            <td th:text="${request.note}"></td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <div>
+                    <br>
+                    <a th:href="@{/pharmacistProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<div th:replace="partials/scripts :: scripts"></div>
+<script type="text/javascript" src="/js/prescriptionSort.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.prescription').click(function () {
+            window.location = $(this).attr('href');
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

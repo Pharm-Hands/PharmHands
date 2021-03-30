@@ -2,38 +2,58 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/head2 :: head-section2"></head>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar02 :: navbar"></nav>
 
 
 <div th:replace="partials/scripts :: scripts"></div>
 
-<div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-        <h1 class="header center orange-text">About Us</h1>
-        <div class="row center">
-            <h5 class="header col s12 light">We're a ragtag team of devs trying to make the pharmacy world a simpler and more efficient place.</h5>
-        </div>
+<!--<div class="section no-pad-bot" id="index-banner">-->
+<!--    <div class="container">-->
+<!--        <h1 class="header center orange-text">About Us</h1>-->
+<!--        <div class="row center">-->
+<!--            <h5 class="header col s12 light white-text">We're a ragtag team of devs trying to make the pharmacy world a simpler and more efficient place.</h5>-->
+<!--        </div>-->
 
-        <br><br>
+<!--        <br><br>-->
 
+<!--    </div>-->
+<!--</div>-->
+
+<div class="row">
+
+    <div class="carousel">
+        <a class="carousel-item" href="https://www.linkedin.com/in/josiah-cuthbert/"><img src="../img/Joe.jpg">Josiah Cuthbert</a>
+        <a class="carousel-item" href="https://www.linkedin.com/in/jaya-seyyadri/"><img src="../img/Jaya.jpg" href=> Jaya Seyyadri</a>
+        <a class="carousel-item" href="https://www.linkedin.com/in/rod-sanati/"><img src="../img/Rod.jpeg" href=>Rod Sanati</a>
+        <a class="carousel-item" href="https://www.linkedin.com/in/james-gemes/"><img src="../img/James.png" href=>James Gemes</a>
     </div>
+
 </div>
 
-<footer class="page-footer orange">
+
+<footer class="page-footer orange" style="margin-bottom: 0px;">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Company Bio</h5>
-                <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+                <h5 class="black-text">Company Bio</h5>
+                <p class="white-text text-lighten-4">We are a team of Codeup students working on this project</p>
             </div>
             <div class="col l3 s12">
-                <h5 class="white-text">Pharm Hands On Deck:</h5>
-                <ul>
-                    <li><a class="white-text" href="#!">Link 1</a></li>
-                    <li><a class="white-text" href="#!">Link 2</a></li>
-                    <li><a class="white-text" href="#!">Link 3</a></li>
-                    <li><a class="white-text" href="#!">Link 4</a></li>
+                <h5 class="black-text right-align">Pharm Hands On Deck:</h5>
+                <ul class="right-align">
+                    <li><a class="white-text" href="https://www.linkedin.com/in/josiah-cuthbert/">Josiah Cuthbert</a></li>
+                    <li><a class="white-text" href="https://www.linkedin.com/in/rod-sanati/">Rod Sanati</a></li>
+                    <li><a class="white-text" href="https://www.linkedin.com/in/james-gemes/">James Gemes</a></li>
+                    <li><a class="white-text" href="https://www.linkedin.com/in/jaya-seyyadri/">Jaya Seyyadri</a></li>
                 </ul>
+
+
+                <div class="col s12 16">
+                    <img class="circle z-depth-4" id="selfie" src="static/img/Jaya.jpg"  alt="Portrait image">
+
+                </div>
+
+
             </div>
         </div>
     </div>
@@ -41,6 +61,12 @@
 
 
 <!--  Scripts-->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.carousel').carousel();
+    });
+</script>
+
 <!--<script type="text/javascript" src="/js/rxFormValidation.js"></script>-->
 <script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/js/materialize.js"></script>

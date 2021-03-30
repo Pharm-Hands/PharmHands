@@ -35,7 +35,7 @@ public class PharmacistViewController {
     @GetMapping("/pharmacistProfile/{id}")
     public String pharmacistProfileView( Model model,@PathVariable long id) {
         model.addAttribute("user", userDao.getOne(id));
-        model.addAttribute("prescriptions", prescriptionsDao.findAll());
+        model.addAttribute("prescriptions", prescriptionsDao.findAllNotDeleted());
         model.addAttribute("requests", requestDao.findAllUnfulfilled());
         return "views/pharmacist/pharmacistProfile";
     }

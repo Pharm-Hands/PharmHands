@@ -1,32 +1,125 @@
 
-@media screen and (max-width: 670px){
-    header{
-        min-height: 150px;
-    }
-}
-.section{
-    padding-top: 4vw;
-    padding-bottom: 4vw;
-}
+/*@media screen and (max-width: 670px){*/
+/*    header{*/
+/*        min-height: 150px;*/
+/*    }*/
+/*}*/
+/*.section{*/
+/*    padding-top: 4vw;*/
+/*    padding-bottom: 4vw;*/
+/*}*/
 
 .icon-black{
     color: black;
 }
-body{
-    background-color: #004181 ;
+
+.landing{
+    background-color: white;
 }
+
 
 body{
     font-family: "Roboto";
 }
 
-/*body {*/
-/*    background: url(static/img/pexels-alexandros-chatzidimos-3652750.jpg) no-repeat center center fixed;*/
-/*    -webkit-background-size: cover;*/
-/*    -moz-background-size: cover;*/
-/*    -o-background-size: cover;*/
-/*    background-size: cover;*/
+#table-bg{
+    background-color: #004181;
+}
+
+.table-bg{
+    background-color: #004181;
+}
+
+.table-body{
+    background-color: white;
+}
+h4, h5, h6{
+    color: #004181;
+}
+i.profile-icon{
+    color: #004181;
+}
+h2{
+    margin: 0;
+}
+.profile-info{
+    display: flex;
+    width:100%;
+
+}
+
+table.highlight>tbody>tr:hover {
+    background-color: #fed8b1;
+}
+
+.sub-title{
+    margin-top: 0;
+}
+.rounded{
+    border-radius: 10px;
+}
+.user-info{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.user-full{
+    margin: 0;
+}
+
+
 /*}*/
+
+/*#verify-form{*/
+/*    display: flex;*/
+/*    justify-content: space-evenly;*/
+/*}*/
+
+
+
+.welcome{
+    border-radius: 15px;
+}
+.nav-wrapper{
+    background-color: #004181;
+}
+
+
+
+p {
+    line-height: 3rem;
+}
+
+.sidenav-trigger {
+    color: #26a69a;
+}
+
+.parallax-container {
+    min-height: 380px;
+    line-height: 0;
+    height: auto;
+    color: rgba(255,255,255,.9);
+}
+.parallax-container .section {
+    width: 100%;
+}
+
+@media only screen and (max-width : 992px) {
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+    #index-banner .section {
+        top: 10%;
+    }
+}
+
+@media only screen and (max-width : 600px) {
+    #index-banner .section {
+        top: 0;
+    }
+}
+
 .icon-block {
     padding: 0 15px;
 }
@@ -34,13 +127,10 @@ body{
     font-size: inherit;
 }
 
+footer.page-footer {
+    margin: 0;
+}
 
-/*body {*/
-/*    display: flex;*/
-/*    min-height: 100vh;*/
-/*    flex-direction: column;*/
-/*}*/
-
-/*main {*/
-/*    flex: 1 0 auto;*/
-/*}*/
+.parallax{
+    filter: blur(5px);
+}

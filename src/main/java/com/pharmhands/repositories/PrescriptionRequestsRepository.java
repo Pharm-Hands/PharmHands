@@ -16,7 +16,7 @@ public interface PrescriptionRequestsRepository extends JpaRepository<Prescripti
     @Query(value="select * from PrescriptionRequests where Prescriptions.doctor.id = ?1", nativeQuery = true)
     List<PrescriptionRequests> findAllByDoctor(long id);
 
-    @Query("FROM PrescriptionRequests WHERE is_Fulfilled = 0")
+    @Query("FROM PrescriptionRequests WHERE is_Fulfilled = 0 ORDER BY created_at DESC")
     List<PrescriptionRequests> findAllUnfulfilled();
 
     @Query("FROM PrescriptionRequests WHERE prescription.id = ?1")

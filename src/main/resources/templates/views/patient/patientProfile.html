@@ -1,111 +1,123 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar02 :: navbar"></nav>
 <head th:replace="partials/head :: head-section ">
     <title>Profile Page</title>
 </head>
 <body>
-<div id="request-message" th:if="${requestMessage} != null" th:text="${requestMessage}" style="display: none"></div>
-<div class="row">
-    <div class="col s12">
-        <ul class="tabs">
-            <li class="tab col s3"><a href="#info">Patient Information</a></li>
-<!--            <li class="tab col s3>"><a href="#message">Messages</a></li>-->
-            <li class="tab col s3>"><a href="#prescrip">Your Prescriptions</a></li>
-        </ul>
+<div th:if="${requestMessage} != null" id="modal" class="modal">
+    <div class="modal-content">
+        <h4>Prescription Fill Request</h4>
+        <p id="request-alert" th:text="${requestMessage}"></p>
     </div>
-
-    <div id="info" class="col s12">
-
-        <h5 class="white-text">Your profile information</h5>
-
-        <ul class="collection">
-            <li class="collection-item avatar">
-                <span class="title">Name</span>
-                <i class="material-icons circle black">badge</i>
-                <p th:value="${patient.username}" th:name="username" th:text="${patient.username}"
-                   class="blue-text"></p>
-            </li>
-            <li class="collection-item avatar">
-                <i class="material-icons circle waves-orange">home</i>
-                <span class="title">Address</span>
-                <p th:value="${patientInfo.address}" th:name="address" th:text="${patientInfo.address}">
-            </li>
-            <li class="collection-item avatar">
-                <i class="material-icons circle pink">cake</i>
-                <span class="title">Date of Birth</span>
-                <p th:value="${patientInfo.dob}" th:name="dob" th:text="${patientInfo.dob}"></p>
-            </li>
-        </ul>
-        <a th:href="@{/patientProfile/{id}/edit(id=${patient.getId()})}" class="btn orange  waves-effect waves-light">Edit profile</a>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
     </div>
+</div>
+<div class="container">
+    <div class="profile-card">
+        <div class="row">
+            <div class="col s12 info">
+                <div class="card horizontal rounded">
+                    <div class="card-stacked">
+                        <div class="profile-info">
+                            <div class="card-image">
+                                <h2><i class="material-icons profile-icon" style="font-size:200px">group</i></h2>
+                            </div>
+                            <div class="card-content">
+                                <h4 class="user-full" th:text="${patient.fullName} + ' - ' + Patient"></h4>
+                                <h5 th:text="${patient.username}"></h5>
+                                <div class="user-info">
+                                    <div>
+                                        <h6 th:text="Phone + ': ' + ${patient.phone_number}"></h6>
+                                        <h6 th:text="Email + ': ' + ${patient.email}"></h6>
+                                    </div>
+                                    <div>
+                                        <h6 th:text="Address + ': ' + ${patientInfo.address}"></h6>
+                                        <h6>
+                                            <span th:if="${patientInfo.sex} == 'M'" th:text="Sex + ': ' + Male"></span>
+                                            <span th:unless="${patientInfo.sex} == 'M'" th:text="Sex + ': ' + Female"></span>
+                                        </h6>
+                                    </div>
+                                    <div>
+                                        <h6 th:text="DOB + ': ' + ${#dates.format(patientInfo.dob, 'dd-MMM-yyyy')}"></h6>
+                                        <h6 th:text="City + ': ' + ${patientInfo.city}"></h6>
+                                    </div>
+                                    <div>
+                                        <h6 th:text="State + ': ' + ${patientInfo.state}"></h6>
+                                        <h6 th:text="Zip + ': ' + ${patientInfo.zip}"></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <a th:href="@{/patientProfile/{id}/edit(id=${patient.getId()})}" class="btn orange  waves-effect waves-light">Edit profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="prescrip" class="col s12">
+                <h4 class="sub-title">Prescriptions</h4>
 
-<!--    <div id="message" class="col s12 white-text">-->
-<!--        <h5>Message your Pharmacist !</h5>-->
-<!--        <hr>-->
-<!--        <form th:action="@{|/patientProfile/${patient.id}|}" th:method="POST">-->
-<!--            <div class="container">-->
-<!--                <div class="row">-->
-<!--                    <div class="input-field col s12">-->
-<!--                        <span class="material-icons circle green ">app_registration</span>-->
-<!--                        <label>-->
-<!--                            <input placeholder="Subject" id="subject" type="text" class="required white-text"/>-->
-<!--                        </label>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="container">-->
-<!--                <div class="row">-->
-<!--                    <div class="input-field col s12">-->
-<!--                        <label><textarea id="msg" class="materialize-textarea white-text"-->
-<!--                                         placeholder="Your message here" data-length="300"></textarea></label>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="card-action right-align">-->
-<!--                <input type="reset" id="reset" class="btn-flat grey-text waves-effect">-->
-<!--                <input type="submit" class="btn orange  waves-effect waves-light" value="Submit">-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </div>-->
+                <div class="table-radius">
+                    <table class="centered responsive-table highlight">
+                        <thead>
+                            <tr class="white-text table-bg" style>
+                                <th class="center-align">NAME</th>
+                                <th class="center-align">CREATED AT</th>
+                                <th class="center-align">VERIFIED</th>
+                                <th class="center-align">DOCTOR</th>
+<!--                                <th class="center-align">test</th>-->
+                                <th class="center-align"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:unless="${p.index > 4}" th:each="prescription, p : ${prescriptions}" class="table-body prescription" th:href="@{/prescription/{id}(id=${prescription.id})}">
+                                <td class="link" th:text="${prescription.drug.drug_name}">"</td>
+                                <td class="link" th:text="${prescription.created_at}">"</td>
+                                <td class="link" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
+                                <td class="link" th:text="${prescription.doctor.fullName}"></td>
+<!--                                <td th:text="${prescription.days_supply}"></td>-->
+<!--                                th:if="${prescription.created_at}.before(${#temporals.createNow().minus(${prescription.days_supply})})"-->
+                                <td>
+                                    <a class="pRequest waves-effect waves-light orange btn request-btn" th:href="@{/prescription-request/{id}(id=${prescription.id})}">Request Fill</a>
+                                </td>
+                            </tr>
+                        </tbody>
 
-
-    <div id="prescrip" class="col s12">
-        <div th:each="prescription : ${patient.prescriptions}">
-            <div class="container white-text">
-                <table class="striped centered responsive-table">
-                    <tr class="black-text center-align">
-                        <th>NAME</th>
-                        <th>CREATED AT</th>
-                        <th>VERIFIED</th>
-                        <th>DOCTOR</th>
-                        <th>VIEW REQUESTS</th>
-                    </tr>
-                    <tr>
-                        <td th:text="${prescription.drug.drug_name}">"</td>
-                        <td th:text="${prescription.created_at}">"</td>
-                        <td th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
-                        <td th:text="${prescription.doctor.fullName}"></td>
-                        <td><a class="pRequest waves-effect waves-light btn"
-                               th:href="@{/prescription-request/{id}(id=${prescription.id})}">Request Fill</a></td>
-                    </tr>
-                </table>
+                    </table>
+                </div>
+                <div th:if="${#lists.size(patient.prescriptions) > 5}">
+                    <br>
+                    <a th:href="@{/prescription-list}" class="btn orange  waves-effect waves-light">View All Prescriptions</a>
+                </div>
             </div>
         </div>
     </div>
-
 </div>
+
 
 <div th:replace="partials/scripts :: scripts"></div>
 <script>
-    $(document).ready(function () {
-        let msg = $("#request-message").text();
+    $(document).ready(function(){
+        let msg = $("#request-alert").text();
 
-        if (msg.length) {
-            alert(msg)
+        if(msg.length){
+            $('.modal').modal();
+            $('.modal').modal('open');
         }
-        $('#msg').trigger('autoresize');
+
+        $('.prescription').click(function () {
+            window.location = $(this).attr('href');
+            return false;
+        });
+
+        $(".request-btn").click(function(e){
+            e.stopPropagation();
+        });
+
     })
+
 </script>
 
 

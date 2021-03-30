@@ -51,10 +51,11 @@ public class PrescriberController{
         }
 
         @PostMapping("/doctorProfile/prescription-create")
-        public String submitForm(Model model, @Valid Prescriptions prescription, Errors validation, @ModelAttribute User patient_user, @RequestParam(name = "name") String name, @RequestParam(name= "phone_number") String phone, @RequestParam(name= "drugName") String drugName){
+
+        public String submitForm(Model model, @Valid Prescriptions prescription, Errors validation, @ModelAttribute User patient_user, @RequestParam(name = "name") String name, @RequestParam(name= "drugName") String drugName){
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", user);
-            User patientUser = userDao.findByUserFullNameAndPhone(name, phone);
+            User patientUser = userDao.findByUserFullName(name);
             User doctorUser = userDao.getOne(userService.loggedInUser().getId());
         if (validation.hasErrors()) {
                 model.addAttribute("errors", validation);
@@ -102,7 +103,7 @@ public class PrescriberController{
     public String editDoctorInfoForm(Model model, @PathVariable long id){
         User user = userDao.getOne(id);
         model.addAttribute("user", user);
-        return "/views/doctor/doctorinfoedit";
+        return "views/doctor/doctorinfoedit";
     }
 
     @PostMapping("/doctorProfile/{id}/edit")
@@ -122,5 +123,4 @@ public class PrescriberController{
         return "redirect:/doctorProfile/" + id;
 
     }
-
 }

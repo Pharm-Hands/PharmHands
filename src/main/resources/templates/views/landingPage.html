@@ -1,22 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head2 :: head-section2"></head>
-<body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="partials/head2 :: head-section2">
+<script src="https://kit.fontawesome.com/5779c08c81.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../js/footerStyle">
 
-<div th:replace="partials/scripts :: scripts"></div>
+</head>
+<body>
+<nav th:replace="partials/navbar02 :: navbar"></nav>
 
-<div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-        <h1 class="header center orange-text">Welcome to Pharm Hands!</h1>
-        <div class="row center">
-            <h5 class="header col s12 light">An all-in-one pharmacy database manager for doctors, pharmacists and patients.</h5>
-        </div>
-        <div class="row center">
-            <a th:href="@{/register}" id="download-button" class="btn-large waves-effect waves-light orange">Register Now</a>
+
+
+<div id="index-banner" class="parallax-container ">
+    <div class="section no-pad-bot">
+        <div class="welcome container white">
+            <br><br>
+            <h1 class="header center black-text">Welcome to PharmHands</h1>
+            <div class="row center">
+                <h5 class="header col s12 black-text">An all-in-one pharmacy database manager for doctors, pharmacists and patients.</h5>
+            </div>
+            <div class="row center">
+                <a th:href="@{/register}" id="register-button" class="btn-large waves-effect waves-light orange black-text">Register</a>
+            </div>
+            <br><br>
         </div>
     </div>
+    <div class="top parallax"><img src="img/health.jpg" alt="Unsplashed background img 1"></div>
 </div>
 
 
@@ -27,67 +38,106 @@
         <div class="row">
             <div class="col s12 m4">
                 <div class="icon-block">
-                    <h2 class="center light-blue-text">
-                        <i style="font-size:24px" class="fa">&#xf0f0;</i></h2>
+
+                    <h2 class="center black-text"><i class="fas fa-user-md"></i></h2>
                     <h5 class="center">Doctors</h5>
 
-                    <p class="light">Write prescriptions for your patients with little to no effort. Keep track of all records within your profile dashboard.</p>
+
+                    <p class="light black-text center-align">Write prescriptions for your patients with little to no effort. Keep track of all records within your profile dashboard.</p>
                 </div>
             </div>
 
             <div class="col s12 m4">
                 <div class="icon-block">
-                    <h2 class="center light-blue-text">
-                        <i style="font-size:24px" class="fa">&#xf46b;</i></h2>
+                    <h2 class="center black-text"><i class="fas fa-prescription-bottle-alt"></i></h2>
                     <h5 class="center">Pharmacists</h5>
 
-                    <p class="light">Simple Verification and prescription fill requests from all doctors and patients.</p>
+
+                    <p class="light black-text center-align">Simple Verification and prescription fill requests from all doctors and patients.</p>
                 </div>
             </div>
 
             <div class="col s12 m4">
                 <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+                    <h2 class="center black-text"><i class="fas fa-users"></i></h2>
                     <h5 class="center">Patients</h5>
 
-                    <p class="light">Easily track and request refills for all your prescriptions in your patient dashboard.</p>
+                    <p class="light black-text center-align">Easily track and request refills for all your prescriptions in your patient dashboard.</p>
                 </div>
             </div>
         </div>
 
     </div>
-    <br><br>
 </div>
 
-<footer class="page-footer orange">
-    <div class="container">
+
+<div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row center">
+                <h5 class="header col s12 black-text"></h5>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="img/health.jpg" alt="Unsplashed background img 2"></div>
+</div>
+
+<div class="container">
+    <div class="section">
+
         <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">Company Bio</h5>
-                <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+            <div class="col s12 right">
+                <h3><i class="mdi-content-send black-text"></i></h3>
+                <h4>What is Pharmhands?</h4>
+                <p class="left-align light">PharmHands is an all-in-one pharmacy database manager for doctors, pharmacists and patients. The application provides workflows for each of 3 types of users to simulate the process of receiving a prescription for a medication, having a pharmacist verify and fill the prescription and a patient being able to see their prescription ready for pickup. Using Spring Boot as our back-end framework, we are able to combine Thymeleaf HTML templates, MySQL database tables and external JavaScript to create an MVC architecture application. SendGrid is utilized for our email service and the application and database are deployed via DigitalOcean’s cloud service.
 
-
+                </p>
             </div>
+        </div>
 
-            <div class="col l3 s12">
-                <h5 class="white-text">Pharm Hands On Deck:</h5>
-                <ul>
-                    <li><a class="white-text" href="https://www.linkedin.com/in/josiah-cuthbert/">Josiah Cuthbert</a></li>
-                    <li><a class="white-text" href="https://www.linkedin.com/in/rod-sanati/">Rod Sanati</a></li>
-                    <li><a class="white-text" href="https://www.linkedin.com/in/james-gemes/">James Gemes</a></li>
-                    <li><a class="white-text" href="https://www.linkedin.com/in/jaya-seyyadri/">Jaya Seyyadri</a></li>
-                </ul>
+    </div>
+</div>
+
+
+<div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row center">
+                <h5 class="header col s12 black-text"></h5>
             </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="img/health.jpg" alt="Unsplashed background img 3"></div>
+</div>
+
+<footer class="footer orange " >
+    <div class="footer-copyright">
+        <div class="left-align " style="margin-left: 2px" >
+           <span> © 2021 -Your health is in safe hands!</span>
+         </div>
+
+         <div class="right-align" style="margin-right: 2px">
+            <a class="grey-text text-lighten-4 right-align" th:href="@{/about}"><span class="black-text" >Checkout Your Developers!</span>
+           </a>
         </div>
     </div>
 </footer>
 
-
 <!--  Scripts-->
-<!--<script type="text/javascript" src="/js/rxFormValidation.js"></script>-->
-<script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="/js/materialize.js"></script>
-<script type="text/javascript" src="/js/init.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://kit.fontawesome.com/5779c08c81.js" crossorigin="anonymous"></script>
+<div th:replace="partials/scripts :: scripts"></div>
+<script>$(document).ready(function(){
+    $('.parallax').parallax();
+});</script>
+<script>
+    $(document).ready(function(){
+        $('.sidenav').sidenav();
+    });
+</script>
+
 
 </body>
 </html>

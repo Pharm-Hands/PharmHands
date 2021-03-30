@@ -3,9 +3,20 @@
 <head th:replace="partials/head :: head-section ">
     <title>View Single Prescription</title>
 </head>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar02 :: navbar"></nav>
 <body>
-<div id="fill-alert" th:if="${fillMessage} != null" th:text="${fillMessage}" style="display: none"></div>
+<!--<div th:if="${fillMessage} != null" th:text="${fillMessage}" ></div>-->
+
+<div th:if="${fillMessage} != null" id="modal" class="modal">
+    <div class="modal-content">
+        <h4>Prescription Fill</h4>
+        <p id="fill-alert" th:text="${fillMessage}"></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
+</div>
+
 <div class="container">
 
     <div class="row">
@@ -44,13 +55,26 @@
                     <p id="drug_form" th:text="${prescription.drug_form}"></p>
                     <hr>
                     <br>
-                    <label for="sig">Sig</label>
+                    <label for="sig">Directions</label>
                     <p id="sig" th:text="${prescription.sig}"></p>
                     <hr>
                     <br>
                     <label for="strength">Strength</label>
                     <p id="strength" th:text="${prescription.drug_Strength}"></p>
                     <hr>
+                    <br>
+                    <div th:if="${user.role.role_name} == ROLE_DOCTOR">
+                        <br>
+                        <a th:href="@{/doctorProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                    </div>
+                    <div th:if="${user.role.role_name} == ROLE_PATIENT">
+                        <br>
+                        <a th:href="@{/patientProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                    </div>
+                    <div th:if="${user.role.role_name} == ROLE_PHARMACIST">
+                        <br>
+                        <a th:href="@{/pharmacistProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                    </div>
                 </div>
 
             </div>
@@ -60,29 +84,34 @@
                 <div class="card-content black-text">
                     <span class="card-title center-align">Fills</span>
                     <hr>
-
-                    <table class="responsive-table striped #757575 grey darken-1">
-                        <tr>
-                            <th>Drug</th>
-                            <th>Fill Date</th>
-                            <th>Fill Number</th>
-                            <th>Patient</th>
-                        </tr>
-                        <tr th:each="fill : ${prescription.fills}" class="prescription" th:href="@{/prescription/{id}(id=${prescription.id})}">
-                            <td th:text="${fill.prescription.drug.drug_name}"></td>
-                            <td th:text="${fill.fill_date}">"</td>
-                            <td th:text="${fill.fill_number}"></td>
-                            <td th:text="${fill.prescription.patient.fullName}"></td>
-                        </tr>
-                    </table>
+                        <table class="centered responsive-table">
+                            <thead>
+                                <tr class="white-text table-bg" style>
+                                    <th class="center-align">DRUG</th>
+                                    <th class="center-align">FILL DATE</th>
+                                    <th class="center-align">FILL NUMBER</th>
+                                    <th class="center-align">PATIENT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="fill : ${prescription.fills}" class="prescription table-body" th:href="@{/prescription/{id}(id=${prescription.id})}">
+                                    <td th:text="${fill.prescription.drug.drug_name}"></td>
+                                    <td th:text="${fill.fill_date}">"</td>
+                                    <td th:text="${fill.fill_number}"></td>
+                                    <td th:text="${fill.prescription.patient.fullName}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     <hr>
+
+
                     <div th:if="${user.role.role_name} == ROLE_PHARMACIST">
-                        <div th:if="${prescription.is_verified} == 0">
+                        <div id="verify-form" th:if="${prescription.is_verified} == 0">
                             <form th:action="@{/prescription/{id}/verify(id=${prescription.id})}" method="post">
                                 <button class="btn orange waves-effect waves-light" type="submit">Verify Prescription</button>
-                                <form th:action="@{/prescription/{id}/verifyAndFill(id=${prescription.id})}" method="post">
-                                    <button class="btn orange waves-effect waves-light right" type="submit">Verify and Fill Prescription</button>
-                                </form>
+                            </form>
+                            <form th:action="@{/prescription/{id}/verifyAndFill(id=${prescription.id})}" method="post">
+                                <button class="btn orange waves-effect waves-light right" type="submit">Verify and Fill Prescription</button>
                             </form>
                         </div>
                         <div th:unless="${prescription.is_verified} == 0">
@@ -91,7 +120,6 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -104,8 +132,11 @@
         let msg = $("#fill-alert").text();
 
         if(msg.length){
-            alert(msg)
+            $('.modal').modal();
+            $('.modal').modal('open');
         }
+
+
     })
 </script>
 </body>

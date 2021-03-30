@@ -157,11 +157,11 @@ public class PostStartupRunner implements CommandLineRunner {
         prescription1.setDays_supply(40);
         prescription1.setDose(2);
         prescription1.setDrug(savedDrug1);
-        prescription1.setDrug_form("pill");
+        prescription1.setDrug_form("tablet");
         prescription1.setDrug_Strength(2);
         prescription1.setIs_verified(0);
         prescription1.setQuantity(4);
-        prescription1.setSig("idk what this is");
+        prescription1.setSig("Take 1 tablet by mouth once daily");
         prescription1.setIs_deleted(0);
         prescription1.setPatient(jaya);
 
@@ -173,14 +173,14 @@ public class PostStartupRunner implements CommandLineRunner {
         long d2 = System.currentTimeMillis();
         Date date2 = new Date(d2);
         prescription2.setCreated_at(date2);
-        prescription2.setDays_supply(40);
-        prescription2.setDose(2);
+        prescription2.setDays_supply(30);
+        prescription2.setDose(20);
         prescription2.setDrug(savedDrug2);
         prescription2.setDrug_form("pill");
-        prescription2.setDrug_Strength(2);
+        prescription2.setDrug_Strength(10);
         prescription2.setIs_verified(0);
-        prescription2.setQuantity(4);
-        prescription2.setSig("idk what this is");
+        prescription2.setQuantity(60);
+        prescription2.setSig("take 2 tablets by mouth daily");
         prescription2.setIs_deleted(0);
         prescription2.setPatient(james);
 

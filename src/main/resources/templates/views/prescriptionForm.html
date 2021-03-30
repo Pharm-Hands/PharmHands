@@ -3,29 +3,24 @@
 <head th:replace="partials/head :: head-section">
     <title>Create Prescription</title>
 </head>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar02 :: navbar"></nav>
 <body>
 
 <div class="valign-wrapper row login-box ">
     <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
         <form th:action="@{/doctorProfile/prescription-create}" method="POST">
             <div class="card-content #757575">
-                <span class="card-title">Patient Information</span>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <label for="name">Name</label>
-                        <input type="text" class="validate" name="name" id="name"/>
-                    </div>
-                    <div class="input-field col s12">
-                        <label for="phone_number">Phone Number</label>
-                        <input type="text" class="validate" name="phone_number" id="phone_number"/>
-                    </div>
-                </div>
-                <div class="row" th:object="${prescription}">
+                <span class="card-title center-align"><u>New Rx Form</u></span>
 
+                <div class="row" th:object="${prescription}">
                     <div class="card-content #757575">
-                        <span class="card-title">Prescription Information</span>
-                        <div class="row">
+                        <span class="card-title center-align">Patient Information</span>
+                        <label for="fullName">Name</label>
+                        <input type="text" class="validate" name="fullName" id="fullName"/>
+                        <div class="input-field col s12">
+                    </div>
+                        <span class="card-title center-align">Prescription Information</span>
+                        <div class="col s6">
                             <div class="input-field col s12">
                                 <label for="drugName">Drug Name</label>
                                 <input type="text" class="validate" name="drugName" id="drugName"/>
@@ -44,6 +39,9 @@
                                 <label for="sig">Directions</label>
                                 <input type="text" class="validate" th:field="*{sig}" name="sig" id="sig"/>
                             </div>
+                        </div>
+                        <div class="col s6">
+
                             <div class="input-field col s12">
                                 <label for="dose">Dose</label>
                                 <input type="text" class="validate" th:field="*{dose}" name="dose" id="dose"/>

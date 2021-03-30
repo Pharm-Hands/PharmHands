@@ -52,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //              Pages for doctors
                 .and()
                 .authorizeRequests()
-                .antMatchers("/doctorProfile/?", "/doctorProfile/?/*", "/prescription/?")
+                .antMatchers("/doctorProfile/?", "/doctorProfile/?/*", "/prescription/?*")
                 .hasRole("DOCTOR")
 //              Pages for Patients
                 .and()
@@ -62,13 +62,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //              Pages for Pharmacists
                 .and()
                 .authorizeRequests()
-                .antMatchers("/pharmacistProfile/?", "/pharmacistProfile/?/*", "/prescription/?", "/prescription/*")
+                .antMatchers("/pharmacistProfile/?", "/pharmacistProfile/?/*", "/prescription/?*", "/prescription/*")
                 .hasRole("PHARMACIST")
-//              Prescription View
+//              Prescriptions
                 .and()
                 .authorizeRequests()
-                .antMatchers("/prescription/?")
-                .hasAnyRole("PHARMACIST", "DOCTOR")
+                .antMatchers("/prescription-list*", "/prescription/?*")
+                .hasAnyRole("PHARMACIST", "DOCTOR", "PATIENT")
         ;
     }
 }

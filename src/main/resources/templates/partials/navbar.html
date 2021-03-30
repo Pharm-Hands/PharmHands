@@ -6,10 +6,10 @@
     <title>Navbar</title>
 </head>
 <body>
-<nav th:fragment="navbar">
-    <div class="nav-wrapper grey darken-1">
+<nav th:fragment="navbar" class="nav blue ">
+    <div class="nav-wrapper">
         <div class="container">
-            <a href="#!" class="brand-logo left-align"></a> <img src="../../img/Pharm-Hands-clear.png" width="150" height="60">
+            <a href="#!" class="brand-logo center"></a> <img src="../../img/Pharm-Hands-clear.png" width="150" height="60">
             <ul  id="slide-out" class="sidenav">
 
                 <ul sec:authorize="isAuthenticated()">
@@ -64,48 +64,3 @@
 </body>
 </html>
 
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org"> //xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">-->
-<!--    <title>Navbar</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<nav th:fragment="navbar">-->
-<!--    <div class="nav-wrapper grey darken-1">-->
-<!--        <div class="container">-->
-<!--            <a href="#!" class="brand-logo left-align"></a> <img src="../img/Pharm-Hands-clear.png" width="150" height="60">-->
-<!--            <ul  id="slide-out" class="sidenav">-->
-
-<!--                &lt;!&ndash;                <ul sec:authorize="!isAuthenticated()">&ndash;&gt;-->
-<!--                <ul>-->
-<!--                    <li><a href="/login">Login</a></li>-->
-<!--                </ul>-->
-
-<!--                &lt;!&ndash;                <ul sec:authorize="!isAuthenticated()">&ndash;&gt;-->
-<!--                <ul>-->
-<!--                    <li><a href="/register">Register</a></li>-->
-<!--                </ul>-->
-
-
-<!--                &lt;!&ndash;                <ul sec:authorize="isAuthenticated()">&ndash;&gt;-->
-<!--                <ul>-->
-<!--                    <li>-->
-<!--                        <form th:action="@{/logout}" th:method="post" th:hidden="true" name="logoutForm">-->
-<!--                            <input type="submit" value="Logout"/>-->
-<!--                        </form>-->
-<!--                        <a href="javascript: document.logoutForm.submit()">Logout</a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-
-<!--            </ul>-->
-
-
-
-<!--            <a href="#" data-target="slide-out" class=" sidenav-trigger button-collapse show-on-medium-and-up"><i class="material-icons">menu</i></a>-->
-
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
-<!--</body>-->
-<!--</html>-->
