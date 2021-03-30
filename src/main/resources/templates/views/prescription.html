@@ -3,6 +3,18 @@
 <head th:replace="partials/head :: head-section ">
     <title>View Single Prescription</title>
 </head>
+<style>
+    #verify-form{
+        display: flex;
+    }
+    form{
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    h4{
+        margin-top: 0;
+    }
+</style>
 <nav th:replace="partials/navbar02 :: navbar"></nav>
 <body>
 <!--<div th:if="${fillMessage} != null" th:text="${fillMessage}" ></div>-->
@@ -18,101 +30,96 @@
 </div>
 
 <div class="container">
-
     <div class="row">
+        <div class="col s12">
+            <div class="card">
 
-        <div class="col s12 m6">
-            <div class="card #ffffff white">
-                <div class="card-content black-text">
-                    <span class="card-title center-align">Prescription</span>
-                    <hr>
-                    <h5 th:text="${prescription.drug.drug_name}"></h5>
-                    <br>
-                    <p th:text="${prescription.patient.fullName}"></p>
-                    <hr>
-                    <br>
-                    <label for="verified">Verified</label>
-                    <p id="verified" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></p>
-                    <hr>
-                    <br>
-                    <label for="created">Created At</label>
-                    <p id="created" th:text="${prescription.created_at}"></p>
-                    <hr>
-                    <br>
-                    <label for="days_supply">Days Supply</label>
-                    <p id="days_supply" th:text="${prescription.days_supply}"></p>
-                    <hr>
-                    <br>
-                    <label for="dose">Dose</label>
-                    <p id="dose" th:text="${prescription.dose}"></p>
-                    <hr>
-                    <br>
-                    <label for="quantity">Quantity</label>
-                    <p id="quantity" th:text="${prescription.quantity}"></p>
-                    <hr>
-                    <br>
-                    <label for="drug_form">Form</label>
-                    <p id="drug_form" th:text="${prescription.drug_form}"></p>
-                    <hr>
-                    <br>
-                    <label for="sig">Directions</label>
-                    <p id="sig" th:text="${prescription.sig}"></p>
-                    <hr>
-                    <br>
-                    <label for="strength">Strength</label>
-                    <p id="strength" th:text="${prescription.drug_Strength}"></p>
-                    <hr>
-                    <br>
-                    <div th:if="${user.role.role_name} == ROLE_DOCTOR">
-                        <br>
-                        <a th:href="@{/doctorProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                <div class="card-content row">
+                    <div class="col s12" style="text-align: center">
+                        <h4 th:text="${prescription.drug.drug_name}"></h4>
+                        <h6 th:text="${prescription.patient.fullName}"></h6>
+                        <hr>
                     </div>
-                    <div th:if="${user.role.role_name} == ROLE_PATIENT">
-                        <br>
-                        <a th:href="@{/patientProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                    <div class="col s6">
+                        <div class="col s12">
+                            <label for="sig">Directions</label>
+                            <p id="sig" th:text="${prescription.sig}"></p>
+                        </div>
+                        <div class="col s12">
+                            <label for="created">Created At</label>
+                            <p id="created" th:text="${prescription.created_at}"></p>
+                        </div>
+                        <div class="col s12">
+                            <label for="drug_form">Form</label>
+                            <p id="drug_form" th:text="${prescription.drug_form}"></p>
+                        </div>
+                        <div class="col s12">
+                            <label for="strength">Strength</label>
+                            <p id="strength" th:text="${prescription.drug_Strength}"></p>
+                        </div>
                     </div>
-                    <div th:if="${user.role.role_name} == ROLE_PHARMACIST">
-                        <br>
-                        <a th:href="@{/pharmacistProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                    <div class="col s6">
+                        <div class="col s12">
+                            <label for="dose">Dose</label>
+                            <p id="dose" th:text="${prescription.dose}"></p>
+                        </div>
+                        <div class="col s12">
+                            <label for="quantity">Quantity</label>
+                            <p id="quantity" th:text="${prescription.quantity}"></p>
+                        </div>
+                        <div class="col s12">
+                            <label for="days_supply">Days Supply</label>
+                            <p id="days_supply" th:text="${prescription.days_supply}"></p>
+                        </div>
+                        <div class="col s12">
+                            <label for="verified">Verified</label>
+                            <p id="verified" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></p>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
-        <div class="col s12 m6">
+
+        <div class="col s12">
             <div class="card #ffffff white">
                 <div class="card-content black-text">
-                    <span class="card-title center-align">Fills</span>
+                    <h4 class="center-align">Fills</h4>
                     <hr>
                         <table class="centered responsive-table">
                             <thead>
                                 <tr class="white-text table-bg" style>
-                                    <th class="center-align">DRUG</th>
+<!--                                    <th class="center-align">DRUG</th>-->
                                     <th class="center-align">FILL DATE</th>
                                     <th class="center-align">FILL NUMBER</th>
-                                    <th class="center-align">PATIENT</th>
+                                    <th class="center-align">FILLED BY</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="fill : ${prescription.fills}" class="prescription table-body" th:href="@{/prescription/{id}(id=${prescription.id})}">
-                                    <td th:text="${fill.prescription.drug.drug_name}"></td>
+                                <tr th:each="fill, f : ${prescription.fills}" class="prescription table-body" th:href="@{/prescription/{id}(id=${prescription.id})}">
+<!--                                    <td th:text="${fill.prescription.drug.drug_name}"></td>-->
                                     <td th:text="${fill.fill_date}">"</td>
-                                    <td th:text="${fill.fill_number}"></td>
-                                    <td th:text="${fill.prescription.patient.fullName}"></td>
+                                    <td th:text="${f.index} + 1"></td>
+                                    <td th:text="${fill.user.fullName}"></td>
                                 </tr>
                             </tbody>
                         </table>
                     <hr>
 
 
-                    <div th:if="${user.role.role_name} == ROLE_PHARMACIST">
+                    <div th:if="${user.role.role_name} == ROLE_PHARMACIST and ${@prescriptionService.fillEligible(prescription.id)}">
+
+
                         <div id="verify-form" th:if="${prescription.is_verified} == 0">
-                            <form th:action="@{/prescription/{id}/verify(id=${prescription.id})}" method="post">
-                                <button class="btn orange waves-effect waves-light" type="submit">Verify Prescription</button>
-                            </form>
-                            <form th:action="@{/prescription/{id}/verifyAndFill(id=${prescription.id})}" method="post">
-                                <button class="btn orange waves-effect waves-light right" type="submit">Verify and Fill Prescription</button>
-                            </form>
+                            <div>
+                                <form th:action="@{/prescription/{id}/verify(id=${prescription.id})}" method="post">
+                                    <button class="btn orange waves-effect waves-light" type="submit">Verify Prescription</button>
+                                </form>
+                            </div>
+                            <div>
+                                <form th:action="@{/prescription/{id}/verifyAndFill(id=${prescription.id})}" method="post">
+                                    <button class="btn orange waves-effect waves-light right" type="submit">Verify and Fill Prescription</button>
+                                </form>
+                            </div>
                         </div>
                         <div th:unless="${prescription.is_verified} == 0">
                             <form th:action="@{/prescription/{id}/fill(id=${prescription.id})}" method="post">
@@ -121,6 +128,18 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div th:if="${user.role.role_name} == ROLE_DOCTOR">
+                <br>
+                <a th:href="@{/doctorProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+            </div>
+            <div th:if="${user.role.role_name} == ROLE_PATIENT">
+                <br>
+                <a th:href="@{/patientProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+            </div>
+            <div th:if="${user.role.role_name} == ROLE_PHARMACIST">
+                <br>
+                <a th:href="@{/pharmacistProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
             </div>
         </div>
     </div>

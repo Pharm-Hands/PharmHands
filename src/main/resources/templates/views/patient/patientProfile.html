@@ -67,7 +67,6 @@
                                 <th class="center-align">CREATED AT</th>
                                 <th class="center-align">VERIFIED</th>
                                 <th class="center-align">DOCTOR</th>
-<!--                                <th class="center-align">test</th>-->
                                 <th class="center-align"></th>
                             </tr>
                         </thead>
@@ -77,10 +76,8 @@
                                 <td class="link" th:text="${prescription.created_at}">"</td>
                                 <td class="link" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
                                 <td class="link" th:text="${prescription.doctor.fullName}"></td>
-<!--                                <td th:text="${prescription.days_supply}"></td>-->
-<!--                                th:if="${prescription.created_at}.before(${#temporals.createNow().minus(${prescription.days_supply})})"-->
                                 <td>
-                                    <a class="pRequest waves-effect waves-light orange btn request-btn" th:href="@{/prescription-request/{id}(id=${prescription.id})}">Request Fill</a>
+                                    <a th:if="${@prescriptionService.fillEligible(prescription.id)}" class="pRequest waves-effect waves-light orange btn request-btn" th:href="@{/prescription-request/{id}(id=${prescription.id})}">Request Fill</a>
                                 </td>
                             </tr>
                         </tbody>
