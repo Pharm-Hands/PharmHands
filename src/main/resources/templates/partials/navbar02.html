@@ -13,20 +13,10 @@
         <section th:fragment="navbar" >
         <nav >
             <div class="nav-wrapper">
-                <a href="#!" class="brand-logo left"><img src="../../img/newblue.png" width="150" height="60"></a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons orange-text">menu</i></a>
-                        <!--  Desktop view -->
-                <ul class="hide-on-med-and-down right" sec:authorize="isAuthenticated()" >
-                    <li th:if="${user} != null">
-                        <a th:if="${user.getRole().getId()} == 1" th:href="@{/doctorProfile/{id}(id=${user.getId()})}">
-                            <span th:text="|${user.getUsername()}'s Profile|"></span>
-                        </a>
-                        <a th:if="${user.getRole().getId()} == 3" th:href="@{/pharmacistProfile/{id}(id=${user.getId()})}">
-                            <span th:text="|${user.getUsername()}'s Profile|"></span>
-                        </a>
-                        <a th:if="${user.getRole().getId()} == 2" th:href="@{/patientProfile/{id}(id=${user.getId()})}">
-                            <span th:text="|${user.getUsername()}'s Profile|"></span>
-                        </a>
+
+                <ul class="hide-on-med-and-down left-align"sec:authorize="isAuthenticated()">
+                    <li>
+                <a th:href="@{/}" class="brand-logo><img src="../../img/newblue.png" width="150" height="55"></a>
                     </li>
                     <li>
                         <a th:href="@{/}">
@@ -39,12 +29,12 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="hide-on-med-and-down right" sec:authorize="!isAuthenticated()">
-                    <li><a href="/login">Login</a></li>
-                </ul>
-                <ul class="hide-on-med-and-down right" sec:authorize="!isAuthenticated()">
-                    <li><a href="/register">Register</a></li>
-                </ul>
+
+
+
+
+
+
                 <ul class="hide-on-med-and-down right" sec:authorize="isAuthenticated()">
                     <li>
                         <form th:action="@{/logout}" th:method="post" th:hidden="true" name="logoutForm">
@@ -53,6 +43,48 @@
                         <a href="javascript: document.logoutForm.submit()">Logout</a>
                     </li>
                 </ul>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons orange-text">menu</i></a>
+                        <!--  Desktop view -->
+
+                <ul class="hide-on-med-and-down right" sec:authorize="isAuthenticated()" >
+                    <li th:if="${user} != null">
+                        <a th:if="${user.getRole().getId()} == 1" th:href="@{/doctorProfile/{id}(id=${user.getId()})}">
+                            <span th:text="|${user.getUsername()}'s Profile|"></span>
+                        </a>
+                        <a th:if="${user.getRole().getId()} == 3" th:href="@{/pharmacistProfile/{id}(id=${user.getId()})}">
+                            <span th:text="|${user.getUsername()}'s Profile|"></span>
+                        </a>
+                        <a th:if="${user.getRole().getId()} == 2" th:href="@{/patientProfile/{id}(id=${user.getId()})}">
+                            <span th:text="|${user.getUsername()}'s Profile|"></span>
+                        </a>
+                    </li>
+                </ul>
+<!--                <ul class="hide-on-med-and-down left-align"sec:authorize="isAuthenticated()">-->
+<!--                    <li>-->
+<!--                        <a th:href="@{/}">-->
+<!--                            <span th:text="Home"></span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a th:href="@{/about}">-->
+<!--                            <span th:text="About"></span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+                <ul class="hide-on-med-and-down right" sec:authorize="!isAuthenticated()">
+                    <li><a href="/login">Login</a></li>
+                </ul>
+                <ul class="hide-on-med-and-down right" sec:authorize="!isAuthenticated()">
+                    <li><a href="/register">Register</a></li>
+                </ul>
+<!--                <ul class="hide-on-med-and-down right" sec:authorize="isAuthenticated()">-->
+<!--                    <li>-->
+<!--                        <form th:action="@{/logout}" th:method="post" th:hidden="true" name="logoutForm">-->
+<!--                            <input type="submit" value="Logout"/>-->
+<!--                        </form>-->
+<!--                        <a href="javascript: document.logoutForm.submit()">Logout</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
             </div>
         </nav>
         <!--Side nav for mobile view-->
