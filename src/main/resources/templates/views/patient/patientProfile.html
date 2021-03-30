@@ -78,6 +78,7 @@
                                 <td class="link" th:text="${prescription.doctor.fullName}"></td>
                                 <td>
                                     <a th:if="${@prescriptionService.fillEligible(prescription.id)}" class="pRequest waves-effect waves-light orange btn request-btn" th:href="@{/prescription-request/{id}(id=${prescription.id})}">Request Fill</a>
+                                    <a th:unless="${@prescriptionService.fillEligible(prescription.id)}" class="pRequest waves-effect waves-light orange btn request-btn disabled">Request Fill</a>
                                 </td>
                             </tr>
                         </tbody>
