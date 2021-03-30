@@ -33,7 +33,6 @@
     <div class="row">
         <div class="col s12">
             <div class="card">
-
                 <div class="card-content row">
                     <div class="col s12" style="text-align: center">
                         <h4 th:text="${prescription.drug.drug_name}"></h4>
@@ -131,15 +130,15 @@
             </div>
             <div th:if="${user.role.role_name} == ROLE_DOCTOR">
                 <br>
-                <a th:href="@{/doctorProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                <a th:href="@{/doctorProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Back to Profile</a>
             </div>
             <div th:if="${user.role.role_name} == ROLE_PATIENT">
                 <br>
-                <a th:href="@{/patientProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                <a th:href="@{/patientProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Back to Profile</a>
             </div>
             <div th:if="${user.role.role_name} == ROLE_PHARMACIST">
                 <br>
-                <a th:href="@{/pharmacistProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Return to Profile</a>
+                <a th:href="@{/pharmacistProfile/{id}(id=${user.id})}" class="btn orange  waves-effect waves-light"><- Back to Profile</a>
             </div>
         </div>
     </div>
