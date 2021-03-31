@@ -1,73 +1,139 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head2 :: head-section2"></head>
+<head th:replace="partials/head2 :: head-section2">
+    <title></title>
+</head>
 <body>
 <nav th:replace="partials/navbar02 :: navbar"></nav>
 
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+<link type="text/css" rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <div th:replace="partials/scripts :: scripts"></div>
 
-<!--<div class="section no-pad-bot" id="index-banner">-->
-<!--    <div class="container">-->
-<!--        <h1 class="header center orange-text">About Us</h1>-->
-<!--        <div class="row center">-->
-<!--            <h5 class="header col s12 light white-text">We're a ragtag team of devs trying to make the pharmacy world a simpler and more efficient place.</h5>-->
-<!--        </div>-->
-
-<!--        <br><br>-->
-
-<!--    </div>-->
-<!--</div>-->
-
-<div class="row">
-
-    <div class="carousel">
-        <a class="carousel-item" href="https://www.linkedin.com/in/josiah-cuthbert/"><img src="../img/Joe.jpg">Josiah Cuthbert</a>
-        <a class="carousel-item" href="https://www.linkedin.com/in/jaya-seyyadri/"><img src="../img/Jaya.jpg" href=> Jaya Seyyadri</a>
-        <a class="carousel-item" href="https://www.linkedin.com/in/rod-sanati/"><img src="../img/Rod.jpeg" href=>Rod Sanati</a>
-        <a class="carousel-item" href="https://www.linkedin.com/in/james-gemes/"><img src="../img/James.png" href=>James Gemes</a>
-    </div>
-
-</div>
-
-
-<footer class="page-footer orange" style="margin-bottom: 0px;">
-    <div class="container">
+<div class="container">
+    <div class="section">
         <div class="row">
-            <div class="col l6 s12">
-                <h5 class="black-text">Company Bio</h5>
-                <p class="white-text text-lighten-4">We are a team of Codeup students working on this project</p>
-            </div>
-            <div class="col l3 s12">
-                <h5 class="black-text right-align">Pharm Hands On Deck:</h5>
-                <ul class="right-align">
-                    <li><a class="white-text" href="https://www.linkedin.com/in/josiah-cuthbert/">Josiah Cuthbert</a></li>
-                    <li><a class="white-text" href="https://www.linkedin.com/in/rod-sanati/">Rod Sanati</a></li>
-                    <li><a class="white-text" href="https://www.linkedin.com/in/james-gemes/">James Gemes</a></li>
-                    <li><a class="white-text" href="https://www.linkedin.com/in/jaya-seyyadri/">Jaya Seyyadri</a></li>
-                </ul>
 
+            <div class="col s10 m6 l4 xl3">
+                <div class="card">
+                    <div class="card-image">
+                        <img class="circle z-depth-1" src="../img/James.png" alt="picture of James" height="200"
+                             width="200">
+                        <p class="center-align blue text-darken-2">James Gemes</p>
+                        <div class="card-action">
+                            <a class="btn-floating blue" href="https://www.linkedin.com/in/james-gemes/"
+                               style="margin-right: 24px"><i class="fa fa-linkedin white-text small "></i></a>
+                            <a class="btn-floating black" href="https://github.com/JamesCGemes"
+                               style="margin-right: 24px"><i class="fa fa-github small "></i></a>
+                            <a class="btn-floating white" href="https://codeup.com/jupiter/" style=""><img
+                                    class="black-text text-darken-3 right-align" src="../img/codeupLogo.png"
+                                    alt="codeup alumni portal" height="32" width="32"></a>
+                        </div>
+                        <div class="card-content">
+                            <p>Hello, James here ,Thank you for visiting PharmHands.
+                                Dedicated military veteran and professional with years of experience in technical support and customer services</p>
 
-                <div class="col s12 16">
-                    <img class="circle z-depth-4" id="selfie" src="static/img/Jaya.jpg"  alt="Portrait image">
-
+                        </div>
+                    </div>
                 </div>
-
-
             </div>
+
+
+            <div class="col s10 m6 l4 xl3">
+                <div class="card">
+                    <div class="card-image">
+                    <img class="circle z-depth-1" src="../img/Joe.jpg" alt="picture of Joe" height="200" width="200">
+                        <p class="center-align blue text-darken-2">Joe Cuthbert</p>
+                        <div class="card-action">
+                            <a class="btn-floating blue" href="https://www.linkedin.com/in/josiah-cuthbert/"
+                               style="margin-right: 24px"><i class="fa fa-linkedin white-text small "></i></a>
+                            <a class="btn-floating black" href="https://github.com/JosiahCuthbert"
+                               style="margin-right: 24px"><i class="fa fa-github small "></i></a>
+                            <a class="btn-floating white" href="https://codeup.com/jupiter/" style=""><img
+                                    class="black-text text-darken-3 right-align" src="../img/codeupLogo.png"
+                                    alt="codeup alumni portal" height="32" width="32"></a>
+                        </div>
+                        <div class="card-content">
+                            <p>Hello, Joe here ,Thank you for visiting PharmHands.
+                                Curious and process-oriented developer with a background in software product management and finance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          <div class="col s10 m6 l4 xl3" >
+              <div class="card">
+                  <div class="card-image">
+                    <img class="circle z-depth-1" src="../img/Jaya.jpg" alt="picture of Jaya" height="200" width="200">
+                      <p class="center-align blue text-darken-2">Jaya Seyyadri</p>
+                      <div class="card-action">
+                          <a class="btn-floating blue" href="https://www.linkedin.com/in/jaya-seyyadri/"
+                             style="margin-right: 24px"><i class="fa fa-linkedin white-text small "></i></a>
+                          <a class="btn-floating black" href="https://github.com/jayaseyyadri"
+                             style="margin-right: 24px"><i class="fa fa-github small "></i></a>
+                          <a class="btn-floating white" href="https://codeup.com/jupiter/" style=""><img
+                                  class="black-text text-darken-3 right-align" src="../img/codeupLogo.png"
+                                  alt="codeup alumni portal" height="32" width="32"></a>
+                      </div>
+                      <div class="card-content">
+                          <p>Hello, Jaya here ,Thank you for visiting PharmHands.</p>
+                          A software developer, mother,a teacher and logistics execeutive ,evr ready to learn new things & venture into the world of software development.
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+            <div class="row">
+                <div class="col s10 m6 l4 xl3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="circle z-depth-1" src="../img/Rod.jpeg" alt="picture of Rod" height="200"
+                                 width="200">
+                            <p class="center-align blue text-darken-2">Rod Sanati</p>
+                            <div class="card-action">
+                                <a class="btn-floating blue" href="https://www.linkedin.com/in/rod-sanati/"
+                                   style="margin-right: 24px"><i class="fa fa-linkedin white-text small "></i></a>
+                                <a class="btn-floating black" href="https://github.com/Rod-S"
+                                   style="margin-right: 24px"><i class="fa fa-github small "></i></a>
+                                <a class="btn-floating white" href="https://codeup.com/jupiter/" style=""><img
+                                        class="black-text text-darken-3 right-align" src="../img/codeupLogo.png"
+                                        alt="codeup alumni portal" height="32" width="32"></a>
+                            </div>
+                            <div class="card-content">
+                                <p>Hello, Rod here ,Thank you for visiting PharmHands.
+                                    Full stack software developer pursuing exciting challenges within web-based applications</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<footer class="footer orange " >
+    <div class="footer-copyright">
+        <div class="left-align " style="margin-left: 2px" >
+            <span> © 2021 -Your health is in safe hands!</span>
+        </div>
+
+        <div class="right-align" style="margin-right: 2px">
+            <a class="grey-text text-lighten-4 right-align" th:href="@{/about}"><span class="black-text" >All Rights Reserved!</span>
+            </a>
         </div>
     </div>
 </footer>
-
-
 <!--  Scripts-->
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('.carousel').carousel();
-    });
-</script>
-
+<!--<script type="text/javascript">-->
+<!--    $(document).ready(function () {-->
+<!--    });-->
+<!--</script>-->
 <!--<script type="text/javascript" src="/js/rxFormValidation.js"></script>-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
 <script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/js/materialize.js"></script>
 <script type="text/javascript" src="/js/init.js"></script>
