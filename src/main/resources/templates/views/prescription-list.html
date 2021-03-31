@@ -32,7 +32,8 @@
                             <td class="rx-verified" th:text="${prescription.is_verified} ? 'Verified' : 'Not Verified'"></td>
                             <td class="rx-patient-name" th:text="${prescription.getPatient().getFullName()}"></td>
                             <td th:if="${user.role.role_name} == ROLE_PATIENT">
-                                <a class="request-btn waves-effect waves-light orange btn" th:href="@{/prescription-request/{id}(id=${prescription.id})}">Request Fill</a>
+                                <a th:if="${@prescriptionService.fillEligible(prescription.id)}" class="pRequest waves-effect waves-light orange btn request-btn" th:href="@{/prescription-request/{id}(id=${prescription.id})}">Request Fill</a>
+                                <a th:unless="${@prescriptionService.fillEligible(prescription.id)}" class="pRequest waves-effect waves-light orange btn request-btn disabled">Request Fill</a>
                             </td>
 
                         </tr>
