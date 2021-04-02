@@ -52,7 +52,6 @@ public class PharmacistViewController {
     public String editPharmacistInfo(@ModelAttribute User user, @PathVariable long id){
         User loggedIn = userService.loggedInUser();
 
-//        user.setFull_name(user.getFull_name());
         user.setFullName(user.getFullName());
         user.setEmail(user.getEmail());
         user.setPassword(loggedIn.getPassword());

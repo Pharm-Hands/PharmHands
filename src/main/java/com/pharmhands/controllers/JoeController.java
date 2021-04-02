@@ -145,24 +145,6 @@ public class JoeController {
 
     @PostMapping("/prescription-request/{prescriptionId}")
     public String submitRequest(@ModelAttribute PrescriptionRequests request, @PathVariable long prescriptionId, RedirectAttributes redir){
-//        Prescriptions prescription = prescriptionsDao.getOne(prescriptionId);
-
-//        get the most recent fill date unless no fills have been performed
-//        Calendar fillCheck = Calendar.getInstance();
-//        Calendar now = Calendar.getInstance();
-//        now.setTime(new Date());
-//        System.out.println(fillsDao.fillCount(prescriptionId));
-//        if (fillsDao.fillCount(prescriptionId) != 0) {
-//            fillCheck.setTime(fillsDao.mostRecent(prescriptionId).getFill_date());
-//            fillCheck.add(Calendar.DATE, prescription.getDays_supply());
-//
-////        check the current date against the most recent fill date plus days supply and redirect if it is within the range
-//            if (fillCheck.getTime().after(now.getTime())) {
-//                redir.addFlashAttribute("requestMessage", "Sorry, this prescription is not eligible to be filled. The days supply since last fill has not run out yet. Please wait to request a fill once this prescription becomes eligible.");
-//                return "redirect:/patientProfile/" + userService.loggedInUser().getId();
-//            }
-//        }
-
         if(!prescriptionService.fillEligible(prescriptionId)){
             redir.addFlashAttribute("requestMessage", "Sorry, this prescription is not eligible to be filled. The days supply since last fill has not run out yet. Please wait to request a fill once this prescription becomes eligible.");
         }else{
@@ -210,3 +192,21 @@ public class JoeController {
         return "views/request-list";
     }
 }
+
+
+/**   Prescriptions prescription = prescriptionsDao.getOne(prescriptionId);
+ //        get the most recent fill date unless no fills have been performed
+ //        Calendar fillCheck = Calendar.getInstance();
+ //        Calendar now = Calendar.getInstance();
+ //        now.setTime(new Date());
+ //        System.out.println(fillsDao.fillCount(prescriptionId));
+ //        if (fillsDao.fillCount(prescriptionId) != 0) {
+ //            fillCheck.setTime(fillsDao.mostRecent(prescriptionId).getFill_date());
+ //            fillCheck.add(Calendar.DATE, prescription.getDays_supply());
+ //
+ //       check the current date against the most recent fill date plus days supply and redirect if it is within the range
+ //            if (fillCheck.getTime().after(now.getTime())) {
+ //                redir.addFlashAttribute("requestMessage", "Sorry, this prescription is not eligible to be filled. The days supply since last fill has not run out yet. Please wait to request a fill once this prescription becomes eligible.");
+ //                return "redirect:/patientProfile/" + userService.loggedInUser().getId();
+ //            }
+ //        }*/

@@ -1,12 +1,10 @@
 package com.pharmhands.controllers;
 
 
-import com.pharmhands.models.User;
 import com.pharmhands.repositories.*;
 import com.pharmhands.services.EmailService;
 import com.pharmhands.services.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,21 +37,14 @@ public class loginController {
 
     @GetMapping("/login")
     public String loginForm(Model model) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("user", user);
         return "views/login";
     }
 
     @GetMapping("/patientProfile")
     @PreAuthorize("isAuthenticated()")
-    public String patientLogin(Model model){
-        model.addAttribute("patient",userService.loggedInUser());
+    public String patientLogin(Model model) {
+        model.addAttribute("patient", userService.loggedInUser());
         return "views/patient/patientProfile";
     }
 
-//    @GetMapping("/patientProfile")
-//    public String patientLogin(Model model){
-//        model.addAttribute("patient",userService.loggedInUser());
-//        return "views/patient/patientProfile";
-//    }
 }

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.print.attribute.standard.PresentationDirection;
 import java.util.Date;
 
 @Controller
@@ -46,21 +45,8 @@ public class PatientProfileController {
         model.addAttribute("patientInfo", patientDao.findByUser(userDao.getOne(id)));
         model.addAttribute("prescriptions", prescriptionsDao.findAllByPatientId(id));
 
-//        model.addAttribute("prescriber",prescriptionsDao.getOne(id));
         return "views/patient/patientProfile";
     }
-
-//    @GetMapping("/patientProfile/{id}/edit")
-//    public String editPatientInfoForm(@PathVariable long id, Model model) {
-//        User loggedUser = userDao.getOne(id);
-//        if (loggedUser == null) {
-//            return "redirect:/";
-//        }
-//        User user = userDao.getOne(loggedUser.getId());
-//        model.addAttribute("patient", user);
-//        model.addAttribute("patientInfo", patientDao.findByUser(userDao.getOne(id)));
-//        return "views/patient/EditPatientProfile";
-//    }
 
     @GetMapping("/patientProfile/{id}/edit")
     public String editPatientInfoForm(Model model, @PathVariable long id){
@@ -122,3 +108,18 @@ public class PatientProfileController {
     }
 
 }
+
+
+/**BUFFER*/
+
+//    @GetMapping("/patientProfile/{id}/edit")
+//    public String editPatientInfoForm(@PathVariable long id, Model model) {
+//        User loggedUser = userDao.getOne(id);
+//        if (loggedUser == null) {
+//            return "redirect:/";
+//        }
+//        User user = userDao.getOne(loggedUser.getId());
+//        model.addAttribute("patient", user);
+//        model.addAttribute("patientInfo", patientDao.findByUser(userDao.getOne(id)));
+//        return "views/patient/EditPatientProfile";
+//    }
