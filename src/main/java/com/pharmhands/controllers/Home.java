@@ -4,11 +4,9 @@ import com.pharmhands.models.User;
 import com.pharmhands.repositories.UserRepository;
 import com.pharmhands.services.EmailService;
 import com.pharmhands.services.UserService;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -27,10 +25,10 @@ class Home {
     @GetMapping("/")
     public String mainPage(Model model) {
         User user;
-        try{
+        try {
             user = userService.loggedInUser();
             model.addAttribute("user", user);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Empty user object");
         }
 
